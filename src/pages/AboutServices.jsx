@@ -37,17 +37,14 @@ const ServicesSection = () => {
         key={index}
         className="group relative p-6 cursor-pointer rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
       >
-        {/* Glow Effect */}
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-200/20 to-purple-200/20 opacity-0 group-hover:opacity-100 transition duration-300 blur-xl"></div>
 
-        {/* Icon */}
         <div
           className={`${service.bgColor} w-14 h-14 flex items-center justify-center rounded-xl text-white text-xl shadow-lg transform group-hover:scale-110 transition duration-300`}
         >
           {service.icon}
         </div>
 
-        {/* Content */}
         <h3 className="text-xl font-bold text-gray-900 mt-5 group-hover:text-blue-600 transition">
           {service.title}
         </h3>
@@ -56,7 +53,6 @@ const ServicesSection = () => {
           {service.desc}
         </p>
 
-        {/* Bottom line animation */}
         <div className="h-1 w-0 bg-gradient-to-r from-blue-500 to-purple-500 mt-4 group-hover:w-full transition-all duration-300 rounded-full"></div>
       </div>
     ))}

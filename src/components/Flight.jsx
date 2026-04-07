@@ -1,22 +1,20 @@
-import React, {  useState } from 'react';
-import { motion } from "framer-motion";
-import HowItWorks from './HowItWorks';
-import { MdClose } from "react-icons/md";
+import React, { useState } from 'react'
+import LatestNews from '../pages/LatestNewsPage'
+import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
-import FlightDestination from './Destination/FlightDestination';
-import ExploreNearby from './ExploreNearby';
+import FlightDestination from '../pages/Destination/FlightDestination';
 
-export default function FlightPage() {
-  const [roundedEnable, setRoundedEnable] = useState(false)
-  const [returnDate, setReturnDate] = useState("")
-
+export default function Flight() {
+     const [roundedEnable, setRoundedEnable] = useState(false)
+      const [returnDate, setReturnDate] = useState("")
   return (
+    <>
     <div className="w-full font-sans mt-30">
-      <section className="px-4">
+     <section className="px-4">
         <div className="max-w-7xl mx-auto bg-gradient-to-b from-[#dbeafe] to-[#ffffff] rounded-[50px] pt-24 pb-32 relative overflow-hidden">
           <div className="relative z-10 text-center mb-16">
             <h1 className="text-3xl md:text-4xl font-extrabold text-[#1a1a1a] tracking-tight">
-              Find an unpublished deal
+              Ready To Take Off
             </h1>
           </div>
 
@@ -140,14 +138,9 @@ export default function FlightPage() {
           </div>
         </div>
       </section>
-
-      <HowItWorks />
-      <FlightDestination/>
-      <ExploreNearby/>
-    </div>
-  );
-};
-
-
-
-
+    <FlightDestination/>
+    <LatestNews/>
+</div>
+    </>
+  )
+}

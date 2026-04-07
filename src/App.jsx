@@ -10,6 +10,10 @@ import TermsCondition from './pages/Policy/Term-condition'
 import PrivacyPolicy from './pages/Policy/Privacy-Policy'
 import Disclaimer from './pages/Policy/Disclaimer'
 import RefundPolicy from './pages/Policy/Refund-Policy'
+import LatestNews from './pages/LatestNewsPage'
+import Flight from './components/Flight'
+import CarRentalPage from './pages/CarRentalPage'
+import HotelPage from './pages/HotelPage'
 
 export default function App() {
   return (
@@ -18,7 +22,11 @@ export default function App() {
     <Navbar/>
     <Routes>
         <Route path='/' element={<FlightPage/>}/>
+        <Route path='/car-rental' element={<CarRentalPage/>}/>
+        <Route path='/hotel' element={<HotelPage/>}/>
         <Route path='/about-us' element={<AboutUsPage/>}/>
+        <Route path='/flight' element={<Flight/>}/>
+
 
         {/* Policy Page */}
         <Route path='/cancellation' element={<Cancellation/>}/>
@@ -26,6 +34,9 @@ export default function App() {
         <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
         <Route path='/disclaimer' element={<Disclaimer/>}/>
         <Route path='/refund-policy' element={<RefundPolicy/>}/>
+
+        <Route path='/latest' element={<LatestNews/>}/>
+
 
 
         <Route path='/contact-us' element={<ContactPage/>}/>
