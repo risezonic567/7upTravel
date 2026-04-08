@@ -51,7 +51,7 @@ export default function FlightPage() {
             muted
               src="/video/Flight Page GIF.mp4"
               alt="sky"
-              className="w-full h-full object-cover"
+              className="w-full h-[600px] object-cover"
             />
             <div className="absolute inset-0 "></div>
           </div>
@@ -62,7 +62,7 @@ export default function FlightPage() {
             </h1>
           </div>
 
-          <div className="relative z-20 max-w-6xl md:mt-30 mx-auto px-6">
+          <div className="relative z-20 max-w-6xl mx-auto px-6 pt-20 md:pt-20">
 
             <div className="relative bg-white shadow-2xl  rounded-sm p-8 border-y border-gray-100">
 
