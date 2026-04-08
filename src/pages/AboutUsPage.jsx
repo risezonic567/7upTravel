@@ -7,9 +7,7 @@ export default function AboutUsPage() {
     <div >
       <div className="bg-white font-sans  text-gray-900">
 
-        {/* 1. Header & Image Grid Section */}
         <section className="max-w-7xl mx-auto px-6  py-36">
-          {/* Title Section */}
           <div className="text-center  mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
               Discover the World—We’ll Guide <br />
@@ -20,10 +18,8 @@ export default function AboutUsPage() {
             </p>
           </div>
 
-          {/* Asymmetrical Image Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
 
-            {/* Left Large Image */}
             <motion.div
               className="h-full"
               initial={{ opacity: 0, x: -80 }}
@@ -32,9 +28,9 @@ export default function AboutUsPage() {
               viewport={{ once: true }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000"
+                src="/images/About us Img 1.jpg.jpeg"
                 alt="Beach resort"
-                className="w-[600px] md:h-[600px] border object-cover rounded-[2rem] shadow-lg"
+                className="w-full md:h-full object-cover rounded-[2rem] shadow-lg"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               />
@@ -44,9 +40,9 @@ export default function AboutUsPage() {
             <div className="flex flex-col gap-6">
 
               <motion.img
-                src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1000"
+                src="/images/About us Img 2.jpg.jpeg"
                 alt="People at cafe"
-                className="w-[600px] h-[280px] border object-cover rounded-[2rem] shadow-lg"
+                className="w-full h-full  object-cover rounded-[2rem] shadow-lg"
                 initial={{ opacity: 0, x: 80 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -55,9 +51,9 @@ export default function AboutUsPage() {
               />
 
               <motion.img
-                src="https://images.unsplash.com/photo-1539635278303-d4002c07dee3?q=80&w=1000"
+                src="/images/About us Img 3.jpg.jpeg"
                 alt="Friends on beach"
-                className="w-full h-[280px] object-cover rounded-[2rem] shadow-lg"
+                className="w-full h-full object-cover rounded-[2rem] shadow-lg"
                 initial={{ opacity: 0, x: 80 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}

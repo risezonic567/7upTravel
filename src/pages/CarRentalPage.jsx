@@ -104,9 +104,9 @@ export default function CarRentalPage() {
                 transition={{ duration: 0.8 }}
                 className="absolute inset-0 flex items-center justify-center"
               >
-                {/* <h1 className="text-5xl md:text-7xl font-black text-white drop-shadow-2xl text-center">
+                <h1 className="text-5xl md:text-7xl font-black text-white drop-shadow-2xl text-center">
                    BOOK YOUR <span className="text-[#FFCC00]">CAB</span>
-                </h1> */}
+                </h1>
               </motion.div>
            </motion.div>
         </div>

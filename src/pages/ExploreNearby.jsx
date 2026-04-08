@@ -2,12 +2,12 @@ import React from "react";
 
 export default function ExploreNearby() {
   const places = [
-    { id: 1, name: "San Francisco", img: "" },
-    { id: 2, name: "Los Angeles", img: "" },
-    { id: 3, name: "Miami", img: "" },
-    { id: 4, name: "San Jose", img: "" },
-    { id: 5, name: "New York", img: "" },
-    { id: 6, name: "Las Vegas", img: "" },
+    { id: 1, name: "San Francisco", img: "/images/Explore Nearby San Francisco.jpg.jpeg" },
+    { id: 2, name: "Los Angeles", img: "/images/Explore Nearby Los Angeles.jpg.jpeg" },
+    { id: 3, name: "Miami", img: "/images/Explore Nearby Miami.jpg.jpeg" },
+    { id: 4, name: "San Jose", img: "/images/Explore Nearby San Jose.jpg.jpeg" },
+    { id: 5, name: "New York", img: "/images/Explore Nearby New York.jpg.jpeg" },
+    { id: 6, name: "Las Vegas", img: "/images/Explore Nearby Las Vegas.jpg.jpeg" },
   ];
 
   return (
@@ -29,7 +29,7 @@ export default function ExploreNearby() {
               <img
                 src={item.img}
                 alt={item.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full rounded-full object-cover"
               />
 
             </div>

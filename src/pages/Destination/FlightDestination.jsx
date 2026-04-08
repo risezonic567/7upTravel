@@ -8,7 +8,7 @@ const destinations = [
     name: 'Thailand',
     rating: '4.3',
     description: 'Temples & sun-soaked sands.',
-    image: 'https://images.unsplash.com/photo-1528181304800-2f140819898f?auto=format&fit=crop&q=80&w=800',
+    image: '/images/Thailand.jpg.jpeg',
     active: true,
   },
   {
@@ -16,7 +16,7 @@ const destinations = [
     name: 'Hong Kong',
     rating: '4.6',
     description: 'Skyline thrills & street eats.',
-    image: 'https://images.unsplash.com/photo-1506353301390-276326c9973f?auto=format&fit=crop&q=80&w=800',
+    image: '/images/Hong Kong.jpg.jpeg',
     active: true,
   },
   {
@@ -24,7 +24,7 @@ const destinations = [
     name: 'Maldives',
     rating: '4.3',
     description: 'Overwater bliss & blue lagoons.',
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&q=80&w=800',
+    image: '/images/Maldives.jpg.jpeg',
     active: true,
   },
   {
@@ -32,7 +32,7 @@ const destinations = [
     name: 'Switzerland',
     rating: '4.3',
     description: 'Alpine peaks & crystal lakes.',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800',
+    image: '/images/Switzerland.jpg.jpeg',
     active: true,
   },
 ];
@@ -53,7 +53,7 @@ export default function FlightDestination() {
               <img
                 src={dest.image}
                 alt={dest.name}
-                className="w-[300px] h-[400px] border object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full  object-cover transition-transform duration-500 group-hover:scale-110"
               />
 
               <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-1.5 rounded-full border border-white/30 text-white hover:bg-white hover:text-black transition-colors">

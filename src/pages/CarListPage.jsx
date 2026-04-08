@@ -131,7 +131,7 @@ const CarlistPage = () => {
 
           <div>
             <button
-              onClick={() => setShowFilter(true)}
+              onClick={() => setShowFilter(prev=>!prev)}
               className="bg-white cursor-pointer text-[#10B981] px-6 py-2 rounded-lg font-bold flex items-center gap-2"
             >
               <Filter size={18} /> Filters
@@ -143,53 +143,68 @@ const CarlistPage = () => {
         <AnimatePresence>
           {showFilter && (
             <motion.div
-              className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-2xl p-6 w-[95%] md:w-[1100px] max-h-[90vh] overflow-y-auto"
             >
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                className="bg-white rounded-2xl p-6 w-[90%] md:w-[400px]"
-              >
 
-                <h2 className="text-xl font-bold mb-4 text-black">
-                  Filter Options
-                </h2>
+              <h2 className="text-xl font-bold mb-4 text-black">
+                Filter Options
+              </h2>
 
-                {/* Type Filter */}
-                <select className="w-full mb-3 px-3 py-2 border rounded-md">
-                  <option>All Types</option>
-                  <option>SUV</option>
-                  <option>Economy</option>
-                </select>
-
-                {/* Price Filter */}
-                <select className="w-full mb-4 px-3 py-2 border rounded-md">
-                  <option>All Prices</option>
-                  <option>Below $25</option>
-                  <option>Above $25</option>
-                </select>
-
-                {/* Buttons */}
-                <div className="flex justify-end gap-3">
+              <div className="flex gap-3 overflow-x-auto mb-6">
+                {["Economy", "Standard", "SUV", "Luxury", "Van"].map((item) => (
                   <button
-                    onClick={() => setShowFilter(false)}
-                    className="px-4 py-2 bg-gray-200 rounded-md"
+                    key={item}
+                    className="px-4 py-2 bg-gray-100 rounded-xl text-sm whitespace-nowrap hover:bg-gray-200"
                   >
-                    Cancel
+                    {item}
                   </button>
-                  <button
-                    onClick={() => setShowFilter(false)}
-                    className="px-4 py-2 bg-[#10B981] text-white rounded-md"
-                  >
-                    Apply
-                  </button>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+                <div>
+                  <p className="font-semibold mb-2">Gear box</p>
+                  <label className="block"><input type="checkbox" /> Automatic</label>
+                  <label className="block"><input type="checkbox" /> Manual</label>
                 </div>
 
-              </motion.div>
+                <div>
+                  <p className="font-semibold mb-2">Deposit</p>
+                  <label className="block"><input type="checkbox" /> No deposit</label>
+                  <label className="block"><input type="checkbox" /> Credit card</label>
+                </div>
+
+                <div>
+                  <p className="font-semibold mb-2">Payment</p>
+                  <label className="block"><input type="checkbox" /> Cash</label>
+                  <label className="block"><input type="checkbox" /> Card</label>
+                </div>
+
+                <div>
+                  <p className="font-semibold mb-2">Insurance</p>
+                  <label className="block"><input type="checkbox" /> Basic</label>
+                  <label className="block"><input type="checkbox" /> Full</label>
+                </div>
+
+              </div>
+
+              <div className="sticky bottom-0 bg-white pt-6 flex justify-between items-center mt-6">
+                <button className="text-gray-500">
+                  Reset all filters
+                </button>
+
+                <button
+                  onClick={() => setShowFilter(false)}
+                  className="bg-[#10B981] text-white px-6 py-2 rounded-md"
+                >
+                  View Cars
+                </button>
+              </div>
+
             </motion.div>
           )}
         </AnimatePresence>

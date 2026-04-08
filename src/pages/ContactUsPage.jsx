@@ -112,9 +112,9 @@ export default function ContactPage() {
       viewport={{ once: true }}
     >
       <img 
-        src="https://storyset.com/illustration/travel-plans/pana"
+        src="/images/Contact Us Banner.jpg.jpeg"
         alt="Travel Illustration" 
-        className="h-[639px] w-[767px] border"
+        className="h-[600px] w-[767px]"
       />
     </motion.div>
 

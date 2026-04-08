@@ -14,6 +14,7 @@ import LatestNews from './pages/LatestNewsPage'
 import Flight from './components/Flight'
 import CarRentalPage from './pages/CarRentalPage'
 import HotelPage from './pages/HotelPage'
+import Faq from './components/Faq'
 
 export default function App() {
   return (
@@ -26,6 +27,8 @@ export default function App() {
         <Route path='/hotel' element={<HotelPage/>}/>
         <Route path='/about-us' element={<AboutUsPage/>}/>
         <Route path='/flight' element={<Flight/>}/>
+        <Route path='/faq' element={<Faq/>}/>
+
 
 
         {/* Policy Page */}
