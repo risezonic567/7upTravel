@@ -6,34 +6,33 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function PromoSection() {
-  const promos = [
-    {
-      title: "Book & Enjoy",
-      desc: "20% off on the best available room rate.",
-      img: "https://via.placeholder.com/300",
-    },
-    {
-      title: "Hot Summer Nights",
-      desc: "Up to 2 nights free!",
-      img: "https://via.placeholder.com/300",
-    },
-    {
-      title: "Daily 10 Lucky Winners",
-      desc: "Valid till: 15 Nov",
-      img: "https://via.placeholder.com/300",
-    },
-    {
-      title: "Weekend Deals",
-      desc: "Flat 30% off on weekends",
-      img: "https://via.placeholder.com/300",
-    },
-    {
-      title: "Mega Offer",
-      desc: "50% discount today only",
-      img: "https://via.placeholder.com/300",
-    },
-  ];
-
+const promos = [
+  {
+    title: "Book & Enjoy",
+    desc: "20% off on the best available room rate.",
+    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945"
+  },
+ {
+  title: "Hot Summer Nights",
+  desc: "Up to 2 nights free!",
+  img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80"
+},
+  {
+    title: "Daily 10 Lucky Winners",
+    desc: "Valid till: 15 Nov",
+    img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd"
+  },
+  {
+    title: "Weekend Deals",
+    desc: "Flat 30% off on weekends",
+    img: "https://images.unsplash.com/photo-1496417263034-38ec4f0b665a"
+  },
+  {
+    title: "Mega Offer",
+    desc: "50% discount today only",
+    img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"
+  }
+];
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 relative group">
 

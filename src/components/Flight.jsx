@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import LatestNews from '../pages/LatestNewsPage'
-import { motion } from 'framer-motion';
-import { Calendar } from 'lucide-react';
 import FlightDestination from '../pages/Destination/FlightDestination';
+import FlightSearchSection from './FlightSearchSection';
 
 export default function Flight() {
-     const [roundedEnable, setRoundedEnable] = useState(false)
-      const [returnDate, setReturnDate] = useState("")
+    //  const [roundedEnable, setRoundedEnable] = useState(false)
+    //   const [returnDate, setReturnDate] = useState("")
   return (
     <>
     <div className="w-full font-sans mt-30">
-     <section className="px-4">
+    {/* <section className="px-4">
         <div className="max-w-7xl mx-auto bg-gradient-to-b from-[#dbeafe] to-[#ffffff] rounded-[50px] pt-24 pb-32 relative overflow-hidden">
           <div className="relative z-10 text-center mb-16">
             <h1 className="text-3xl md:text-4xl font-extrabold text-[#1a1a1a] tracking-tight">
@@ -67,7 +66,7 @@ export default function Flight() {
                   </div>
 
                   {/* ROW 2 */}
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-y-4 md:gap-5 items-end">
+     {/*</div>             <div className="grid grid-cols-1 md:grid-cols-12 gap-y-4 md:gap-5 items-end">
 
                     <div className="md:col-span-6 flex flex-col md:flex-row gap-4 md:gap-2">
                       <div className="w-full">
@@ -93,7 +92,7 @@ export default function Flight() {
                           />
 
                           {/* ICON TOGGLE */}
-                          {roundedEnable ? (
+      {/*}                    {roundedEnable ? (
                             <MdClose
                               className="text-gray-500 text-xl cursor-pointer"
                               onClick={(e) => {
@@ -115,7 +114,7 @@ export default function Flight() {
                     </div>
 
                     {/* PASSENGER */}
-                    <div className="md:col-span-4">
+         {/*}           <div className="md:col-span-4">
                       <p className="text-xs text-gray-500 mb-1">Passengers</p>
                       <select className="w-full border rounded-md px-3 py-2 text-sm">
                         <option>1 passenger</option>
@@ -124,20 +123,22 @@ export default function Flight() {
                     </div>
 
                     {/* BUTTON */}
-                    <div className="md:col-span-2 flex md:justify-end">
+                    {/* <div className="md:col-span-2 flex md:justify-end">
                       <button className="w-full md:w-[180px] bg-[#3aa0c9] hover:bg-[#2c8fb6] text-white py-2.5 rounded-md text-sm font-medium">
                         Search
                       </button>
-                    </div>
+                    </div> */}
 
-                  </div>
+                  {/* </div>
                 </motion.div>
 
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <FlightSearchSection/>
     <FlightDestination/>
     <LatestNews/>
 </div>
