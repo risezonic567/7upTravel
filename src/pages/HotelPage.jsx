@@ -41,9 +41,9 @@ export default function HotelPage(){
         <div className="relative w-full lg:w-1/2 mt-12 lg:mt-0 flex justify-end">
           <div className="relative w-[500px] h-[600px] rounded-tl-[100px] overflow-hidden shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=800" 
+              src="/images/hotel homepage.jpg.jpeg" 
               alt="Luxury Pool" 
-              className="w-full h-full object-cover"
+              className="w-full h-full  object-cover"
             />
              <Link to="tel:+1888-315-3380">
                  <div className="absolute top-6 right-6 bg-white/20 backdrop-blur-md p-4 rounded-2xl border border-white/30 text-balck">
@@ -58,10 +58,11 @@ export default function HotelPage(){
           
           <div className="absolute -left-12 top-1/4 space-y-4">
             <div className="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden">
-               <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=200" alt="Hotel" className="w-full h-full object-cover" />
+               <img src="/images/hote homepage circle 1.jpg.jpeg"
+                alt="Hotel" className="w-full h-full object-cover" />
             </div>
             <div className="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden translate-x-8">
-               <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=200" alt="Hotel" className="w-full h-full object-cover" />
+               <img src="/images/hote homepage circle 2.jpg.jpeg" alt="Hotel" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

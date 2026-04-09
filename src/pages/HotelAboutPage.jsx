@@ -16,9 +16,9 @@ export default function AboutSection() {
 
           <div className="rounded-tr-[100px] rounded-bl-2xl overflow-hidden shadow-2xl w-full">
             <img
-              src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=800"
+              src="/images/hotel page intro.jpg.jpeg"
               alt="Pool side"
-              className="w-full h-full object-cover"
+              className="w-full h-full  object-cover"
             />
           </div>
 

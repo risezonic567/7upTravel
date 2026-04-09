@@ -15,6 +15,16 @@ import Flight from './components/Flight'
 import CarRentalPage from './pages/CarRentalPage'
 import HotelPage from './pages/HotelPage'
 import Faq from './components/Faq'
+import CruisePage from './pages/CruisePage'
+import TravelsDeal from './components/TravelsDeal'
+import California from './components/Location/California'
+import Chicago from './components/Location/Chicago'
+import LasVegas from './components/Location/LasVegas'
+import LosAngeles from './components/Location/LosAngeles'
+import Miami from './components/Location/Miami'
+import NewYork from './components/Location/NewYork'
+import SanFrancisco from './components/Location/SanFrancisco'
+import Sanjosh from './components/Location/Sanjosh'
 
 export default function App() {
   return (
@@ -26,8 +36,21 @@ export default function App() {
         <Route path='/car-rental' element={<CarRentalPage/>}/>
         <Route path='/hotel' element={<HotelPage/>}/>
         <Route path='/about-us' element={<AboutUsPage/>}/>
+        <Route path='/cruise' element={<CruisePage/>}/>
         <Route path='/flight' element={<Flight/>}/>
         <Route path='/faq' element={<Faq/>}/>
+        <Route path='/travel-deals' element={<TravelsDeal/>}/>
+
+        {/* location pages */}
+
+        <Route path='/california' element={<California/>}/>
+        <Route path='/chicago' element={<Chicago/>}/>
+        <Route path='/las-vegas' element={<LasVegas/>}/>
+        <Route path='/los-angeles' element={<LosAngeles/>}/>
+        <Route path='/miami' element={<Miami/>}/>
+        <Route path='/new-york' element={<NewYork/>}/>
+        <Route path='/san-francisco' element={<SanFrancisco/>}/>
+        <Route path='/sanjosh' element={<Sanjosh/>}/>
 
 
 
@@ -38,7 +61,7 @@ export default function App() {
         <Route path='/disclaimer' element={<Disclaimer/>}/>
         <Route path='/refund-policy' element={<RefundPolicy/>}/>
 
-        <Route path='/latest' element={<LatestNews/>}/>
+        {/* <Route path='/latest' element={<FlightSearchSection/>}/> */}
 
 
 

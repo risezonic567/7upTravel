@@ -1,47 +1,48 @@
-import React, { Children, useState } from 'react';
+import React, {  useState } from 'react';
 import { motion } from "framer-motion";
-import HowItWorks from './HowItWorks';
 import { MdClose } from "react-icons/md";
 import { Calendar } from 'lucide-react';
-import FlightDestination from './Destination/FlightDestination';
-import ExploreNearby from './ExploreNearby';
 
-export default function FlightPage() {
-  const [roundedEnable, setRoundedEnable] = useState(false)
-  const [returnDate, setReturnDate] = useState("")
 
-  const [formData,setFormData]=useState({
-    origin:"",
-    destination:"",
-    departuredDate:"",
-    returnDate:""
-  })
-
-  const [passengers, setPassengers] = useState({
-    adults: 1,
-    children: 0,
-    infants: 0
-  });
-
-  const [open, setOpen] = useState(false);
-  const [cabin, setCabin] = useState("Economy")
-
-  const handleChange = (type, value) => {
-    setPassengers((prev) => ({
-      ...prev,
-      [type]: Math.max(0, prev[type] + value)
-    }));
-  };
-
-  const totalText = `${passengers.adults} Adult${passengers.adults > 1 ? "s" : ""}${passengers.children ? `, ${passengers.children} Child` : ""
-    }${passengers.infants ? `, ${passengers.infants} Infant` : ""}`;
+export default function FlightSearchSection() {
+     const [roundedEnable, setRoundedEnable] = useState(false)
+      const [returnDate, setReturnDate] = useState("")
+    
+      const [formData,setFormData]=useState({
+        origin:"",
+        destination:"",
+        departuredDate:"",
+        returnDate:""
+      })
+    
+      const [passengers, setPassengers] = useState({
+        adults: 1,
+        children: 0,
+        infants: 0
+      });
+    
+      const [open, setOpen] = useState(false);
+      const [cabin, setCabin] = useState("Economy")
+    
+      const handleChange = (type, value) => {
+        setPassengers((prev) => ({
+          ...prev,
+          [type]: Math.max(0, prev[type] + value)
+        }));
+      };
+    
+      const totalText = `${passengers.adults} Adult${passengers.adults > 1 ? "s" : ""}${passengers.children ? `, ${passengers.children} Child` : ""
+        }${passengers.infants ? `, ${passengers.infants} Infant` : ""}`;
+    
 
   return (
-    <div className="w-full font-sans mt-25 ">
+   <>
+  <div className='mt-20'>
       <section className="px-4">
-        <div className="max-w-7xl mx-auto rounded-[50px] pt-20 pb-32 relative overflow-visible">
+        <div className="max-w-7xl mx-auto rounded-[50px] pt-24 pb-32 relative overflow-visible">
 
           <div className="absolute inset-0 z-0">
+
 
             <video
             autoPlay
@@ -50,18 +51,18 @@ export default function FlightPage() {
             muted
               src="/video/Flight Page GIF.mp4"
               alt="sky"
-              className="w-full h-[550px] object-cover"
+              className="w-full h-[450px] object-cover"
             />
             <div className="absolute inset-0 "></div>
           </div>
 
           <div className="relative z-10 text-center mb-16">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+            {/* <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
               Find an unpublished deal
-            </h1>
+            </h1> */}
           </div>
 
-          <div className="relative z-20 max-w-6xl mx-auto px-6 pt-20 md:pt-20">
+          <div className="relative z-20 max-w-6xl mx-auto px-6 pt-20 md:pt-10">
 
             <div className="relative bg-white shadow-2xl  rounded-sm p-8 border-y border-gray-100">
 
@@ -112,7 +113,6 @@ export default function FlightPage() {
 
                     </div>
 
-                    {/* ROW 2 */}
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-y-4 md:gap-5 items-end">
 
                       <div className="md:col-span-6 flex flex-col md:flex-row gap-4 md:gap-2">
@@ -181,8 +181,8 @@ export default function FlightPage() {
                               </div>
                               <div className="flex items-center gap-3">
                                 <button
+                                type='button'
                                   onClick={() => handleChange("adults", -1)}
-                                  type='button'
                                   className="w-7 h-7 rounded-full border flex items-center justify-center"
                                 >-</button>
 
@@ -260,7 +260,6 @@ export default function FlightPage() {
 
                             <button
                               onClick={() => setOpen(false)}
-                              type='button'
                               className="w-full mt-2 bg-[#3aa0c9] text-white py-2 rounded-md text-sm"
                             >
                               Done
@@ -283,10 +282,7 @@ export default function FlightPage() {
           </div>
         </div>
       </section>
-
-      <HowItWorks />
-      <FlightDestination />
-      <ExploreNearby />
-    </div>
-  );
+  </div>
+   </>
+  )
 }

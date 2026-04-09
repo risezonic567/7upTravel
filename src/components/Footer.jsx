@@ -67,7 +67,7 @@ export default function Footer() {
                 <Hotel size={18}/> <Link to="/hotel">Hotel</Link>
               </li>
               <li className="flex items-center gap-3 hover:text-blue-500 cursor-pointer">
-                <PlaneTakeoff size={18}/> <Link to="/flight">Flight</Link>
+                <PlaneTakeoff size={18}/> <Link to="/">Flight</Link>
               </li>
               <li className="flex items-center gap-3 hover:text-blue-500 cursor-pointer">
                 <Ship size={18}/> <Link to="/cruise">Cruise</Link>
@@ -88,7 +88,7 @@ export default function Footer() {
             <Link to="/hotel" className="hover:text-blue-500 cursor-pointer  border-gray-700 pr-4 last:border-none">Hotels</Link>
             <Link to="/cruise" className="hover:text-blue-500 cursor-pointer  border-gray-700 pr-4 last:border-none">Cruise</Link>
             <Link to="/car-rental" className="hover:text-blue-500 cursor-pointer  border-gray-700 pr-4 last:border-none">Car Rental</Link>
-            <Link to="/travel-deal" className="hover:text-blue-500 cursor-pointer  border-gray-700 pr-4 last:border-none">Travel Deals</Link>
+            <Link to="/travel-deals" className="hover:text-blue-500 cursor-pointer  border-gray-700 pr-4 last:border-none">Travel Deals</Link>
             <Link to="/california" className="hover:text-blue-500 cursor-pointer  border-gray-700 pr-4 last:border-none">California</Link>
             <Link to="/new-york" className="hover:text-blue-500 cursor-pointer  border-gray-700 pr-4 last:border-none">New York</Link>
             <Link to="/los-angeles" className="hover:text-blue-500 cursor-pointer  border-gray-700 pr-4 last:border-none">Los Angeles</Link>

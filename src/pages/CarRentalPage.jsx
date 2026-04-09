@@ -92,7 +92,7 @@ export default function CarRentalPage() {
             className="w-full h-[300px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl relative"
            >
               <img 
-                src="https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&q=80&w=1000" 
+                src="/images/Car Home Page.jpg.jpeg" 
                 alt="Taxi" 
                 className="w-full h-full object-cover"
               />

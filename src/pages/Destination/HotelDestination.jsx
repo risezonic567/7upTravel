@@ -9,7 +9,7 @@ export default function HotelDestination(){
       location: "New York",
       price: "455",
       rating: "4.5",
-      img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=400"
+      img: "/images/New York Hotel.jpg.jpeg"
     },
     {
       id: 2,
@@ -17,7 +17,7 @@ export default function HotelDestination(){
       location: "California",
       price: "585",
       rating: "4.8",
-      img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=400"
+      img: "/images/California Hotel.jpg.jpeg"
     },
     {
       id: 3,
@@ -25,7 +25,7 @@ export default function HotelDestination(){
       location: "Los Angeles",
       price: "385",
       rating: "4.6",
-      img: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=400"
+      img: "/images/Los Angeles Hotel.jpg.jpeg"
     },
     {
       id: 4,
@@ -33,7 +33,7 @@ export default function HotelDestination(){
       location: "Chicago",
       price: "665",
       rating: "4.8",
-      img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&q=80&w=400"
+      img: "/images/Chicago Hotel.jpg.jpeg"
     }
   ];
 
