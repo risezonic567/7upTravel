@@ -7,7 +7,7 @@ export default function AboutUsPage() {
     <div >
       <div className="bg-white font-sans  text-gray-900">
 
-        <section className="max-w-7xl mx-auto px-6  py-36">
+        <section className="max-w-7xl mx-auto px-6  py-20">
           <div className="text-center  mb-12">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
               Discover the World—We’ll Guide <br />
@@ -66,7 +66,7 @@ export default function AboutUsPage() {
 
         </section>
 
-        <section className="max-w-4xl mx-auto px-6 py-16">
+        <section className="max-w-4xl mx-auto px-6 py-10">
           <h2 className="text-2xl font-extrabold mb-8">Our Story</h2>
 
           <div className="space-y-6 text-gray-600 text-justify leading-6 text-md">

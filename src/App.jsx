@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -24,8 +24,27 @@ import Miami from './components/Location/Miami'
 import NewYork from './components/Location/NewYork'
 import SanFrancisco from './components/Location/SanFrancisco'
 import Sanjosh from './components/Location/Sanjosh'
+import Thailand from './components/Location/Thailand'
+import Hongkong from './components/Location/Hongkong'
+import Maldives from './components/Location/Maldives'
+import Switzerland from './components/Location/Switzerland'
+import CheckoutPage from './components/CheckoutPage'
+import FlightList from './components/Flight-list'
+import NotFound from './components/NotFound'
+import FlightLoader from './components/FlightLoader'
 
 export default function App() {
+  const [loader,setLoader]=useState(true)
+  
+  useEffect(()=>{
+    const timer = setTimeout(()=>{
+      setLoader(false)
+    },2000)
+  },[])
+
+  if(loader)
+    return <FlightLoader/>
+
   return (
     <>
     <BrowserRouter>
@@ -39,6 +58,10 @@ export default function App() {
         <Route path='/flight' element={<Flight/>}/>
         <Route path='/faq' element={<Faq/>}/>
         <Route path='/travel-deals' element={<TravelsDeal/>}/>
+        <Route path='/checkout' element={<CheckoutPage/>}/>
+
+        <Route path='/flight-list' element={<FlightList/>}/>
+
 
         {/* location pages */}
 
@@ -50,6 +73,10 @@ export default function App() {
         <Route path='/new-york' element={<NewYork/>}/>
         <Route path='/san-francisco' element={<SanFrancisco/>}/>
         <Route path='/sanjosh' element={<Sanjosh/>}/>
+        <Route path='/thailand' element={<Thailand/>}/>
+        <Route path='/hong-kong' element={<Hongkong/>}/>
+        <Route path='/maldives' element={<Maldives/>}/>
+        <Route path='/switzerland' element={<Switzerland/>}/>
 
 
 
@@ -65,6 +92,9 @@ export default function App() {
 
 
         <Route path='/contact-us' element={<ContactPage/>}/>
+
+        <Route path='/*' element={<NotFound/>}/>
+
     </Routes>
     <Footer/>
     </BrowserRouter>

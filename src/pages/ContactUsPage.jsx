@@ -194,7 +194,7 @@ export default function ContactPage() {
         >
           <label className="flex items-start gap-3 cursor-pointer group">
             <input type="checkbox" className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
-            <span className="text-xs text-gray-500 leading-tight">By submitting this form you agree to our terms and conditions.</span>
+            <span className="text-xs text-gray-500 leading-tight">By submitting this form, you agree to our Terms & Conditions and Privacy Policy.</span>
           </label>
 
           <label className="flex items-start gap-3 cursor-pointer group">

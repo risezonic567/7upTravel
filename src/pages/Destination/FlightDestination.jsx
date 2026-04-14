@@ -1,6 +1,6 @@
 import React from 'react';
 import { Info, Star } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const destinations = [
   {
@@ -9,6 +9,7 @@ const destinations = [
     rating: '4.3',
     description: 'Temples & sun-soaked sands.',
     image: '/images/Thailand.jpg.jpeg',
+    path:"/thailand",
     active: true,
   },
   {
@@ -17,6 +18,7 @@ const destinations = [
     rating: '4.6',
     description: 'Skyline thrills & street eats.',
     image: '/images/Hong Kong.jpg.jpeg',
+    path:"/hong-kong",
     active: true,
   },
   {
@@ -25,6 +27,7 @@ const destinations = [
     rating: '4.3',
     description: 'Overwater bliss & blue lagoons.',
     image: '/images/Maldives.jpg.jpeg',
+    path:"/maldives",
     active: true,
   },
   {
@@ -33,6 +36,7 @@ const destinations = [
     rating: '4.3',
     description: 'Alpine peaks & crystal lakes.',
     image: '/images/Switzerland.jpg.jpeg',
+    path:"/switzerland",
     active: true,
   },
 ];
@@ -47,6 +51,7 @@ export default function FlightDestination() {
         
         {destinations.map((dest) => (
           
+         <Link to={dest.path}>
           <div key={dest.id} className="group cursor-pointer w-full max-w-[300px]">
             
             <div className="relative overflow-hidden rounded-2xl h-[420px] w-full">
@@ -78,6 +83,7 @@ export default function FlightDestination() {
             </div>
 
           </div>
+         </Link>
         ))}
 
       </div>

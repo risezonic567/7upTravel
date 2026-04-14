@@ -4,7 +4,7 @@ export default function Faq() {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white">
 
-      <h6 className="text-black font-bold text-center text-lg sm:text-xl">
+      <h6 className="text-blue-600 font-bold text-center text-lg sm:text-xl">
         Faqs
       </h6>
 

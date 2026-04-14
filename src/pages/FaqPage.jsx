@@ -48,7 +48,7 @@ export default function FAQPage() {
   };
 
   return (
-    <section className="min-h-screen  text-black px-4 py-16">
+    <section className="  text-black px-4 py-16">
       
       <div className="max-w-4xl mx-auto">
 

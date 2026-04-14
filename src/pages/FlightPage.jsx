@@ -5,6 +5,7 @@ import { MdClose } from "react-icons/md";
 import { Calendar } from 'lucide-react';
 import FlightDestination from './Destination/FlightDestination';
 import ExploreNearby from './ExploreNearby';
+import FAQPage from './FaqPage';
 
 export default function FlightPage() {
   const [roundedEnable, setRoundedEnable] = useState(false)
@@ -286,6 +287,7 @@ export default function FlightPage() {
 
       <HowItWorks />
       <FlightDestination />
+      <FAQPage/>
       <ExploreNearby />
     </div>
   );

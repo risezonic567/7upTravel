@@ -12,7 +12,7 @@ export default function ExploreNearby() {
   ];
 
   return (
-    <section className="py-16 px-4">
+    <section className="py-5 px-4">
       
       {/* Heading */}
       <h2 className="text-4xl md:text-5xl font-bold text-center mb-14">

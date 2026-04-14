@@ -7,7 +7,7 @@ export default function LatestNews() {
       id: 1,
       title: "10 Ways on How to Improve your Hotel Stay",
       image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&q=80",
-      size: "large", 
+      size: "medium", 
     },
     {
       id: 2,
