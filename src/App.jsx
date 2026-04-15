@@ -32,6 +32,8 @@ import CheckoutPage from './components/CheckoutPage'
 import FlightList from './components/Flight-list'
 import NotFound from './components/NotFound'
 import FlightLoader from './components/FlightLoader'
+import ScrollTop from './components/ScrollTop'
+import ScrollButton from './components/ScrollButton'
 
 export default function App() {
   const [loader,setLoader]=useState(true)
@@ -48,6 +50,7 @@ export default function App() {
   return (
     <>
     <BrowserRouter>
+    <ScrollTop/>
     <Navbar/>
     <Routes>
         <Route path='/' element={<FlightPage/>}/>
@@ -95,7 +98,8 @@ export default function App() {
 
         <Route path='/*' element={<NotFound/>}/>
 
-    </Routes>
+    </Routes> 
+    <ScrollButton/>
     <Footer/>
     </BrowserRouter>
     </>
