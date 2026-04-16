@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Fuel, Settings, Zap, Filter } from 'lucide-react';
-
+import CarModal from '../components/CarModal';
 
 const CarlistPage = () => {
 
@@ -10,6 +10,9 @@ const CarlistPage = () => {
   const [cars, setCars] = useState([]);
   const [visibleCount, setVisibleCount] = useState(12);
   const [isSticky, setIsSticky] = useState(false);
+
+  const [isOpen,setIsOpen]=useState(false)
+  const [modalType,setModalType]=useState("")
 
   const [typeFilter, setTypeFilter] = useState("All");
   const [priceFilter, setPriceFilter] = useState("All");
@@ -81,7 +84,7 @@ const CarlistPage = () => {
       </div>
 
       <div className={`z-50 transition-all duration-300 ${isSticky
-        ? 'fixed top-[70px] left-0 w-full bg-white/90 backdrop-blur-md shadow-lg'
+        ? 'fixed top-[70px] right-0 left-0   max-w-7xl mx-auto bg-white/90 backdrop-blur-md shadow-lg'
         : 'max-w-7xl mx-auto'
         }`}>
 
@@ -264,7 +267,10 @@ const CarlistPage = () => {
                     </span>
                   </div>
 
-                  <button className="bg-[#10B981] hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                  <button onClick={()=>{
+                    setIsOpen(true)
+                    setModalType('carModal')
+                  }} className="bg-[#10B981] hover:bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-semibold">
                     View
                   </button>
 

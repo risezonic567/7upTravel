@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Star, Heart, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function HotelDestination(){
   const hotels = [
@@ -9,7 +10,8 @@ export default function HotelDestination(){
       location: "New York",
       price: "455",
       rating: "4.5",
-      img: "/images/New York Hotel.jpg.jpeg"
+      img: "/images/New York Hotel.jpg.jpeg",
+      path:"/new-york"
     },
     {
       id: 2,
@@ -17,7 +19,8 @@ export default function HotelDestination(){
       location: "California",
       price: "585",
       rating: "4.8",
-      img: "/images/California Hotel.jpg.jpeg"
+      img: "/images/California Hotel.jpg.jpeg",
+      path:"/california"
     },
     {
       id: 3,
@@ -25,7 +28,8 @@ export default function HotelDestination(){
       location: "Los Angeles",
       price: "385",
       rating: "4.6",
-      img: "/images/Los Angeles Hotel.jpg.jpeg"
+      img: "/images/Los Angeles Hotel.jpg.jpeg",
+      path:"/los-angeles"
     },
     {
       id: 4,
@@ -33,7 +37,8 @@ export default function HotelDestination(){
       location: "Chicago",
       price: "665",
       rating: "4.8",
-      img: "/images/Chicago Hotel.jpg.jpeg"
+      img: "/images/Chicago Hotel.jpg.jpeg",
+      path:"/chicago"
     }
   ];
 
@@ -41,6 +46,7 @@ export default function HotelDestination(){
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
         {hotels.map((hotel) => (
+         <Link to={hotel.path}>
           <div key={hotel.id} className="group cursor-pointer">
             <div className="relative h-100 rounded-[2rem] overflow-hidden shadow-sm">
               <img 
@@ -68,6 +74,7 @@ export default function HotelDestination(){
               </div>
             </div>
           </div>
+         </Link>
         ))}
       </div>
 

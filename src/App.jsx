@@ -34,18 +34,24 @@ import NotFound from './components/NotFound'
 import FlightLoader from './components/FlightLoader'
 import ScrollTop from './components/ScrollTop'
 import ScrollButton from './components/ScrollButton'
+import CarModal from './components/CarModal'
+import Signup from './pages/User/Signup'
+import Login from './pages/User/Login'
+import Profile from './pages/User/Profile'
 
 export default function App() {
   const [loader,setLoader]=useState(true)
   
-  useEffect(()=>{
-    const timer = setTimeout(()=>{
-      setLoader(false)
-    },2000)
-  },[])
+  // useEffect(()=>{
+  //   const timer = setTimeout(()=>{
+  //     setLoader(false)
+  //   },2000)
 
-  if(loader)
-    return <FlightLoader/>
+  //   // return clearTimeout(timer)
+  // },[])
+
+  // if(loader)
+  //   return <FlightLoader/>
 
   return (
     <>
@@ -81,8 +87,13 @@ export default function App() {
         <Route path='/maldives' element={<Maldives/>}/>
         <Route path='/switzerland' element={<Switzerland/>}/>
 
+        {/* User Section */}
 
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/sign-up' element={<Signup/>}/>
+        <Route path="/profile" element={<Profile/>}/>
 
+    
         {/* Policy Page */}
         <Route path='/cancellation' element={<Cancellation/>}/>
         <Route path='/terms-condition' element={<TermsCondition/>}/>
@@ -91,6 +102,9 @@ export default function App() {
         <Route path='/refund-policy' element={<RefundPolicy/>}/>
 
         {/* <Route path='/latest' element={<FlightSearchSection/>}/> */}
+
+        {/* <Route path='/modal' element={<CarModal/>}/> */}
+
 
 
 

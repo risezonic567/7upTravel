@@ -1,4 +1,4 @@
-import { Menu, X, Plane, Car, Hotel, Ship, Phone, PlaneTakeoffIcon } from "lucide-react";
+import { Menu, X, Plane, Car, Hotel, Ship, Phone, PlaneTakeoffIcon, User } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -16,7 +16,7 @@ export default function Navbar() {
     }`;
 
   return (
-    <nav className="w-full bg-white  fixed top-0 left-0 z-50">
+    <nav className="w-full bg-white  fixed top-0 left-0 z-100">
       
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between py-3">
         
@@ -38,6 +38,9 @@ export default function Navbar() {
           <li> <Link to="tel:+1888-315-3380" className="flex items-center gap-2 text-blue-600  font-semibold">
                 <Phone size={18} /> +1-888-315-3380
               </Link></li>
+            <li>
+              <Link to="/login" className="text-blue-600"><User /></Link>
+            </li>
         </ul>
       </div>
 
@@ -60,8 +63,8 @@ export default function Navbar() {
             <li><Link onClick={()=>setOpen(false)} to="/hotel" className={navClass("/hotel")}><Hotel size={18}/> Hotel</Link></li>
             <li><Link onClick={()=>setOpen(false)} to="/cruise" className={navClass("/cruise")}><Ship size={18}/> Cruise</Link></li>
             <li><Link onClick={()=>setOpen(false)} to="tel:+18883153380" className="flex items-center gap-2 text-green-600"><Phone size={18}/> Call Now</Link></li>
+            <li><Link onClick={()=>setOpen(false)} to="/login" className="flex items-center gap-2 text-green-600">Log In</Link></li>
           </ul>
-
         </div>
       </div>
 

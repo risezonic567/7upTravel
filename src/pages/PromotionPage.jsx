@@ -4,33 +4,39 @@ import { Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { Link } from "react-router-dom";
 
 export default function PromoSection() {
 const promos = [
   {
     title: "Book & Enjoy",
     desc: "20% off on the best available room rate.",
-    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945"
+    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
+    path:"/travel-deals"
   },
  {
   title: "Hot Summer Nights",
   desc: "Up to 2 nights free!",
-  img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80"
+  img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80",
+  path:"/travel-deals"
 },
   {
     title: "Daily 10 Lucky Winners",
     desc: "Valid till: 15 Nov",
-    img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd"
+    img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd",
+    path:"/travel-deals"
   },
   {
     title: "Weekend Deals",
     desc: "Flat 30% off on weekends",
-    img: "https://images.unsplash.com/photo-1496417263034-38ec4f0b665a"
+    img: "https://images.unsplash.com/photo-1496417263034-38ec4f0b665a",
+    path:"/travel-deals"
   },
   {
     title: "Mega Offer",
     desc: "50% discount today only",
-    img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"
+    img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+    path:"/travel-deals"
   }
 ];
   return (
@@ -55,6 +61,7 @@ const promos = [
       >
         {promos.map((promo, index) => (
           <SwiperSlide key={index}>
+            <Link to={promo.path}>
             <div className="flex items-center p-4  border  rounded-3xl shadow-sm hover:shadow-md transition">
               
               <div className="w-1/3">
@@ -75,6 +82,7 @@ const promos = [
               </div>
 
             </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
