@@ -102,7 +102,7 @@ export default function CheckoutPage() {
     try {
       setLoading(true)
 
-      const response = await fetch(`http://localhost:5001/api/flight/flight/${id}`)
+      const response = await fetch(`http://localhost:3200/api/flight/flight/${id}`)
 
       const data = await response.json()
       setFlight(data.flight)
@@ -171,7 +171,7 @@ export default function CheckoutPage() {
   //     };
   //     console.log("PAYLOAD:", payload);
 
-  //     const res = await fetch("http://localhost:5001/api/checkout/booking", {
+  //     const res = await fetch("http://localhost:3200/api/checkout/booking", {
   //       method: "POST",
   //       headers: {
   //         "Content-Type": "application/json"
@@ -211,7 +211,7 @@ const handlePayment = async () => {
       }
     }
 
-    const bookingRes = await fetch("http://localhost:5001/api/checkout/booking", {
+    const bookingRes = await fetch("http://localhost:3200/api/checkout/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -249,7 +249,7 @@ const handlePayment = async () => {
 
     const bookingId = bookingData.booking._id;
 
-    const paymentRes = await fetch("http://localhost:5001/api/payment/initiate", {
+    const paymentRes = await fetch("http://localhost:3200/api/payment/initiate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
