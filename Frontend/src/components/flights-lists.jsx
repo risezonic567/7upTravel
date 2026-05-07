@@ -345,7 +345,7 @@ const FlightSearchPage = () => {
                     onClick={() => setFilterOpen(true)}
                     className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg"
                 >
-                    <Filter size={18} /> Filters
+                    <Filter size={18} /> Filter
                 </button>
 
                 <div className={`fixed top-0 left-0 w-full h-screen bg-black/40 z-50 transition-all duration-300 ${filterOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
