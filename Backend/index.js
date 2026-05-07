@@ -13,7 +13,12 @@ const app = express()
 // app.use(express.urlencoded({extended:true}))
 
 app.use(cors({
-    origin:["http://localhost:5173","https://www.7upflight-ticket.com/","https://7upflight-ticket.com"],
+    origin:[
+        "http://localhost:5173",
+        "https://www.7upflight-ticket.com",
+        "https://7upflight-ticket.com"
+    ],
+    methods:["GET","POST","PUT","DELETE"],
     credentials:true
 }))
 
