@@ -297,7 +297,7 @@ const FlightSearchPage = () => {
                 setLoading(true)
 
                 const res = await fetch(
-                    "http://localhost:3200/api/flight/flight-search",
+                    "https://www.7upflight-ticket.com/api/flight/flight-search",
                     {
                         method: "POST",
                         headers: {
