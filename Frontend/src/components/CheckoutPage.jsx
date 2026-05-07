@@ -102,7 +102,7 @@ export default function CheckoutPage() {
     try {
       setLoading(true)
 
-      const response = await fetch(`http://localhost:5000/api/flight/flight/${id}`)
+      const response = await fetch(`http://localhost:5001/api/flight/flight/${id}`)
 
       const data = await response.json()
       setFlight(data.flight)
@@ -171,7 +171,7 @@ export default function CheckoutPage() {
   //     };
   //     console.log("PAYLOAD:", payload);
 
-  //     const res = await fetch("http://localhost:5000/api/checkout/booking", {
+  //     const res = await fetch("http://localhost:5001/api/checkout/booking", {
   //       method: "POST",
   //       headers: {
   //         "Content-Type": "application/json"
@@ -211,7 +211,7 @@ const handlePayment = async () => {
       }
     }
 
-    const bookingRes = await fetch("http://localhost:5000/api/checkout/booking", {
+    const bookingRes = await fetch("http://localhost:5001/api/checkout/booking", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -249,7 +249,7 @@ const handlePayment = async () => {
 
     const bookingId = bookingData.booking._id;
 
-    const paymentRes = await fetch("http://localhost:5000/api/payment/initiate", {
+    const paymentRes = await fetch("http://localhost:5001/api/payment/initiate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -280,7 +280,7 @@ console.log("PAYMENT DATA:", paymentData);
     <div className="min-h-screen bg-gray-50 py-10 px-4 mt-20">
       <div className="max-w-6xl mx-auto">
 
-        <h1 className="text-3xl font-bold mb-8">Review & Pay </h1>
+        <h1 className="text-3xl font-bold mb-8">Review & Pay</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
 
