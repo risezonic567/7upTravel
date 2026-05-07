@@ -7,6 +7,8 @@ import FlightDestination from './Destination/FlightDestination';
 import ExploreNearby from './ExploreNearby';
 import FAQPage from './FaqPage';
 import { useNavigate } from 'react-router-dom';
+import Testimonials from '../components/Testimonials';
+import OurServices from '../components/OurServices';
 
 export default function FlightPage() {
   const [roundedEnable, setRoundedEnable] = useState(false)
@@ -326,8 +328,11 @@ export default function FlightPage() {
 
       <HowItWorks />
       <FlightDestination />
-      <FAQPage />
+      <OurServices />
+     
       <ExploreNearby />
+      <Testimonials />
+       <FAQPage />
     </div>
   );
 }

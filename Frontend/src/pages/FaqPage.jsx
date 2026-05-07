@@ -1,96 +1,144 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from 'react';
+import { faqdata } from '../data/faq';
+import { FaPlus } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
-export default function FAQPage() {
-  const [active, setActive] = useState(null);
-
-  const faqs = [
-    {
-      id: 1,
-      question: "How Does it Work?",
-      answer:
-        "Renting a car with 7UPTRAVEL LLC is quick and easy. Start by entering your pickup location, date, and time. Browse a wide range of vehicles, from compact cars to SUVs, and choose the one that suits your needs. Book instantly with transparent pricing and no hidden fees. On the day of your rental, bring your ID and booking confirmation to pick up the vehicle. Enjoy your journey with reliable support if you need assistance. When your trip ends, simply return the car at the agreed location. 7UPTRAVEL LLC makes car rental stress-free and convenient for every traveler.",
-    },
-    {
-      id: 2,
-      question: "What are monthly tracked users?",
-      answer:
-        "What deal evil rent real in. But her ready least set lived spite solid. September how men saw tolerably two behavior arranging. She offices for highest and replied one venture pasture. Applauded no discovery in newspaper allowance am northward. Frequently partiality possession resolution at or appearance unaffected me. Engaged its was the evident pleased husband. Ye goodness felicity do disposal dwelling no. First am plate jokes to began to cause a scale. Subjects he prospect elegance followed no overcame possible it on. Improved own provided blessing may peculiar domestic. Sight house has sex never. No visited raising gravity outward subject my cottage Mr be.",
-    },
-    {
-      id: 3,
-      question: "What if I go with my prepaid monthly?",
-      answer:
-        "Choosing a prepaid monthly plan with 7UPTRAVEL LLC means peace of mind and great savings. Pay once at the start of the month and enjoy a car without daily charges or repeated paperwork. Your vehicle is reserved for you throughout the month, ready when you need it. Insurance, maintenance, and support are included, so there are no surprise costs. Just pick up your car and drive — it's that easy. If your plans change, flexible upgrade or cancellation options are available. With prepaid monthly rental, you get freedom, value, and convenience all in one simple package.",
-    },
-    {
-      id: 4,
-      question: "What's the difference between cabs and taxi",
-      answer:
-        "The words “cab” and “taxi” are often used interchangeably, but they can carry slightly different meanings depending on where you are. “Taxi” is the formal term used worldwide for vehicles that pick up passengers and charge based on distance or time. “Cab” is a more casual or American slang version of the same thing. In some places, “cab” may also refer to ride-hailing or app-based services, while “taxi” is used for traditional street pickups. However, both terms generally describe the same type of transportation service — a hired vehicle to take you where you need to go.",
-    },
-    {
-      id: 5,
-      question: "How can I check the fare for my Booking ride?",
-      answer:
-        "Checking the fare for your ride with 7UPTRAVEL LLC is quick and easy. Simply enter your pick-up and drop-off locations, along with the date and time, in our booking form. The system will instantly show you the estimated fare based on the vehicle type, distance, and travel time. If you're using a promo code, it will be applied automatically. You’ll see the full price upfront—no hidden fees or extra charges. Once you confirm your booking, the fare details will also be sent to your email. It's transparent, simple, and designed for your convenience.",
-    },
-    {
-      id: 6,
-      question: "Do and Don'ts – Tips for a Safe Trip",
-      answer:
-        `Do: Research your destination, carry essential documents, and keep emergency contacts handy. Pack a first-aid kit and necessary medications. Stay aware of local customs and laws. Keep valuables secure and inform someone about your itinerary. Use reliable transportation and stay hydrated. Don’t: Don’t flash cash or expensive items. Avoid isolated or poorly lit areas, especially at night. Don’t ignore travel advisories or safety warnings. Don’t share personal details with strangers. Avoid overpacking to stay mobile. Don’t leave belongings unattended. Trust your instincts—if something feels off, stay cautious and seek help if needed`,
-    },
+export default function Faq() {
+  let tabs = [
+    { label: "Booking", key: "booking_services" },
+    { label: "Payment", key: "payment_pricing" },
+    { label: "Cancellation", key: "cancellation_refund" },
+    { label: "Changes", key: "changes_rescheduling" },
+    { label: "Flights", key: "flight_services" },
+    { label: "Hotels", key: "hotel_services" },
+    { label: "Car Rental", key: "car_rental" },
+    { label: "Cruises", key: "cruise_services" },
+    { label: "Delays", key: "delays_cancellations" },
+    { label: "Support", key: "support_security" }
   ];
 
-  const toggle = (id) => {
-    setActive(active === id ? null : id);
-  };
+  let [tab, setTab] = useState("booking_services");
+  let [open, setOpen] = useState(false);
+  let [search, setSearch] = useState("");
+  
+  let Selectedfaqdata = faqdata[tab] || [];
+  let filterdata = Selectedfaqdata.filter((item) => 
+    item.question.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <section className="  text-black px-4 py-16">
+    <div className="min-h-screen bg-[#fafaf9] text-slate-900 font-sans selection:bg-amber-100">
       
-      <div className="max-w-4xl mx-auto">
+      <section className="relative overflow-hidden bg-white border-b border-slate-100">
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
+        
+        <header className="relative max-w-5xl mx-auto text-center py-20 px-6">
+          <h2 className='text-xl sm:text-2xl md:text-4xl text-blue-700 text-center font-semibold py-5'>24/7 Customer Support for Your Travel Needs</h2>
+          {/* <span className="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest uppercase bg-amber-50 text-amber-700 rounded-full border border-amber-100">
+            Customer Support
+          </span> */}
+          <h1 className="text-5xl md:text-4xl font-extrabold mb-6 tracking-tight text-slate-900">
+            How can we <span className="text-amber-600">help you Today?</span>
+          </h1>
+          <p className="max-w-2xl mx-auto text-slate-500 text-lg leading-relaxed">
+           Find quick answers and reliable support for your travel plans. Browse our help center, explore common topics, or connect with our team for assistance with flight bookings, hotel reservations, cancellations, refunds, and more.
+          </p>
 
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-          Frequently Asked Questions
-        </h2>
+          <div className="max-w-2xl mx-auto mt-10 relative">
+            <input 
+              type="text" 
+              placeholder="Search for questions (e.g. 'refund policy')..." 
+              onChange={(e) => setSearch(e.target.value)} 
+              className="w-full bg-white shadow-2xl shadow-slate-200/50 outline-none border border-slate-200 focus:border-amber-400 p-5 pl-8 rounded-2xl transition-all duration-300 text-slate-700 placeholder:text-slate-400" 
+            />
+          </div>
+        </header>
+      </section>
 
-        <div className="space-y-4">
-          {faqs.map((faq) => (
-            <div
-              key={faq.id}
-              className="border border-gray-700 rounded-xl overflow-hidden bg-white/5 backdrop-blur"
+      {/* Tabs Section */}
+      <section className="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
+        <div className="flex flex-wrap justify-center gap-3 bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-slate-100">
+          {tabs.map((item, id) => (
+            <button 
+              key={id} 
+              onClick={() => { setTab(item.key); setOpen(null); }} 
+              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 transform active:scale-95 ${
+                item.key === tab 
+                ? "bg-slate-900 text-white shadow-lg shadow-slate-300 scale-105" 
+                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+              }`}
             >
-              
-              <button
-                onClick={() => toggle(faq.id)}
-                className="w-full text-left px-6 py-4 flex justify-between items-center"
-              >
-                <span className="font-medium">{faq.question}</span>
-                <span className="text-xl">
-                  {active === faq.id ? "−" : "+"}
-                </span>
-              </button>
-
-              <AnimatePresence>
-                {active === faq.id && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="px-6 pb-4 text-gray-600 font-semibold"
-                  >
-                    {faq.answer}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-            </div>
+              {item.label}
+            </button>
           ))}
         </div>
+      </section>
 
+      {/* FAQ Content */}
+      <section className="max-w-4xl mx-auto px-6 py-20">
+        <div className="mb-12 flex items-center justify-between border-b border-slate-200 pb-6">
+            <h2 className="text-2xl font-bold text-slate-800">
+                {tabs.find(t => t.key === tab)?.label} FAQs
+            </h2>
+            <span className="text-sm text-slate-400 font-medium">
+                {filterdata.length} Results
+            </span>
+        </div>
+
+        {filterdata.length === 0 ? (
+          <div className="text-center py-20 bg-slate-50 rounded-3xl border border-dashed border-slate-300">
+            <p className="text-slate-500 font-medium">No matches found for "{search}"</p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filterdata.map((item, id) => {
+              const isOpen = open === id;
+              return (
+                <div 
+                  key={id} 
+                  className={`group transition-all duration-500 rounded-2xl border ${
+                    isOpen ? "border-amber-200 bg-amber-50/30" : "border-slate-200 bg-white hover:border-amber-200"
+                  }`}
+                >
+                  <button 
+                    className="flex items-center justify-between p-6 w-full text-left focus:outline-none" 
+                    onClick={() => setOpen(isOpen ? null : id)}
+                  >
+                    <h3 className={`font-semibold text-lg transition-colors ${isOpen ? "text-amber-900" : "text-slate-700"}`}>
+                      {item.question}
+                    </h3>
+                    <div className={`flex-shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
+                      isOpen ? "bg-amber-500 text-white rotate-45" : "bg-slate-100 text-slate-400 group-hover:bg-amber-100 group-hover:text-amber-600"
+                    }`}>
+                      <FaPlus className="text-xs" />
+                    </div>
+                  </button>
+                  
+                  <div 
+                    className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                      isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="px-6 pb-8 text-slate-600 leading-relaxed text-base">
+                      <div className="pt-2 border-t border-amber-100/50">
+                        {item.answer}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      {/* Footer Decoration */}
+      <div className="max-w-lg mx-auto text-center pb-20">
+          <p className="text-slate-400 text-sm mb-4">Still need help?</p>
+          <NavLink to="/contact-us" className="px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+              Contact Concierge Support
+          </NavLink>
       </div>
-    </section>
+    </div>
   );
 }

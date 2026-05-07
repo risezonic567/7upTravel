@@ -15,7 +15,7 @@ import RefundPolicy from './pages/Policy/Refund-Policy'
 import Flight from './components/Flight'
 import CarRentalPage from './pages/CarRentalPage'
 import HotelPage from './pages/HotelPage'
-import Faq from './components/Faq'
+
 import CruisePage from './pages/CruisePage'
 import TravelsDeal from './components/TravelsDeal'
 import California from './components/Location/California'
@@ -43,6 +43,7 @@ import ForgetPassword from './pages/User/ForgetPassword'
 import {GoogleOAuthProvider} from '@react-oauth/google'
 import FlightSearchPage from './components/flights-lists';
 import FlightDetailsPage from './components/FlightDetailsPage';
+import Faq from './pages/FaqPage';
 
 
 export default function App() {
