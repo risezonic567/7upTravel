@@ -89,5 +89,4 @@ export let faqdata = {
     { "question": "How quickly will I get a response?", "answer": "Most queries are resolved within a few hours." },
     { "question": "Can I track my support request?", "answer": "Yes, you will receive updates on your requests status." }
   ]
-
 };
