@@ -87,7 +87,7 @@ export let faqdata = {
     { "question": "Is support available 24/7?", "answer": " Yes, our support team is available round the clock." },
     { "question": " Do you offer multilingual support?", "answer": "Yes, support is available in multiple languages." },
     { "question": "How quickly will I get a response?", "answer": "Most queries are resolved within a few hours." },
-    { "question": "Can I track my support request?", "answer": "Yes, you will receive updates on your request status." }
+    { "question": "Can I track my support request?", "answer": "Yes, you will receive updates on your requests status." }
   ]
 
 };
