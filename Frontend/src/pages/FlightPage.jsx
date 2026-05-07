@@ -7,6 +7,8 @@ import FlightDestination from './Destination/FlightDestination';
 import ExploreNearby from './ExploreNearby';
 import FAQPage from './FaqPage';
 import { useNavigate } from 'react-router-dom';
+import Testimonials from '../components/Testimonials';
+import OurServices from '../components/OurServices';
 
 export default function FlightPage() {
   const [roundedEnable, setRoundedEnable] = useState(false)
@@ -260,12 +262,13 @@ export default function FlightPage() {
         </div>
       </section>
 
-      <div className="space-y-20">
-        <HowItWorks />
-        <FlightDestination />
-        <FAQPage />
-        <ExploreNearby />
-      </div>
+      <HowItWorks />
+      <FlightDestination />
+      <OurServices />
+     
+      <ExploreNearby />
+      <Testimonials />
+       <FAQPage />
     </div>
   );
 };
