@@ -1,48 +1,117 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { FreeMode, Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+
 export default function ExploreNearby() {
   const places = [
-    { id: 1, name: "San Francisco", img: "/images/Explore Nearby San Francisco.jpg.jpeg",path:"/san-francisco" },
-    { id: 2, name: "Los Angeles", img: "/images/Explore Nearby Los Angeles.jpg.jpeg",path:"/los-angeles" },
-    { id: 3, name: "Miami", img: "/images/Explore Nearby Miami.jpg.jpeg",path:"/miami" },
-    { id: 4, name: "San Jose", img: "/images/Explore Nearby San Jose.jpg.jpeg",path:"/sanjosh" },
-    { id: 5, name: "New York", img: "/images/Explore Nearby New York.jpg.jpeg",path:"new-york" },
-    { id: 6, name: "Las Vegas", img: "/images/Explore Nearby Las Vegas.jpg.jpeg",path:"las-vegas" },
+    {
+      id: 1,
+      name: "San Francisco",
+      img: "/images/San Francisco.jpg.jpeg",
+      path: "/san-francisco",
+    },
+    {
+      id: 2,
+      name: "Los Angeles",
+      img: "/images/Los Angeles.jpg.jpeg",
+      path: "/los-angeles",
+    },
+    {
+      id: 3,
+      name: "Miami",
+      img: "/images/Miami.jpg.jpeg",
+      path: "/miami",
+    },
+    // {
+    //   id: 4,
+    //   name: "San Jose",
+    //   img: "/images/Explore Nearby San Jose.jpg.jpeg",
+    //   path: "/sanjosh",
+    // },
+    // {
+    //   id: 5,
+    //   name: "New York",
+    //   img: "/images/Explore Nearby New York.jpg.jpeg",
+    //   path: "/new-york",
+    // },
+    // {
+    //   id: 6,
+    //   name: "Las Vegas",
+    //   img: "/images/Explore Nearby Las Vegas.jpg.jpeg",
+    //   path: "/las-vegas",
+    // },
   ];
 
   return (
-    <section className="py-5 px-4">
-      
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-14">
-        Explore Nearby
-      </h2>
+    <section className="py-16 px-4 bg-gray-50/50">
+      <div className="max-w-7xl mx-auto w-full overflow-hidden">
+        
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-10">
+          Explore Nearby
+        </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-10 max-w-7xl mx-auto text-center">
-        {places.map((item) => (
-         <Link to={item.path} key={item.id}>
-          <div className="flex flex-col items-center">
-            
-            
-            <div className="w-38 h-38 md:w-40 md:h-40 rounded-full bg-white shadow-xl flex items-center justify-center overflow-hidden hover:scale-110 hover:shadow-2xl transition duration-300">
-              
-              <img
-                src={item.img}
-                alt={item.name}
-                className="w-full h-full rounded-full object-cover"
-              />
+        <Swiper
+          modules={[FreeMode, Navigation]}
+          freeMode={true}
+          navigation={true}
+          spaceBetween={24}
+          slidesPerView={1.2}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 2.5,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
+        >
+          {places.map((item) => (
+            <SwiperSlide key={item.id}>
+              <Link to={item.path} className="group">
+                <div className="flex flex-col">
+                  
+                  <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+                    <img
+                      src={item.img}
+                      alt={item.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
 
-            </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
 
-            <p className="mt-4 text-lg font-semibold text-gray-800">
-              {item.name}
-            </p>
+                  <div className="mt-5 flex justify-between items-center">
+                    <div>
+                      <p className="text-xl font-bold text-gray-800 group-hover:text-[#3aa0c9] transition-colors">
+                        {item.name}
+                      </p>
+                      <p className="text-sm text-gray-500 font-medium">
+                        Explore Deals
+                      </p>
+                    </div>
 
-          </div>
-         </Link>
-        ))}
+                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[#3aa0c9] group-hover:text-white group-hover:border-[#3aa0c9] transition-all">
+                      →
+                    </div>
+                  </div>
+
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
       </div>
-
     </section>
   );
 }

@@ -2,7 +2,7 @@ import React, {  useState } from 'react';
 import { motion } from "framer-motion";
 import HowItWorks from './HowItWorks';
 import { MdClose } from "react-icons/md";
-import { Calendar } from 'lucide-react';
+import { Calendar, PlaneLanding, PlaneTakeoff, Users, X } from 'lucide-react';
 import FlightDestination from './Destination/FlightDestination';
 import ExploreNearby from './ExploreNearby';
 import FAQPage from './FaqPage';
@@ -78,256 +78,194 @@ export default function FlightPage() {
   }
 
   return (
-    <div className="w-full font-sans mt-25 ">
-      <section className="px-4">
-        <div className="max-w-7xl mx-auto rounded-[50px] pt-20 pb-32 relative overflow-visible">
-
+   <div className="font-sans">
+      <section className="h-full">
+        <div className="w-full rounded-[40px] md:rounded-[60px] pt-24 pb-44 relative overflow-visible shadow-2xl">
+          
           <div className="absolute inset-0 z-0">
-
             <video
               autoPlay
               loop
               playsInline
               muted
-              src="/video/Flight Page GIF.mp4"
-              alt="sky"
-              className="w-full h-[550px] object-cover"
+              src="/video/Flight Page.mp4"
+              className="w-full h-full object-cover" 
             />
-            <div className="absolute inset-0 "></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30"></div>
           </div>
 
-          <div className="relative z-10 text-center mb-16">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-              Find an unpublished deal
-            </h1>
+          <div className="relative z-10 text-center mt-24 ">
+            <motion.h1 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-6xl font-black text-white tracking-tight drop-shadow-lg"
+            >
+              Find an <span className="text-[#52a3c3]">unpublished</span> deal
+            </motion.h1>
+            <p className="text-white/95 mt-4 text-lg hidden md:block">Exclusive fares you won't find anywhere else.</p>
           </div>
 
-          <div className="relative z-20 max-w-6xl mx-auto px-6 pt-20 md:pt-20">
-    
-            <div className="relative bg-white shadow-2xl  rounded-sm p-8 border-y border-gray-100">
-
-              <div className="absolute left-0 top-0 bottom-0 w-2 flex flex-col justify-around py-2 -ml-[1px]">
-                {[...Array(15)].map((_, i) => (
-                  <div key={i} className="w-2 h-2 bg-[#dbeafe] rounded-full -ml-1"></div>
+          <div className="relative z-20 max-w-6xl mx-auto mt-20 px-4">
+            <div className="relative bg-white/40 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.2)] rounded-2xl p-6 md:p-10 border border-white/20">
+              
+              {/* <div className="absolute -left-3 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2">
+                {[...Array(8)].map((_, i) => (
+                  <div key={i} className="w-6 h-6 bg-[#f3f4f6] rounded-full -ml-4 shadow-inner"></div>
                 ))}
               </div>
-
-              <div className="absolute right-0 top-0 bottom-0 w-2 flex flex-col justify-around py-2 -mr-[4px]">
-                {[...Array(15)].map((_, i) => (
-                  <div key={i} className="w-2 h-2 bg-[#dbeafe] rounded-full -mr-1"></div>
+              <div className="absolute -right-3 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2">
+                {[...Array(8)].map((_, i) => (
+                  <div key={i} className="w-6 h-6 bg-[#f3f4f6] rounded-full -mr-4 shadow-inner"></div>
                 ))}
-              </div>
+              </div> */}
 
-              <div className="gap-0 border-gray-200 rounded-lg overflow-visible">
-                <form onSubmit={handleSearch}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-white border rounded-md p-4 w-full max-w-5xl mx-auto"
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-3 mb-3">
-
-                      <div className="md:col-span-6">
-                        <p className="text-xs text-gray-500 mb-1">Origin</p>
-                        <div className="flex items-center border rounded-md px-3 py-2 text-sm">
-                          <input
-                            type='text'
-                            placeholder="Origin"
-                            name='origin'
-                            className="w-full outline-none md:h-7"
-                          />
-                        </div>
+              <form onSubmit={handleSearch} className="relative z-30">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="space-y-6"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="group">
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">Origin</label>
+                      <div className="flex items-center border-2 border-gray-100 group-focus-within:border-[#3aa0c9] rounded-xl px-4 py-3 transition-all ">
+                        <PlaneTakeoff size={18} className="text-black mr-3" />
+                        <input
+                          type='text'
+                          placeholder="Where from?"
+                          name='origin'
+                          className="w-full bg-transparent outline-none text-gray-700 font-medium placeholder:text-black"
+                        />
                       </div>
-
-                      <div className="md:col-span-6">
-                        <p className="text-xs text-gray-500 mb-1">Destination</p>
-                        <div className="flex items-center border rounded-md px-3 py-2 text-sm">
-                          <input
-                            type='text'
-                            placeholder="Destination"
-                            name='destination'
-                            className="w-full outline-none md:h-7"
-                          />
-                        </div>
-                      </div>
-
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-y-4 md:gap-5 items-end">
+                    <div className="group">
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">Destination</label>
+                      <div className="flex items-center border-2 border-gray-100 group-focus-within:border-[#3aa0c9] rounded-xl px-4 py-3 transition-all ">
+                        <PlaneLanding size={18} className="text-black mr-3" />
+                        <input
+                          type='text'
+                          placeholder="Where to?"
+                          name='destination'
+                          className="w-full bg-transparent outline-none text-gray-700 font-medium placeholder:text-black"
+                        />
+                      </div>
+                    </div>
+                  </div>
 
-                      <div className="md:col-span-6 flex flex-col md:flex-row gap-4 md:gap-2">
-                        <div className="w-full">
-                          <p className="text-xs text-gray-500 mb-1">Depart date</p>
-                          <div className="flex items-center border rounded-md px-3 py-2 text-sm">
-                            <input type='date' name='departuredDate' className="w-full outline-none" />
-                          </div>
-                        </div>
-
-                        <div className="w-full md:col-span-6 ">
-                          <p className="text-xs text-gray-500 mb-1">Return date</p>
-
-                          <div
-                            className={`flex items-center border rounded-md px-3 py-2 text-sm ${roundedEnable ? "" : "bg-gray-100"
-                              }`}
-                          >
-                            <input
-                              type="date"
-                              name='returnDate'
-                              className="w-full outline-none bg-transparent"
-                              disabled={!roundedEnable}
-                              value={returnDate}
-                              onChange={(e) => setReturnDate(e.target.value)}
-                            />
-
-                            {roundedEnable ? (
-                              <MdClose
-                                className="text-gray-500 text-xl cursor-pointer"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setRoundedEnable(false);
-                                  setReturnDate("");
-                                }}
-                              />
-                            ) : (
-                              <span
-                                className="text-blue-500 text-md cursor-pointer font-bold"
-                                onClick={() => setRoundedEnable(true)}
-                              >
-                                <Calendar size={15} />
-                              </span>
-                            )}
-                          </div>
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+                    
+                    <div className="md:col-span-6 grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">Departure</label>
+                        <div className="flex items-center border-2 border-gray-100 rounded-xl px-3 py-3 ">
+                          <input type='date' name='departuredDate' className="w-full bg-transparent outline-none text-sm cursor-pointer" />
                         </div>
                       </div>
 
-                      <div className="md:col-span-4 relative">
-                        <p className="text-xs text-gray-500 mb-1">Passengers</p>
+                      <div>
+                        <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">Return</label>
+                        <div className={`flex items-center border-2 transition-all rounded-xl px-3 py-3 ${roundedEnable ? "border-gray-100 " : "border-dashed border-gray-200 bg-transparent"}`}>
+                          <input
+                            type="date"
+                            disabled={!roundedEnable}
+                            value={returnDate}
+                            onChange={(e) => setReturnDate(e.target.value)}
+                            className="w-full bg-transparent outline-none text-sm disabled:text-black cursor-pointer"
+                          />
+                          {roundedEnable ? (
+                            <X size={16} className="text-red-400 cursor-pointer" onClick={() => {setRoundedEnable(false); setReturnDate("");}} />
+                          ) : (
+                            <Calendar size={18} className="text-[#101c20] cursor-pointer" onClick={() => setRoundedEnable(true)} />
+                          )}
+                        </div>
+                      </div>
+                    </div>
 
-                        <div
-                          onClick={() => setOpen(!open)}
-                          className="border rounded-md px-3 py-2 text-sm cursor-pointer bg-white flex justify-between items-center"
+                    <div className="md:col-span-4 relative">
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">Travelers & Class</label>
+                      <div
+                        onClick={() => setOpen(!open)}
+                        className="border-2 border-gray-100 rounded-xl px-4 py-3 text-sm cursor-pointer 
+                         flex justify-between items-center hover:border-gray-200 transition-all"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Users size={16} className="text-black" />
+                          <span className="font-medium text-gray-900">{totalText}</span>
+                          <span className="text-[#1f4756] font-bold ml-1">• {cabin}</span>
+                        </div>
+                        <span className={`text-black transition-transform ${open ? 'rotate-180' : ''}`}>▼</span>
+                      </div>
+
+                      {open && (
+                        <motion.div 
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="absolute z-[999] mt-3 w-72 left-0 md:right-0 md:left-auto bg-white border rounded-2xl shadow-2xl p-5 space-y-5"
                         >
-                          <span>{totalText}, <span className="font-medium text-blue-600" />{cabin} </span>
-                          <span className="text-gray-400">▼</span>
-                        </div>
-
-                        {open && (
-                          <div className="absolute z-[999] mt-2 w-full bg-white border rounded-xl shadow-lg p-4 space-y-4">
-
-                            <div className="flex justify-between items-center">
+                          {['adults', 'children', 'infants'].map((type) => (
+                            <div key={type} className="flex justify-between items-center">
                               <div>
-                                <p className="text-sm font-medium">Adults</p>
-                                <p className="text-xs text-gray-400">12+ years</p>
+                                <p className="text-sm font-bold capitalize">{type}</p>
+                                <p className="text-[10px] text-black uppercase tracking-tighter">
+                                  {type === 'adults' ? '12+ Years' : type === 'children' ? '2-11 Years' : 'Under 2 Years'}
+                                </p>
                               </div>
-                              <div className="flex items-center gap-3">
-                                <button
-                                  onClick={() => handleChange("adults", -1)}
-                                  type='button'
-                                  className="w-7 h-7 rounded-full border flex items-center justify-center"
-                                >-</button>
-
-                                <span>{passengers.adults}</span>
-
-                                <button
-                                  onClick={() => handleChange("adults", +1)}
-                                  type='button'
-                                  className="w-7 h-7 rounded-full border flex items-center justify-center"
-                                >+</button>
+                              <div className="flex items-center gap-4">
+                                <button type='button' onClick={() => handleChange(type, -1)} className="w-8 h-8 rounded-lg border-2 border-gray-100 flex items-center justify-center hover:bg-gray-50">-</button>
+                                <span className="font-bold w-4 text-center">{passengers[type]}</span>
+                                <button type='button' onClick={() => handleChange(type, 1)} className="w-8 h-8 rounded-lg border-2 border-[#3aa0c9] text-[#3aa0c9] flex items-center justify-center hover:bg-blue-50">+</button>
                               </div>
                             </div>
+                          ))}
 
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <p className="text-sm font-medium">Children</p>
-                                <p className="text-xs text-gray-400">2–11 years</p>
-                              </div>
-                              <div className="flex items-center gap-3">
+                          <div className="border-t pt-4">
+                            <p className='text-xs font-bold text-black uppercase mb-3'>Cabin Class</p>
+                            <div className="flex flex-wrap gap-2">
+                              {["Economy", "Business", "First"].map((item) => (
                                 <button
-                                  onClick={() => handleChange("children", -1)}
+                                  key={item}
                                   type='button'
-                                  className="w-7 h-7 rounded-full border flex items-center justify-center"
-                                >-</button>
-
-                                <span>{passengers.children}</span>
-
-                                <button
-                                  onClick={() => handleChange("children", 1)}
-                                  type='button'
-                                  className="w-7 h-7 rounded-full border flex items-center justify-center"
-                                >+</button>
-                              </div>
+                                  onClick={() => setCabin(item)}
+                                  className={`px-3 py-1.5 text-xs rounded-full border-2 transition-all font-semibold ${cabin === item ? "bg-[#3aa0c9] text-white border-[#3aa0c9]" : "bg-white text-gray-500 border-gray-100 hover:border-gray-300"}`}
+                                >
+                                  {item}
+                                </button>
+                              ))}
                             </div>
-
-                            <div className="flex justify-between items-center">
-                              <div>
-                                <p className="text-sm font-medium">Infants</p>
-                                <p className="text-xs text-gray-400">Below 2 years</p>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <button
-                                  onClick={() => handleChange("infants", -1)}
-                                  type='button'
-                                  className="w-7 h-7 rounded-full border flex items-center justify-center"
-                                >-</button>
-
-                                <span>{passengers.infants}</span>
-
-                                <button
-                                  onClick={() => handleChange("infants", 1)}
-                                  type='button'
-                                  className="w-7 h-7 rounded-full border flex items-center justify-center"
-                                >+</button>
-                              </div>
-                            </div>
-
-                            <div className="border-t pt-3">
-                              <p className='text-sm font-semibold mb-2'>Cabin Class</p>
-
-                              <div className="grid grid-cols-2 gap-2">
-                                {["Economy", "Business", "First Class"].map((item) => (
-                                  <button
-                                    key={item}
-                                    type='button'
-                                    onClick={() => setCabin(item)}
-                                    className={`px-3 py-2 text-sm rounded-md border transition ${cabin === item ? "bg-blue-500 text-white border-blue-500"
-                                      : "bg-white hover:bg-gray-100"}`}
-                                  >
-                                    {item}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-
-                            <button
-                              onClick={() => setOpen(false)}
-                              type='button'
-                              className="w-full mt-2 bg-[#3aa0c9] text-white py-2 rounded-md text-sm"
-                            >
-                              Done
-                            </button>
                           </div>
-                        )}
-                      </div>
 
-                      <div className="md:col-span-2 flex md:justify-end">
-                        <button type='submit' className="w-full md:w-[180px] bg-[#3aa0c9] hover:bg-[#2c8fb6] text-white py-2.5 rounded-md text-sm font-medium">
-                          Search
-                        </button>
-                      </div>
-
+                          <button
+                            onClick={() => setOpen(false)}
+                            type='button'
+                            className="w-full mt-2 bg-gray-900 text-white py-3 rounded-xl text-sm font-bold hover:bg-black transition-colors"
+                          >
+                            Done
+                          </button>
+                        </motion.div>
+                      )}
                     </div>
-                  </motion.div>
-                </form>
-              </div>
+
+                    <div className="md:col-span-2">
+                      <button type='submit' className="w-full bg-[#265a6f] hover:bg-[#265a6f] hover:shadow-lg hover:shadow-blue-200 text-white py-3.5 rounded-xl text-sm font-bold transition-all transform active:scale-95">
+                        Search Flights
+                      </button>
+                    </div>
+
+                  </div>
+                </motion.div>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
-      <HowItWorks />
-      <FlightDestination />
-      <FAQPage />
-      <ExploreNearby />
+      <div className="space-y-20">
+        <HowItWorks />
+        <FlightDestination />
+        <FAQPage />
+        <ExploreNearby />
+      </div>
     </div>
   );
-}
+};
