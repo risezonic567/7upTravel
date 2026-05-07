@@ -303,7 +303,7 @@ const FlightSearchPage = () => {
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify(searchData),
+                        body: JSON.stringify(searchData) ,
                     }
                 )
 
@@ -353,7 +353,7 @@ const FlightSearchPage = () => {
                     <div className={`bg-white w-[80%] max-w-sm h-full p-5 transition-transform duration-300 ${filterOpen ? "translate-x-0" : "-translate-x-full"}`}>
 
                         <div className="flex justify-between items-center mb-6 mt-10">
-                            <h2 className="text-lg font-bold">Filters</h2>
+                            <h2 className="text-lg font-bold">Filter</h2>
                             <button onClick={() => setFilterOpen(false)}>
                                 <X size={24} />
                             </button>
