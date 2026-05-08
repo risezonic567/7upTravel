@@ -1,26 +1,31 @@
 import Booking from "../models/BookingModels.js";
 
-export const initiatePayment = async (req,res)=>{
-    try {
-        const {bookingId} = req.body
+export const initiatePayment = async (req, res) => {
+  try {
+    const { bookingId } = req.body
 
-          const booking = await Booking.findById(bookingId);
+    const booking = await Booking.findById(bookingId);
 
-        if(!booking){
-            return res.send({
-                message:"Booking not Found"
-            })
-        }
-         const payload = {
+    if (!booking) {
+      return res.send({
+        message: "Booking not Found"
+      })
+    }
+
+    const payload = {
       amount: booking.totalPrice,
       currency: "USD",
       order_id: booking._id.toString(),
       customer_email: booking.contact.email,
-      redirect_url: `${process.env.FRONTEND_URL}/payment-success`,
+
+      success_url: `${process.env.FRONTEND_URL}/payment-success?bookingId=${booking._id}`,
+      failure_url: `${process.env.FRONTEND_URL}/payment-failure`,
+      cancel_url: `${process.env.FRONTEND_URL}/payment-cancel`,
+
       webhook_url: `${process.env.BACKEND_URL}/api/payment/webhook`,
     };
 
-      const response = await fetch("https://api.bridgerpay.com/payment/init", {
+    const response = await fetch("https://api.bridgerpay.com/v1/payments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,31 +34,40 @@ export const initiatePayment = async (req,res)=>{
       body: JSON.stringify(payload),
     });
 
-    const text = await response.text();
-    console.log("RAW RESPONSE:", text);
+   const text = await response.text();
 
+console.log("STATUS:", response.status);
+console.log("RAW RESPONSE:", text);
 
-  let data;
-
-try {
-  data = JSON.parse(text);
-} catch (e) {
-  console.log("Not JSON response:", text);
+if (!response.ok) {
   return res.status(500).json({
-    message: "Invalid response from payment gateway"
+    message: "Payment gateway error",
+    status: response.status,
+    raw: text
   });
 }
 
+    let data;
 
-     res.json({
-      paymentUrl: data.payment_url,
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.log("Not JSON response:", e);
+      return res.status(500).json({
+        message:e.message
+      });
+    }
+
+
+    res.json({
+      paymentUrl: data?.payment_url || data?.url,
     });
 
 
-    } catch (error) {
-          console.log("PAYMENT ERROR FULL:", error);
-        res.status(500).json({ message: error.message });
-    }
+  } catch (error) {
+    console.log("PAYMENT ERROR FULL:", error);
+    res.status(500).json({ message: error.message });
+  }
 }
 
 
@@ -72,7 +86,7 @@ export const paymentWebhook = async (req, res) => {
 
       await booking.save();
 
-      await sendConfirmationMail(booking);
+      // await sendConfirmationMail(booking);
     }
 
     if (status === "declined") {
@@ -89,9 +103,11 @@ export const paymentWebhook = async (req, res) => {
   }
 };
 
+
+
 export const paymentSuccess = async (req, res) => {
   try {
-    const { bookingId } = req.body; 
+    const { bookingId } = req.body;
 
     if (!bookingId) {
       return res.status(400).json({
@@ -107,7 +123,7 @@ export const paymentSuccess = async (req, res) => {
         status: "CONFIRMED",
         transactionId: "TXN_" + Date.now()
       },
-      { new: true } 
+      { new: true }
     );
 
     res.status(200).json({

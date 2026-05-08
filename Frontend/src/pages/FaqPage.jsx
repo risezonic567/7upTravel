@@ -14,7 +14,7 @@ export default function Faq() {
     { label: "Car Rental", key: "car_rental" },
     { label: "Cruises", key: "cruise_services" },
     { label: "Delays", key: "delays_cancellations" },
-    { label: "Support", key: "support_security" }
+    // { label: "Support", key: "support_security" }
   ];
 
   let [tab, setTab] = useState("booking_services");
@@ -38,7 +38,7 @@ export default function Faq() {
             Customer Support
           </span> */}
           <h1 className="text-5xl md:text-4xl font-extrabold mb-6 tracking-tight text-slate-900">
-            How can we <span className="text-amber-600">help you Today?</span>
+            How can we <span className="text-blue-600">help you Today?</span>
           </h1>
           <p className="max-w-2xl mx-auto text-slate-500 text-lg leading-relaxed">
            Find quick answers and reliable support for your travel plans. Browse our help center, explore common topics, or connect with our team for assistance with flight bookings, hotel reservations, cancellations, refunds, and more.
@@ -49,7 +49,7 @@ export default function Faq() {
               type="text" 
               placeholder="Search for questions (e.g. 'refund policy')..." 
               onChange={(e) => setSearch(e.target.value)} 
-              className="w-full bg-white shadow-2xl shadow-slate-200/50 outline-none border border-slate-200 focus:border-amber-400 p-5 pl-8 rounded-2xl transition-all duration-300 text-slate-700 placeholder:text-slate-400" 
+              className="w-full bg-white shadow-2xl shadow-slate-200/50 outline-none border border-slate-200 focus:border-blue-400 p-5 pl-8 rounded-2xl transition-all duration-300 text-slate-700 placeholder:text-slate-400" 
             />
           </div>
         </header>
@@ -74,7 +74,6 @@ export default function Faq() {
         </div>
       </section>
 
-      {/* FAQ Content */}
       <section className="max-w-4xl mx-auto px-6 py-20">
         <div className="mb-12 flex items-center justify-between border-b border-slate-200 pb-6">
             <h2 className="text-2xl font-bold text-slate-800">
@@ -97,18 +96,18 @@ export default function Faq() {
                 <div 
                   key={id} 
                   className={`group transition-all duration-500 rounded-2xl border ${
-                    isOpen ? "border-amber-200 bg-amber-50/30" : "border-slate-200 bg-white hover:border-amber-200"
+                    isOpen ? "border-blue-300 bg-blue-50/30" : "border-slate-200 bg-white hover:border-blue-400"
                   }`}
                 >
                   <button 
                     className="flex items-center justify-between p-6 w-full text-left focus:outline-none" 
                     onClick={() => setOpen(isOpen ? null : id)}
                   >
-                    <h3 className={`font-semibold text-lg transition-colors ${isOpen ? "text-amber-900" : "text-slate-700"}`}>
+                    <h3 className={`font-semibold text-lg transition-colors ${isOpen ? "text-blue-600" : "text-slate-700"}`}>
                       {item.question}
                     </h3>
                     <div className={`flex-shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
-                      isOpen ? "bg-amber-500 text-white rotate-45" : "bg-slate-100 text-slate-400 group-hover:bg-amber-100 group-hover:text-amber-600"
+                      isOpen ? "bg-blue-600 text-white rotate-45" : "bg-slate-100 text-slate-400 group-hover:bg-amber-100 group-hover:text-blue-600"
                     }`}>
                       <FaPlus className="text-xs" />
                     </div>
@@ -132,13 +131,12 @@ export default function Faq() {
         )}
       </section>
 
-      {/* Footer Decoration */}
-      <div className="max-w-lg mx-auto text-center pb-20">
+      {/* <div className="max-w-lg mx-auto text-center pb-20">
           <p className="text-slate-400 text-sm mb-4">Still need help?</p>
-          <NavLink to="/contact-us" className="px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-amber-600 transition-colors shadow-lg">
+          <NavLink to="/contact-us" className="px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-blue-600 transition-colors shadow-lg">
               Contact Concierge Support
           </NavLink>
-      </div>
+      </div> */}
     </div>
   );
 }

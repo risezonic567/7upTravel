@@ -45,7 +45,7 @@ export default function Testimonials() {
 
       <div className='text-center mb-10'>
         <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-          Why Customers Love Global Travel
+          Why Customers Love 7upTravel
         </h2>
 
         <div className='max-w-3xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center mt-6'>

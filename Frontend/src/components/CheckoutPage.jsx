@@ -108,6 +108,7 @@ export default function CheckoutPage() {
       setFlight(data.flight)
 
       localStorage.setItem("selectedFlight", JSON.stringify(data.flight))
+
     } catch (error) {
       console.log(error)
     } finally {
@@ -129,151 +130,84 @@ export default function CheckoutPage() {
     return <p className="text-center mt-20">Loading flight...</p>
   }
 
-  // const handlePayment = async () => {
-  //   try {
-  //     const offerId = flight?.id || flight?.offer_id;
-
-  //     if (!offerId) {
-  //       console.log("Flight object:", flight);
-  //       alert("Flight ID missing");
-  //       return;
-  //     }
 
 
-  //     for (let p of passengers) {
-  //       if (!p.firstName || !p.lastName || !p.dob || !p.gender) {
-  //         alert("Please fill all Passengers Details");
-  //         return;
-  //       }
-  //     }
-
-  //     const payload = {
-  //       offerId: flight?.id,
-  //       passengers: passengers.map(p => ({
-  //         name: `${p.firstName} ${p.lastName}`,
-  //         age: Number(p.dob),
-  //         gender: p.gender
-  //       })),
-  //       contact: {
-  //         email: contactus.email,
-  //         phone: contactus.phone
-  //       },
-  //       flightData: {
-  //         airline: flight.airline,
-  //         from: flight.originCity,
-  //         to: flight.destinationCity,
-  //         departureTime: flight.departure,
-  //         arrivalTime: flight.arrival,
-  //         price: Number(flight.price),
-  //         currency: "USD"
-  //       },
-  //       guestId: localStorage.getItem("guestId") || null
-  //     };
-  //     console.log("PAYLOAD:", payload);
-
-  //     const res = await fetch("https://www.7upflight-ticket.com/api/checkout/booking", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify(payload)
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (data.result === "Fail") {
-  //       alert(data.message);
-  //       return;
-  //     }
-
-  //     alert("Booking Successful 🎉 PNR: " + data.booking.pnr);
-
-  //   } catch (error) {
-  //     console.log(error);
-  //     alert("Booking failed");
-  //   }
-  // };
-
-
-const handlePayment = async () => {
-  try {
-    const offerId = flight?.id || flight?.offer_id;
-
-    if (!offerId) {
-      alert("Flight ID missing");
-      return;
-    }
-
-    for (let p of passengers) {
-      if (!p.firstName || !p.lastName || !p.dob || !p.gender) {
-        alert("Please fill all Passengers Details");
+  const handlePayment = async () => {
+    try {
+      if (!contactus.email || !contactus.phone) {
+        alert("Please enter Email and Phone");
         return;
       }
-    }
 
-    const bookingRes = await fetch("https://www.7upflight-ticket.com/api/checkout/booking", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        offerId: flight?.id,
-        passengers: passengers.map(p => ({
-          name: `${p.firstName} ${p.lastName}`,
-          age: Number(p.dob),
-          gender: p.gender
-        })),
-        contact: {
-          email: contactus.email,
-          phone: contactus.phone
+      for (let p of passengers) {
+        if (!p.firstName || !p.lastName || !p.dob || !p.gender) {
+          alert("Please fill all Passengers Details");
+          return;
+        }
+      }
+
+      const bookingRes = await fetch("https://www.7upflight-ticket.com/api/checkout/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
         },
-        flightData: {
-          airline: flight.airline,
-          from: flight.originCity,
-          to: flight.destinationCity,
-          departureTime: flight.departure,
-          arrivalTime: flight.arrival,
-          price: Number(flight.price),
-          currency: "USD"
+        body: JSON.stringify({
+          offerId: flight?.id,
+          passengers: passengers.map(p => ({
+            name: `${p.firstName} ${p.lastName}`,
+            age: Number(p.dob),
+            gender: p.gender
+          })),
+          contact: {
+            email: contactus.email,
+            phone: contactus.phone
+          },
+          flightData: {
+            airline: flight.airline,
+            from: flight.originCity,
+            to: flight.destinationCity,
+            departureTime: flight.departure,
+            arrivalTime: flight.arrival,
+            price: Number(flight.price),
+            currency: "USD"
+          },
+          guestId: localStorage.getItem("guestId") || null
+        })
+      });
+
+      const bookingData = await bookingRes.json();
+      console.log("BOOKING DATA:", bookingData);
+
+      if (!bookingData || !bookingData.booking) {
+        alert("Booking failed");
+        return;
+      }
+
+      const bookingId = bookingData.booking._id;
+
+      const paymentRes = await fetch("https://www.7upflight-ticket.com/api/payment/initiate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
         },
-        guestId: localStorage.getItem("guestId") || null
-      })
-    });
+        body: JSON.stringify({ bookingId })
+      });
 
-    const bookingData = await bookingRes.json();
+      const paymentData = await paymentRes.json();
+      console.log("PAYMENT DATA:", paymentData);
 
-    if (bookingData.result === "Fail") {
-      alert(bookingData.message);
-      return;
+      if (!paymentData.paymentUrl) {
+        alert("Payment failed to initiate");
+        return;
+      }
+
+      window.location.href = paymentData.paymentUrl;
+
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong");
     }
-
-    const bookingId = bookingData.booking._id;
-
-    const paymentRes = await fetch("https://www.7upflight-ticket.com/api/payment/initiate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ bookingId })
-    });
-
-    const paymentData = await paymentRes.json();
-
-    if (!paymentData.paymentUrl) {
-      alert("Payment failed to initiate");
-      return;
-    }
-
-    window.location.href = paymentData.paymentUrl;
-
-    console.log("BOOKING DATA:", bookingData);
-console.log("PAYMENT DATA:", paymentData);
-
-  } catch (error) {
-    console.log(error);
-    alert("Something went wrong");
-  }
-};
+  };
 
 
   return (
@@ -380,27 +314,27 @@ console.log("PAYMENT DATA:", paymentData);
                     <option value="child">Child</option>
                     <option value="infant">Infant</option>
                   </select>
-                
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      value={contactus.email}
-                      onChange={(e) =>
-                        setContactUs({ ...contactus, email: e.target.value })
-                      }
-                      className="border p-2 rounded-xl w-full mb-2"
-                    />
 
-                    <input
-                      type="text"
-                      placeholder="Phone"
-                      value={contactus.phone}
-                      onChange={(e) =>
-                        setContactUs({ ...contactus, phone: e.target.value })
-                      }
-                      className="border p-2 rounded-xl w-full"
-                    />
-              
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={contactus.email}
+                    onChange={(e) =>
+                      setContactUs({ ...contactus, email: e.target.value })
+                    }
+                    className="border p-2 rounded-xl w-full mb-2"
+                  />
+
+                  <input
+                    type="text"
+                    placeholder="Phone"
+                    value={contactus.phone}
+                    onChange={(e) =>
+                      setContactUs({ ...contactus, phone: e.target.value })
+                    }
+                    className="border p-2 rounded-xl w-full"
+                  />
+
 
                   <input
                     type="text"

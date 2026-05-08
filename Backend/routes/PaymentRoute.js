@@ -4,7 +4,7 @@ import { initiatePayment, paymentSuccess, paymentWebhook } from '../controller/P
 const PaymentRouter = express.Router()
 
 PaymentRouter.post("/initiate",initiatePayment)
-PaymentRouter.post("/success",paymentSuccess)
-PaymentRouter.post("/webhbook",paymentWebhook)
+PaymentRouter.post("/payment-success",paymentSuccess)
+PaymentRouter.post("/webhook",paymentWebhook)
 
 export default PaymentRouter
