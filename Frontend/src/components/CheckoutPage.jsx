@@ -132,82 +132,165 @@ export default function CheckoutPage() {
 
 
 
-  const handlePayment = async () => {
-    try {
-      if (!contactus.email || !contactus.phone) {
-        alert("Please enter Email and Phone");
-        return;
-      }
+  // const handlePayment = async () => {
+  //   try {
+  //     if (!contactus.email || !contactus.phone) {
+  //       alert("Please enter Email and Phone");
+  //       return;
+  //     }
 
-      for (let p of passengers) {
-        if (!p.firstName || !p.lastName || !p.dob || !p.gender) {
-          alert("Please fill all Passengers Details");
-          return;
-        }
-      }
+  //     for (let p of passengers) {
+  //       if (!p.firstName || !p.lastName || !p.dob || !p.gender) {
+  //         alert("Please fill all Passengers Details");
+  //         return;
+  //       }
+  //     }
 
-      const bookingRes = await fetch("https://www.7upflight-ticket.com/api/checkout/booking", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          offerId: flight?.id,
-          passengers: passengers.map(p => ({
-            name: `${p.firstName} ${p.lastName}`,
-            age: Number(p.dob),
-            gender: p.gender
-          })),
-          contact: {
-            email: contactus.email,
-            phone: contactus.phone
-          },
-          flightData: {
-            airline: flight.airline,
-            from: flight.originCity,
-            to: flight.destinationCity,
-            departureTime: flight.departure,
-            arrivalTime: flight.arrival,
-            price: Number(flight.price),
-            currency: "USD"
-          },
-          guestId: localStorage.getItem("guestId") || null
-        })
-      });
+  //     const bookingRes = await fetch("https://www.7upflight-ticket.com/api/checkout/booking", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({
+  //         offerId: flight?.id,
+  //         passengers: passengers.map(p => ({
+  //           name: `${p.firstName} ${p.lastName}`,
+  //           age: Number(p.dob),
+  //           gender: p.gender
+  //         })),
+  //         contact: {
+  //           email: contactus.email,
+  //           phone: contactus.phone
+  //         },
+  //         flightData: {
+  //           airline: flight.airline,
+  //           from: flight.originCity,
+  //           to: flight.destinationCity,
+  //           departureTime: flight.departure,
+  //           arrivalTime: flight.arrival,
+  //           price: Number(flight.price),
+  //           currency: "USD"
+  //         },
+  //         guestId: localStorage.getItem("guestId") || null
+  //       })
+  //     });
 
-      const bookingData = await bookingRes.json();
-      console.log("BOOKING DATA:", bookingData);
+  //     const bookingData = await bookingRes.json();
+  //     console.log("BOOKING DATA:", bookingData);
 
-      if (!bookingData || !bookingData.booking) {
-        alert("Booking failed");
-        return;
-      }
+  //     if (!bookingData || !bookingData.booking) {
+  //       alert("Booking failed");
+  //       return;
+  //     }
 
-      const bookingId = bookingData.booking._id;
+  //     const bookingId = bookingData.booking._id;
 
-      const paymentRes = await fetch("https://www.7upflight-ticket.com/api/payment/initiate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ bookingId })
-      });
+  //     const paymentRes = await fetch("https://www.7upflight-ticket.com/api/payment/initiate", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({ bookingId })
+  //     });
 
-      const paymentData = await paymentRes.json();
-      console.log("PAYMENT DATA:", paymentData);
+  //     const paymentData = await paymentRes.json();
+  //     console.log("PAYMENT DATA:", paymentData);
 
-      if (!paymentData.paymentUrl) {
-        alert("Payment failed to initiate");
-        return;
-      }
+  //     if (!paymentData.paymentUrl) {
+  //       alert("Payment failed to initiate");
+  //       return;
+  //     }
 
-      window.location.href = paymentData.paymentUrl;
+  //     window.location.href = paymentData.paymentUrl;
 
-    } catch (error) {
-      console.log(error);
-      alert("Something went wrong");
+  //   } catch (error) {
+  //     console.log(error);
+  //     alert("Something went wrong");
+  //   }
+  // };
+
+
+
+
+const handlePayment = async () => {
+  try {
+    if (!contactus.email || !contactus.phone) {
+      alert("Please enter Email and Phone");
+      return;
     }
-  };
+
+    for (let p of passengers) {
+      if (!p.firstName || !p.lastName || !p.dob || !p.gender) {
+        alert("Fill all passenger details");
+        return;
+      }
+    }
+
+    // ✅ BOOKING
+    const bookingRes = await fetch("https://www.7upflight-ticket.com/api/checkout/booking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        offerId: flight?.id,
+        passengers: passengers.map(p => ({
+          name: `${p.firstName} ${p.lastName}`,
+          age: Number(p.dob),
+          gender: p.gender
+        })),
+        contact: contactus,
+        flightData: {
+          airline: flight.airline,
+          from: flight.originCity,
+          to: flight.destinationCity,
+          departureTime: flight.departure,
+          arrivalTime: flight.arrival,
+          price: Number(flight.price),
+          currency: "USD"
+        }
+      })
+    });
+
+    const bookingData = await bookingRes.json();
+    console.log("BOOKING DATA:", bookingData);
+
+    if (!bookingData?.booking?._id) {
+      alert("Booking failed");
+      return;
+    }
+
+    // ✅ PAYMENT INIT
+    const paymentRes = await fetch("https://www.7upflight-ticket.com/api/payment/initiate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        bookingId: bookingData.booking._id
+      })
+    });
+
+    const paymentData = await paymentRes.json();
+    console.log("PAYMENT DATA:", paymentData);
+
+    if (!paymentData?.paymentUrl) {
+      alert("Payment failed");
+      return;
+    }
+
+    // ✅ REDIRECT
+    // window.location.href = paymentData.paymentUrl;
+    window.location.href = "PAYMENT_LINK";
+
+  } catch (error) {
+    console.log("❌ FRONTEND ERROR:", error);
+    alert("Something went wrong");
+  }
+};
+
+
+
 
 
   return (

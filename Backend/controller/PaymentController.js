@@ -1,74 +1,92 @@
 import Booking from "../models/BookingModels.js";
 
+
 export const initiatePayment = async (req, res) => {
+  // console.log("🔥 PAYMENT API HIT");
+
   try {
-    const { bookingId } = req.body
+    const { bookingId } = req.body;
+    console.log("👉 bookingId:", bookingId);
 
-    const booking = await Booking.findById(bookingId);
-
-    if (!booking) {
-      return res.send({
-        message: "Booking not Found"
-      })
+    if (!bookingId) {
+      return res.status(400).json({ message: "bookingId required" });
     }
 
+    const booking = await Booking.findById(bookingId);
+    console.log("👉 booking:", booking);
+
+    if (!booking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+
+    // ✅ Payment payload (EDIT according to your gateway)
     const payload = {
-      amount: booking.totalPrice,
+      amount: booking.flightData.price,
       currency: "USD",
       order_id: booking._id.toString(),
       customer_email: booking.contact.email,
-
-      success_url: `${process.env.FRONTEND_URL}/payment-success?bookingId=${booking._id}`,
-      failure_url: `${process.env.FRONTEND_URL}/payment-failure`,
-      cancel_url: `${process.env.FRONTEND_URL}/payment-cancel`,
-
-      webhook_url: `${process.env.BACKEND_URL}/api/payment/webhook`,
+      success_url: "https://yourdomain.com/success",
+      cancel_url: "https://yourdomain.com/cancel"
     };
 
-    const response = await fetch("https://api.bridgerpay.com/v1/payments", {
+    console.log("👉 PAYMENT PAYLOAD:", payload);
+
+    // 🔥 CALL PAYMENT GATEWAY
+    const response = await fetch("https://your-payment-gateway.com/initiate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.BRIDGERPAY_API_KEY}`,
+        "Authorization": "Bearer YOUR_API_KEY"
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payload)
     });
 
-   const text = await response.text();
-
-console.log("STATUS:", response.status);
-console.log("RAW RESPONSE:", text);
-
-if (!response.ok) {
-  return res.status(500).json({
-    message: "Payment gateway error",
-    status: response.status,
-    raw: text
-  });
-}
+    // 🔥 SAFE RESPONSE HANDLE
+    const text = await response.text();
+    console.log("RAW RESPONSE:", text);
 
     let data;
-
     try {
       data = JSON.parse(text);
-    } catch (e) {
-      console.log("Not JSON response:", e);
+    } catch (err) {
       return res.status(500).json({
-        message:e.message
+        message: "Invalid gateway response",
+        raw: text
       });
     }
 
+    // ✅ Extract payment URL (IMPORTANT)
+    const paymentUrl =
+      data.payment_url ||
+      data.redirect_url ||
+      data.url ||
+      null;
 
-    res.json({
-      paymentUrl: data?.payment_url || data?.url,
+    if (!paymentUrl) {
+      return res.status(500).json({
+        message: "Payment URL not found",
+        raw: data
+      });
+    }
+
+    return res.json({
+      success: true,
+      paymentUrl
     });
 
-
   } catch (error) {
-    console.log("PAYMENT ERROR FULL:", error);
-    res.status(500).json({ message: error.message });
+    console.log("❌ PAYMENT ERROR:", error);
+    return res.status(500).json({
+      message: "Payment gateway error",
+      error: error.message
+    });
   }
-}
+};
+
+
+
+
+
 
 
 export const paymentWebhook = async (req, res) => {
@@ -83,26 +101,22 @@ export const paymentWebhook = async (req, res) => {
       booking.paymentStatus = "CONFIRMED";
       booking.status = "CONFIRMED";
       booking.transactionId = transaction_id;
-
-      await booking.save();
-
-      // await sendConfirmationMail(booking);
     }
 
     if (status === "declined") {
       booking.paymentStatus = "CANCELLED";
       booking.status = "CANCELLED";
-      await booking.save();
     }
 
-    res.sendStatus(200)
+    await booking.save();
+
+    res.sendStatus(200);
 
   } catch (error) {
     console.log(error);
-    res.send.Status(500);
+    res.sendStatus(500); // ❗ fix here
   }
 };
-
 
 
 export const paymentSuccess = async (req, res) => {
