@@ -140,7 +140,7 @@ export default function CheckoutPage() {
   if (!flight) return (
     <div className='text-center mt-40'>
       <p>No Flight Selected</p>
-      <Link to="/" className='text-blue-600 hover:underline'>Return to Search</Link>
+      <Link to="/" className='text-blue-600 hover:underline'>Return To Search</Link>
     </div>
   );
 
