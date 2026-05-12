@@ -73,8 +73,15 @@ export const initiatePayment = async (req, res) => {
       cashier_key: process.env.BRIDGERPAY_CASHIER_KEY 
     });
   } catch (err) {
-    console.error("Payment Initiation Error:", err);
-    res.status(500).json({ message: "Internal Server Error" });
+    console.error("🔥 FULL ERROR:", err);
+  console.error("🔥 RESPONSE:", err?.response);
+  console.error("🔥 DATA:", err?.response?.data);
+
+  res.status(500).json({
+    message: "Internal Server Error",
+    error: err?.message,
+    details: err?.response?.data || null,
+  });
   }
 };
 

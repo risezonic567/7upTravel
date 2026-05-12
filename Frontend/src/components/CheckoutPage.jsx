@@ -293,7 +293,7 @@ export default function CheckoutPage() {
                 </div>
               </div>
               <div className="mt-6 bg-blue-50 p-4 rounded-lg text-xs text-blue-700">
-                Tickets are non-refundable after 24 hours of booking. By clicking "Pay", you agree to our terms.
+                Tickets are non-refundable after 24 hours of booking. By clicking "Pay", you agree to our .
               </div>
             </div>
           </div>
