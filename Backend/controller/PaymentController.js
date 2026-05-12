@@ -178,68 +178,69 @@ export const initiatePayment = async (req, res) => {
 // };
 
 
-// export const paymentWebhook = async (req, res) => {
-//   try {
-//     const { order_id, status, transaction_id } = req.body;
 
-//     const booking = await Booking.findById(order_id);
+export const paymentWebhook = async (req, res) => {
+  try {
+    const { order_id, status, transaction_id } = req.body;
 
-//     if (!booking) return res.sendStatus(404);
+    const booking = await Booking.findById(order_id);
 
-//     if (status === "approved") {
-//       booking.paymentStatus = "CONFIRMED";
-//       booking.status = "CONFIRMED";
-//       booking.transactionId = transaction_id;
-//     }
+    if (!booking) return res.sendStatus(404);
 
-//     if (status === "declined") {
-//       booking.paymentStatus = "CANCELLED";
-//       booking.status = "CANCELLED";
-//     }
+    if (status === "approved") {
+      booking.paymentStatus = "CONFIRMED";
+      booking.status = "CONFIRMED";
+      booking.transactionId = transaction_id;
+    }
 
-//     await booking.save();
+    if (status === "declined") {
+      booking.paymentStatus = "CANCELLED";
+      booking.status = "CANCELLED";
+    }
 
-//     res.sendStatus(200);
+    await booking.save();
 
-//   } catch (error) {
-//     console.log(error);
-//     res.sendStatus(500); // ❗ fix here
-//   }
-// };
+    res.sendStatus(200);
+
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500); // ❗ fix here
+  }
+};
 
 
-// export const paymentSuccess = async (req, res) => {
-//   try {
-//     const { bookingId } = req.body;
+export const paymentSuccess = async (req, res) => {
+  try {
+    const { bookingId } = req.body;
 
-//     if (!bookingId) {
-//       return res.status(400).json({
-//         success: false,
-//         message: "Booking ID required",
-//       });
-//     }
+    if (!bookingId) {
+      return res.status(400).json({
+        success: false,
+        message: "Booking ID required",
+      });
+    }
 
-//     const updatedBooking = await Booking.findByIdAndUpdate(
-//       bookingId,
-//       {
-//         paymentStatus: "SUCCESS",
-//         status: "CONFIRMED",
-//         transactionId: "TXN_" + Date.now()
-//       },
-//       { new: true }
-//     );
+    const updatedBooking = await Booking.findByIdAndUpdate(
+      bookingId,
+      {
+        paymentStatus: "SUCCESS",
+        status: "CONFIRMED",
+        transactionId: "TXN_" + Date.now()
+      },
+      { new: true }
+    );
 
-//     res.status(200).json({
-//       success: true,
-//       message: "Payment success, booking confirmed",
-//       booking: updatedBooking,
-//     });
+    res.status(200).json({
+      success: true,
+      message: "Payment success, booking confirmed",
+      booking: updatedBooking,
+    });
 
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
