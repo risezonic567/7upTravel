@@ -39,19 +39,22 @@ export const initiatePayment = async (req, res) => {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.BRIDGERPAY_ACCESS_TOKEN}`, // Login API se mila hua token
+          Authorization: `Bearer ${process.env.BRIDGERPAY_ACCESS_KEY}`, // Login API se mila hua token
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           cashier_key: process.env.BRIDGERPAY_CASHIER_KEY,
           order_id: booking._id.toString(),
           currency: "USD",
-          amount: Number(booking.flightData.price),
+          amount: parseFloat(booking.flightData.price) || 10,
           first_name: booking.passengers[0].name.split(" ")[0] || "Guest",
           last_name: booking.passengers[0].name.split(" ")[1] || "User",
           email: booking.contact.email,
           phone: booking.contact.phone,
-          country: "US", // Flight booking ke liye country code zaroori ho sakta hai
+          country: "US",
+      city: "New York",
+      zip_code: "10001",
+      address: "Test Address",
         }),
       }
     );
