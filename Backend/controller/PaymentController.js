@@ -33,14 +33,13 @@ export const initiatePayment = async (req, res) => {
 
     if (!booking) return res.status(404).json({ message: "Booking not found" });
 
-    // BridgerPay v2 Session Create API (As per your Screenshot 497)
     const response = await fetch(
       `https://api.bridgerpay.com/v2/cashier/session/create/${process.env.BRIDGERPAY_API_KEY}`,
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.BRIDGERPAY_ACCESS_KEY}`, // Login API se mila hua token
           "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.BRIDGERPAY_ACCESS_KEY}`, 
         },
         body: JSON.stringify({
           cashier_key: process.env.BRIDGERPAY_CASHIER_KEY,
@@ -52,16 +51,26 @@ export const initiatePayment = async (req, res) => {
           email: booking.contact.email,
           phone: booking.contact.phone,
           country: "US",
-      city: "New York",
-      zip_code: "10001",
-      address: "Test Address",
+          city: "New York",
+          zip_code: "10001",
+          address: "Test Address",
         }),
       }
     );
 
-    const data = await response.json();
+    const text = await response.text();
 
-    // BridgerPay v2 hume 'cashier_token' return karta hai
+    let data;
+    try {
+      data = text ? JSON.parse(text) : {};
+    } catch (e) {
+      console.log("Invalid JSON from BridgerPay:", text);
+      return res.status(500).json({
+        message: "Invalid Response From Payment",
+        raw: text
+      });
+    }
+
     if (!data?.cashier_token) {
       console.log("BridgerPay Error:", data);
       return res.status(500).json({ message: "Token failed", error: data });
@@ -69,19 +78,18 @@ export const initiatePayment = async (req, res) => {
 
     return res.json({
       cashier_token: data.cashier_token,
-      // Frontend ko launcher ke liye key chahiye hoti hai
-      cashier_key: process.env.BRIDGERPAY_CASHIER_KEY 
+      cashier_key: process.env.BRIDGERPAY_CASHIER_KEY
     });
   } catch (err) {
     console.error("🔥 FULL ERROR:", err);
-  console.error("🔥 RESPONSE:", err?.response);
-  console.error("🔥 DATA:", err?.response?.data);
+    console.error("🔥 RESPONSE:", err?.response);
+    console.error("🔥 DATA:", err?.response?.data);
 
-  res.status(500).json({
-    message: "Internal Server Error",
-    error: err?.message,
-    details: err?.response?.data || null,
-  });
+    res.status(500).json({
+      message: "Internal Server Error",
+      error: err?.message,
+      details: err?.response?.data || null,
+    });
   }
 };
 
@@ -204,7 +212,7 @@ export const paymentWebhook = async (req, res) => {
 
   } catch (error) {
     console.log(error);
-    res.sendStatus(500); // ❗ fix here
+    res.sendStatus(500)
   }
 };
 
