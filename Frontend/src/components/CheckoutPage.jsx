@@ -6,6 +6,7 @@ export default function CheckoutPage() {
   const location = useLocation();
   const searchPassengers = location.state?.passengers || { adults: 1, children: 0, infants: 0 };
   const storedFlight = localStorage.getItem("selectedFlight");
+  const [showPayment, setShowPayment] =useState(false);
 
   const [flight, setFlight] = useState(
     location.state?.flight || (storedFlight ? JSON.parse(storedFlight) : null)
@@ -49,16 +50,19 @@ export default function CheckoutPage() {
   };
 
   // Payment Integration Logic
- const handlePayment = async () => {
+const handlePayment = async () => {
   try {
     setLoading(true);
 
-    // STEP 1: Create Booking
+    // =========================
+    // STEP 1: CREATE BOOKING
+    // =========================
 
     const bookingRes = await fetch(
       "https://www.7upflight-ticket.com/api/checkout/booking",
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
         },
@@ -95,12 +99,16 @@ export default function CheckoutPage() {
 
     const bookingData = await bookingRes.json();
 
+    console.log("BOOKING DATA:", bookingData);
+
     if (!bookingData?.booking?._id) {
       alert("Booking Failed");
       return;
     }
 
-    // STEP 2: Get BridgerPay Session
+    // =========================
+    // STEP 2: CREATE PAYMENT SESSION
+    // =========================
 
     const paymentRes = await fetch(
       "https://www.7upflight-ticket.com/api/payment/initiate",
@@ -121,52 +129,86 @@ export default function CheckoutPage() {
 
     console.log("PAYMENT DATA:", paymentData);
 
-    if (!paymentData.cashier_token) {
-      alert(paymentData.message || "Payment Failed");
+    if (!paymentData?.cashier_token) {
+      console.log(paymentData);
+
+      alert(
+        paymentData.message || "Cashier Token Missing"
+      );
+
       return;
     }
 
-    // STEP 3: OPEN BRIDGERPAY WIDGET
-// REMOVE OLD SCRIPT
+    // =========================
+    // STEP 3: REMOVE OLD WIDGET
+    // =========================
 
-const oldScript = document.getElementById(
-  "bridgerpay-widget"
-);
+    const oldScript = document.getElementById(
+      "bridgerpay-widget"
+    );
 
-if (oldScript) {
-  oldScript.remove();
-}
+    if (oldScript) {
+      oldScript.remove();
+    }
 
-// LOAD SCRIPT
+    // REMOVE OLD CONTAINER HTML
 
-const script = document.createElement("script");
+    const oldContainer = document.getElementById(
+      "bridgerpay-container"
+    );
 
-script.id = "bridgerpay-widget";
+    if (oldContainer) {
+      oldContainer.innerHTML = "";
+    }
 
-script.src =
-  "https://checkout.bridgerpay.com/v2/launcher.js";
+    // =========================
+    // STEP 4: CREATE SCRIPT
+    // =========================
 
-script.async = true;
+    const script = document.createElement("script");
 
-script.onload = () => {
-  console.log("Launcher Loaded");
+    script.id = "bridgerpay-widget";
 
-  // CREATE WIDGET
+    script.src =
+      "https://checkout.bridgerpay.com/v2/launcher";
 
-  const bp = new window.BridgerPaySDK({
-    cashierKey: paymentData.cashier_key,
+    script.async = true;
 
-    token: paymentData.cashier_token,
-  });
+    // IMPORTANT
 
-  // OPEN POPUP
+    script.setAttribute(
+      "data-cashier-key",
+      paymentData.cashier_key
+    );
 
-  bp.open();
-};
+    script.setAttribute(
+      "data-cashier-token",
+      paymentData.cashier_token
+    );
 
-document.body.appendChild(script);
+    // =========================
+    // STEP 5: APPEND TO CONTAINER
+    // =========================
+    setShowPayment(true)
+
+    setTimeout(() => {
+
+  const container = document.getElementById(
+    "bridgerpay-container"
+  );
+
+  if (container) {
+    container.appendChild(script);
+
+    console.log("BRIDGERPAY WIDGET LOADED");
+  } else {
+    console.log("Container Not Found");
+  }
+
+}, 300);
+
   } catch (error) {
-    console.log(error);
+    console.log("PAYMENT ERROR:", error);
 
     alert("Payment Error");
   } finally {
@@ -335,6 +377,26 @@ document.body.appendChild(script);
             </div>
           </div>
         </div>
+      {showPayment && (
+  <div
+    className="payment-overlay"
+    onClick={() => setShowPayment(false)}
+  >
+    <div
+      className="payment-modal"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        className="close-btn"
+        onClick={() => setShowPayment(false)}
+      >
+        ✕
+      </button>
+
+      <div id="bridgerpay-container"></div>
+    </div>
+  </div>
+)}
       </div>
     </div>
   );

@@ -6,3 +6,73 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
+/* Payment */
+
+.payment-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+
+  padding: 20px;
+}
+
+.payment-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 520px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  animation: popup .25s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: white;
+  color: black;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  z-index: 999;
+}
+
+.close-btn:hover {
+  background: #f1f1f1;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
