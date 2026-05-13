@@ -193,14 +193,14 @@ dotenv.config()
 const getAccessToken = async () => {
   try {
     const response = await fetch(
-      "https://api.bridgerpay.com/v2/login",
+      "https://api.bridgerpay.com/v2/auth/login",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: process.env.BRIDGERPAY_USERNAME,
+          user_name: process.env.BRIDGERPAY_USERNAME,
           password: process.env.BRIDGERPAY_PASSWORD,
         }),
       }
@@ -224,8 +224,8 @@ const getAccessToken = async () => {
 
     // IMPORTANT FIX
 
-   const token =
-  data?.result?.access_token?.token;
+    const token =
+      data?.result?.access_token?.token;
 
     if (!token) {
       throw new Error(
