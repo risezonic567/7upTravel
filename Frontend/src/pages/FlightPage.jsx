@@ -113,7 +113,7 @@ export default function FlightPage() {
       setLoading(true)
 
       const response = await fetch(
-        `http://localhost:3200/api/flight/airports?query=${value}`
+        `https://www.7upflight-ticket.com/api/flight/airports?query=${value}`
       )
 
       const result = await response.json()
