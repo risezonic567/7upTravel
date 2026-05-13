@@ -127,42 +127,44 @@ export default function CheckoutPage() {
     }
 
     // STEP 3: OPEN BRIDGERPAY WIDGET
+// REMOVE OLD SCRIPT
 
-    const existingScript = document.getElementById(
-      "bridgerpay-widget"
-    );
+const oldScript = document.getElementById(
+  "bridgerpay-widget"
+);
 
-    if (!existingScript) {
-      const script = document.createElement("script");
+if (oldScript) {
+  oldScript.remove();
+}
 
-      script.id = "bridgerpay-widget";
+// LOAD SCRIPT
 
-      script.src =
-        "https://checkout.bridgerpay.com/v2/launcher";
+const script = document.createElement("script");
 
-      script.async = true;
+script.id = "bridgerpay-widget";
 
-      script.setAttribute(
-        "data-cashier-key",
-        paymentData.cashier_key
-      );
+script.src =
+  "https://checkout.bridgerpay.com/v2/launcher.js";
 
-      script.setAttribute(
-        "data-cashier-token",
-        paymentData.cashier_token
-      );
+script.async = true;
 
-      document.body.appendChild(script);
-    } else {
-      existingScript.setAttribute(
-        "data-cashier-token",
-        paymentData.cashier_token
-      );
+script.onload = () => {
+  console.log("Launcher Loaded");
 
-      if (window.BridgerPay) {
-        window.BridgerPay.open();
-      }
-    }
+  // CREATE WIDGET
+
+  const bp = new window.BridgerPaySDK({
+    cashierKey: paymentData.cashier_key,
+
+    token: paymentData.cashier_token,
+  });
+
+  // OPEN POPUP
+
+  bp.open();
+};
+
+document.body.appendChild(script);
   } catch (error) {
     console.log(error);
 
