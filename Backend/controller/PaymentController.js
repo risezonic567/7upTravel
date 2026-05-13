@@ -278,7 +278,7 @@ export const initiatePayment = async (req, res) => {
 
           order_id: booking._id.toString(),
 
-          currency: "USD",
+          currency: "EUR",
 
           amount: Number(booking.flightData.price),
 
@@ -294,7 +294,7 @@ export const initiatePayment = async (req, res) => {
 
           phone: booking.contact?.phone,
 
-          country: "US",
+          country: "NL",
 
           city: "New York",
 
