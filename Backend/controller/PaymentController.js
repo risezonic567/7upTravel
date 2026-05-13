@@ -193,7 +193,7 @@ dotenv.config()
 const getAccessToken = async () => {
   try {
     const response = await fetch(
-      "https://api.bridgerpay.com/v2/auth/login",
+      "https://api.bridgerpay.com/v2/login",
       {
         method: "POST",
         headers: {
@@ -224,10 +224,8 @@ const getAccessToken = async () => {
 
     // IMPORTANT FIX
 
-    const token =
-      data.access_token ||
-      data.token ||
-      data.accessToken;
+   const token =
+  data?.result?.access_token?.token;
 
     if (!token) {
       throw new Error(
