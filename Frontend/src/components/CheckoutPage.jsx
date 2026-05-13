@@ -49,93 +49,128 @@ export default function CheckoutPage() {
   };
 
   // Payment Integration Logic
-  const handlePayment = async () => {
-    try {
-      // 1. Validation
-      if (!contactus.email || !contactus.phone) {
-        alert("Please enter Email and Phone");
-        return;
-      }
+ const handlePayment = async () => {
+  try {
+    setLoading(true);
 
-      const isFormIncomplete = passengers.some(p => !p.firstName || !p.lastName || !p.dob || !p.gender);
-      if (isFormIncomplete) {
-        alert("Please fill all passenger details (First Name, Last Name, Age/DOB, Gender)");
-        return;
-      }
+    // STEP 1: Create Booking
 
-      setLoading(true);
-
-      // 2. Create Booking in your DB
-      const bookingRes = await fetch("https://www.7upflight-ticket.com/api/checkout/booking", {
+    const bookingRes = await fetch(
+      "https://www.7upflight-ticket.com/api/checkout/booking",
+      {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
+
         body: JSON.stringify({
           offerId: flight?.id,
-          passengers: passengers.map(p => ({
+
+          passengers: passengers.map((p) => ({
             name: `${p.firstName} ${p.lastName}`,
             age: p.dob,
-            gender: p.gender
+            gender: p.gender,
           })),
+
           contact: contactus,
+
           flightData: {
             airline: flight.airline,
+
             from: flight.originCity,
+
             to: flight.destinationCity,
+
             departureTime: flight.departure,
+
             arrivalTime: flight.arrival,
+
             price: Number(flight.price),
-            currency: "USD"
-          }
-        })
-      });
 
-      const bookingData = await bookingRes.json();
-      if (!bookingData?.booking?._id) throw new Error("Booking registration failed on server.");
-
-      // 3. Initiate Payment with BridgerPay (Call your Backend)
-      const paymentRes = await fetch("https://www.7upflight-ticket.com/api/payment/initiate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bookingId: bookingData.booking._id })
-      });
-
-      const paymentData = await paymentRes.json();
-
-      if (!paymentData?.cashier_token || !paymentData?.cashier_key) {
-        console.error("Payment Init Data:", paymentData);
-        throw new Error("Could not initialize payment session.");
+            currency: "USD",
+          },
+        }),
       }
+    );
 
-      // 4. Inject BridgerPay Launcher Script Dynamically
-      const oldScript = document.getElementById("bridgerpay-script");
-      if (oldScript) oldScript.remove();
+    const bookingData = await bookingRes.json();
 
+    if (!bookingData?.booking?._id) {
+      alert("Booking Failed");
+      return;
+    }
+
+    // STEP 2: Get BridgerPay Session
+
+    const paymentRes = await fetch(
+      "https://www.7upflight-ticket.com/api/payment/initiate",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          bookingId: bookingData.booking._id,
+        }),
+      }
+    );
+
+    const paymentData = await paymentRes.json();
+
+    console.log("PAYMENT DATA:", paymentData);
+
+    if (!paymentData.cashier_token) {
+      alert(paymentData.message || "Payment Failed");
+      return;
+    }
+
+    // STEP 3: OPEN BRIDGERPAY WIDGET
+
+    const existingScript = document.getElementById(
+      "bridgerpay-widget"
+    );
+
+    if (!existingScript) {
       const script = document.createElement("script");
-      script.id = "bridgerpay-script";
-      script.src = "https://checkout.bridgerpay.com/launcher";
+
+      script.id = "bridgerpay-widget";
+
+      script.src =
+        "https://checkout.bridgerpay.com/v2/launcher";
+
       script.async = true;
 
-      // BridgerPay Attributes
-      script.setAttribute("data-cashier-key", paymentData.cashier_key);
-      script.setAttribute("data-cashier-token", paymentData.cashier_token);
+      script.setAttribute(
+        "data-cashier-key",
+        paymentData.cashier_key
+      );
+
+      script.setAttribute(
+        "data-cashier-token",
+        paymentData.cashier_token
+      );
 
       document.body.appendChild(script);
+    } else {
+      existingScript.setAttribute(
+        "data-cashier-token",
+        paymentData.cashier_token
+      );
 
-      script.onload = () => {
-        if (window.BridgerPay && typeof window.BridgerPay.open === 'function') {
-          window.BridgerPay.open();
-        } else {
-          alert("BridgerPay SDK loaded but could not be opened.");
-        }
-      };
-
-    } catch (error) {
-      console.error("❌ PAYMENT ERROR:", error);
-      alert(error.message || "An unexpected error occurred");
-    } finally {
-      setLoading(false);
+      if (window.BridgerPay) {
+        window.BridgerPay.open();
+      }
     }
-  };
+  } catch (error) {
+    console.log(error);
+
+    alert("Payment Error");
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (!flight) return (
     <div className='text-center mt-40'>

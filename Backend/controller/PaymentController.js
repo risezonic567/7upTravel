@@ -1,4 +1,6 @@
 import Booking from "../models/BookingModels.js";
+import dotenv from "dotenv"
+dotenv.config()
 
 // const getAccessToken = async () => {
 //   const response = await fetch("https://api.bridgerpay.com/v2/auth/login", {
@@ -26,72 +28,72 @@ import Booking from "../models/BookingModels.js";
 //   return data.access_token;
 // };
 
-export const initiatePayment = async (req, res) => {
-  try {
-    const { bookingId } = req.body;
-    const booking = await Booking.findById(bookingId);
+// export const initiatePayment = async (req, res) => {
+//   try {
+//     const { bookingId } = req.body;
+//     const booking = await Booking.findById(bookingId);
 
-    if (!booking) return res.status(404).json({ message: "Booking not found" });
+//     if (!booking) return res.status(404).json({ message: "Booking not found" });
 
-    const response = await fetch(
-      `https://api.bridgerpay.com/v2/cashier/session/create/${process.env.BRIDGERPAY_API_KEY}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.BRIDGERPAY_ACCESS_KEY}`, 
-        },
-        body: JSON.stringify({
-          cashier_key: process.env.BRIDGERPAY_CASHIER_KEY,
-          order_id: booking._id.toString(),
-          currency: "USD",
-          amount: parseFloat(booking.flightData.price) || 10,
-          first_name: booking.passengers[0].name.split(" ")[0] || "Guest",
-          last_name: booking.passengers[0].name.split(" ")[1] || "User",
-          email: booking.contact.email,
-          phone: booking.contact.phone,
-          country: "US",
-          city: "New York",
-          zip_code: "10001",
-          address: "Test Address",
-        }),
-      }
-    );
+//     const response = await fetch(
+//       `https://api.bridgerpay.com/v2/cashier/session/create/${process.env.BRIDGERPAY_API_KEY}`,
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${getAccessToken}`, 
+//         },
+//         body: JSON.stringify({
+//           cashier_key: process.env.BRIDGERPAY_CASHIER_KEY,
+//           order_id: booking._id.toString(),
+//           currency: "USD",
+//           amount: parseFloat(booking.flightData.price) || 10,
+//           first_name: booking.passengers[0].name.split(" ")[0] || "Guest",
+//           last_name: booking.passengers[0].name.split(" ")[1] || "User",
+//           email: booking.contact.email,
+//           phone: booking.contact.phone,
+//           country: "US",
+//           city: "New York",
+//           zip_code: "10001",
+//           address: "Test Address",
+//         }),
+//       }
+//     );
 
-    const text = await response.text();
+//     const text = await response.text();
 
-    let data;
-    try {
-      data = text ? JSON.parse(text) : {};
-    } catch (e) {
-      console.log("Invalid JSON from BridgerPay:", text);
-      return res.status(500).json({
-        message: "Invalid Response From Payment",
-        raw: text
-      });
-    }
+//     let data;
+//     try {
+//       data = text ? JSON.parse(text) : {};
+//     } catch (e) {
+//       console.log("Invalid JSON from BridgerPay:", text);
+//       return res.status(500).json({
+//         message: "Invalid Response From Payment",
+//         raw: text
+//       });
+//     }
 
-    if (!data?.cashier_token) {
-      console.log("BridgerPay Error:", data);
-      return res.status(500).json({ message: "Token failed", error: data });
-    }
+//     if (!data?.cashier_token) {
+//       console.log("BridgerPay Error:", data);
+//       return res.status(500).json({ message: "Token failed", error: data });
+//     }
 
-    return res.json({
-      cashier_token: data.cashier_token,
-      cashier_key: process.env.BRIDGERPAY_CASHIER_KEY
-    });
-  } catch (err) {
-    console.error("🔥 FULL ERROR:", err);
-    console.error("🔥 RESPONSE:", err?.response);
-    console.error("🔥 DATA:", err?.response?.data);
+//     return res.json({
+//       cashier_token: data.cashier_token,
+//       cashier_key: process.env.BRIDGERPAY_CASHIER_KEY
+//     });
+//   } catch (err) {
+//     console.error("🔥 FULL ERROR:", err);
+//     console.error("🔥 RESPONSE:", err?.response);
+//     console.error("🔥 DATA:", err?.response?.data);
 
-    res.status(500).json({
-      message: "Internal Server Error",
-      error: err?.message,
-      details: err?.response?.data || null,
-    });
-  }
-};
+//     res.status(500).json({
+//       message: "Internal Server Error",
+//       error: err?.message,
+//       details: err?.response?.data || null,
+//     });
+//   }
+// };
 
 // export const initiatePayment = async (req, res) => {
 //   try {
@@ -184,6 +186,177 @@ export const initiatePayment = async (req, res) => {
 //     });
 //   }
 // };
+
+
+
+
+const getAccessToken = async () => {
+  try {
+    const response = await fetch(
+      "https://api.bridgerpay.com/v2/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: process.env.BRIDGERPAY_USERNAME,
+          password: process.env.BRIDGERPAY_PASSWORD,
+        }),
+      }
+    );
+
+    const text = await response.text();
+
+    console.log("========== LOGIN API ==========");
+    console.log("STATUS:", response.status);
+    console.log("RAW RESPONSE:", text);
+
+    let data = {};
+
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.log("JSON parse failed");
+    }
+
+    console.log("LOGIN RESPONSE:", data);
+
+    // IMPORTANT FIX
+
+    const token =
+      data.access_token ||
+      data.token ||
+      data.accessToken;
+
+    if (!token) {
+      throw new Error(
+        "BridgerPay login failed. No access token received."
+      );
+    }
+
+    return token;
+
+  } catch (error) {
+    console.log("LOGIN ERROR:", error);
+
+    throw error;
+  }
+};
+
+export const initiatePayment = async (req, res) => {
+  try {
+    const { bookingId } = req.body;
+
+    const booking = await Booking.findById(bookingId);
+
+    if (!booking) {
+      return res.status(404).json({
+        message: "Booking not found",
+      });
+    }
+
+    // GET ACCESS TOKEN
+
+    const accessToken = await getAccessToken();
+
+    console.log("ACCESS TOKEN:", accessToken);
+
+    // CREATE CASHIER SESSION
+
+    const response = await fetch(
+      `https://api.bridgerpay.com/v2/cashier/session/create/${process.env.BRIDGERPAY_API_KEY}`,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+
+          Authorization: `Bearer ${accessToken}`,
+        },
+
+        body: JSON.stringify({
+          cashier_key: process.env.BRIDGERPAY_CASHIER_KEY,
+
+          order_id: booking._id.toString(),
+
+          currency: "USD",
+
+          amount: Number(booking.flightData.price),
+
+          first_name:
+            booking.passengers?.[0]?.name?.split(" ")[0] ||
+            "Guest",
+
+          last_name:
+            booking.passengers?.[0]?.name?.split(" ")[1] ||
+            "User",
+
+          email: booking.contact?.email,
+
+          phone: booking.contact?.phone,
+
+          country: "US",
+
+          city: "New York",
+
+          address: "Street 1",
+
+          zip_code: "10001",
+        }),
+      }
+    );
+
+    const text = await response.text();
+
+    console.log("========== SESSION API ==========");
+    console.log("STATUS:", response.status);
+    console.log("RAW RESPONSE:", text);
+
+    let data = {};
+
+    try {
+      data = JSON.parse(text);
+    } catch (e) {
+      console.log("JSON parse failed");
+    }
+
+    console.log("SESSION RESPONSE:", data);
+
+    // CASHIER TOKEN CHECK
+
+    if (!data.cashier_token) {
+      return res.status(500).json({
+        message: "Token failed",
+
+        status: response.status,
+
+        raw: text,
+
+        parsed: data,
+      });
+    }
+
+    // SUCCESS
+
+    return res.json({
+      cashier_token: data.cashier_token,
+
+      cashier_key:
+        process.env.BRIDGERPAY_CASHIER_KEY,
+    });
+
+  } catch (error) {
+    console.log("FULL PAYMENT ERROR:", error);
+
+    return res.status(500).json({
+      message: error.message || "Payment Error",
+    });
+  }
+};
+
+
+
 
 
 
