@@ -93,7 +93,7 @@ export const fetchFlights = async (req, res) => {
     })
 
   } catch (error) {
-    console.log("ERROR:", error)
+    // console.log("ERROR:", error)
     res.status(500).send({
       success: false,
       message: "Error fetching flights"
@@ -128,5 +128,44 @@ export const getFlightById = async (req,res) =>{
       success: false,
       message: "Error fetching flight by ID"
     })
+  }
+}
+
+export let searchLocation = async (req, res) => {
+  try {
+    let { query } = req.query;
+
+    let response = await fetch(
+      `https://api.duffel.com/places/suggestions?query=${query}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${process.env.FLIGHT_SEARCH_TOKEN}`,
+          "Content-Type": "application/json",
+          "Duffel-Version": "v2"
+        }
+      }
+    );
+
+    let result = await response.json();
+
+    if (!response.ok) {
+      return res.status(400).send({
+        message: "Duffel API error",
+        status: false,
+        error: result
+      });
+    }
+
+    return res.send({
+      message: "Airport suggestions fetched successfully",
+      status: true,
+      data: result
+    });
+
+
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: "Location search error" })
   }
 }

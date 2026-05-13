@@ -6,7 +6,7 @@ const FlightSearchPage = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const [visible, setVisisble] = useState(20)
-    const searchData = location.state
+    const searchData = location.state || JSON.parse(localStorage.getItem("flightSearchData"))
 
     const [flight, setFlight] = useState([])
     const [loading, setLoading] = useState(false)
@@ -309,7 +309,7 @@ const FlightSearchPage = () => {
 
                 const data = await res.json()
 
-                console.log("API DATA:", data)
+                // console.log("API DATA:", data)
 
                 const formatted = formatFlights(data.offers || [])
                 setFlight(formatted)

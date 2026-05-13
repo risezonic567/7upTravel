@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import HowItWorks from './HowItWorks';
 import { MdClose } from "react-icons/md";
@@ -13,7 +13,17 @@ import OurServices from '../components/OurServices';
 export default function FlightPage() {
   const [roundedEnable, setRoundedEnable] = useState(false)
   const [returnDate, setReturnDate] = useState("")
-  
+
+  const [originQuery, setOriginQuery] = useState("")
+  const [destinationQuery, setDestinationQuery] = useState("")
+
+  const [originAirports, setOriginAirports] = useState([])
+  const [destinationAirports, setDestinationAirports] = useState([])
+
+  const [showOriginDropdown, setShowOriginDropdown] = useState(false)
+  const [showDestinationDropdown, setShowDestinationDropdown] = useState(false)
+
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
@@ -34,10 +44,10 @@ export default function FlightPage() {
   const [cabin, setCabin] = useState("Economy")
 
   const cabinMap = {
-  "Economy": "economy",
-  "Business": "business",
-  "First Class": "first"
-};
+    "Economy": "economy",
+    "Business": "business",
+    "First Class": "first"
+  };
 
   const handleChange = (type, value) => {
     setPassengers((prev) => ({
@@ -50,21 +60,21 @@ export default function FlightPage() {
     }${passengers.infants ? `, ${passengers.infants} Infant` : ""}`;
 
   async function handleSearch(e) {
+
     e.preventDefault()
 
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.target)
 
     const origin = formData.get("origin");
     const destination = formData.get("destination");
-    const date = formData.get("departuredDate");
+    const date = formData.get("departuredDate")
 
     if (!origin || !destination || !date) {
       alert("Please fill all Required field")
       return
     }
 
-    navigate(
-      "/flight-list", {
+    navigate("/flight-list", {
       state: {
         origin,
         destination,
@@ -75,15 +85,65 @@ export default function FlightPage() {
         infants: passengers.infants,
         cabin: cabinMap[cabin]
       }
+    })
+
+  }
+
+  const searchAirports = async (value, type) => {
+
+    if (type === "origin") {
+      setOriginQuery(value)
+    } else {
+      setDestinationQuery(value)
     }
-    )
+
+    if (value.length < 2) {
+      if (type === "origin") {
+        setOriginAirports([])
+        setShowOriginDropdown(false)
+      } else {
+        setDestinationAirports([])
+        setShowDestinationDropdown(false)
+      }
+      return
+    }
+
+    try {
+
+      setLoading(true)
+
+      const response = await fetch(
+        `http://localhost:3200/api/flight/airports?query=${value}`
+      )
+
+      const result = await response.json()
+
+      const airportList = result?.data?.data || []
+
+      if (type === "origin") {
+        setOriginAirports(airportList)
+        setShowOriginDropdown(true)
+      } else {
+        setDestinationAirports(airportList)
+        setShowDestinationDropdown(true)
+      }
+
+    } catch (error) {
+
+      console.log(error)
+
+    } finally {
+
+      setLoading(false)
+
+    }
   }
 
   return (
-   <div className="font-sans">
+    <div className="font-sans">
       <section className="h-full">
         <div className="w-full rounded-[40px] md:rounded-[60px] pt-24 pb-44 relative overflow-visible shadow-2xl">
-          
+
           <div className="absolute inset-0 z-0">
             <video
               autoPlay
@@ -91,13 +151,13 @@ export default function FlightPage() {
               playsInline
               muted
               src="/video/Flight Page.mp4"
-              className="w-full h-full object-cover" 
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30"></div>
           </div>
 
           <div className="relative z-10 text-center mt-24 ">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-4xl md:text-6xl font-black text-white tracking-tight drop-shadow-lg"
@@ -109,7 +169,7 @@ export default function FlightPage() {
 
           <div className="relative z-20 max-w-6xl mx-auto mt-20 px-4">
             <div className="relative bg-white/40 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.2)] rounded-2xl p-6 md:p-10 border border-white/20">
-              
+
               {/* <div className="absolute -left-3 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2">
                 {[...Array(8)].map((_, i) => (
                   <div key={i} className="w-6 h-6 bg-[#f3f4f6] rounded-full -ml-4 shadow-inner"></div>
@@ -128,35 +188,158 @@ export default function FlightPage() {
                   className="space-y-6"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="group">
-                      <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">Origin</label>
-                      <div className="flex items-center border-2 border-gray-100 group-focus-within:border-[#3aa0c9] rounded-xl px-4 py-3 transition-all ">
+                    <div className="group relative">
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">
+                        Origin
+                      </label>
+
+                      <div className="flex items-center border-2 border-gray-100 group-focus-within:border-[#3aa0c9] rounded-xl px-4 py-3 transition-all">
                         <PlaneTakeoff size={18} className="text-black mr-3" />
+
                         <input
-                          type='text'
-                          placeholder="Where from?"
-                          name='origin'
-                          className="w-full bg-transparent outline-none text-gray-700 font-medium placeholder:text-black"
+                          type="text"
+                          placeholder="Origin"
+                          name="origin"
+                          value={originQuery}
+                          onChange={(e) => searchAirports(e.target.value, "origin")}
+                          className="w-full bg-transparent outline-none"
                         />
                       </div>
+
+                      {showOriginDropdown && (
+                        <div className="absolute top-full mt-2 left-0 w-full bg-white shadow-2xl rounded-2xl max-h-[350px] overflow-y-auto z-[9999]">
+
+                          {loading ? (
+                            <div className="p-4 text-center">
+                              Searching...
+                            </div>
+                          ) : originAirports.length > 0 ? (
+
+                            originAirports.map((item, index) => (
+
+                              <div
+                                key={index}
+                                onClick={() => {
+                                  setOriginQuery(item.iata_code.trim().toUpperCase())
+                                  setShowOriginDropdown(false)
+                                }}
+                                className="p-4 border-b hover:bg-gray-100 cursor-pointer"
+                              >
+
+                                <div className="flex items-center gap-3">
+
+                                  <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center font-bold">
+                                    {item.iata_code}
+                                  </div>
+
+                                  <div>
+                                    <p className="font-semibold">
+                                      {item.city_name}
+                                    </p>
+
+                                    <p className="text-xs text-gray-500">
+                                      {item.name}
+                                    </p>
+                                  </div>
+
+                                </div>
+
+                              </div>
+
+                            ))
+
+                          ) : (
+
+                            <div className="p-4 text-center text-gray-500">
+                              No Airports Found
+                            </div>
+
+                          )}
+
+                        </div>
+                      )}
                     </div>
 
-                    <div className="group">
-                      <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">Destination</label>
-                      <div className="flex items-center border-2 border-gray-100 group-focus-within:border-[#3aa0c9] rounded-xl px-4 py-3 transition-all ">
+                    <div className="group relative">
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">
+                        Destination
+                      </label>
+
+                      <div className="flex items-center border-2 border-gray-100 group-focus-within:border-[#3aa0c9] rounded-xl px-4 py-3 transition-all">
                         <PlaneLanding size={18} className="text-black mr-3" />
+
                         <input
-                          type='text'
-                          placeholder="Where to?"
-                          name='destination'
-                          className="w-full bg-transparent outline-none text-gray-700 font-medium placeholder:text-black"
+                          type="text"
+                          placeholder="Destination"
+                          name="destination"
+                          value={destinationQuery}
+                          onChange={(e) => searchAirports(e.target.value, "destination")}
+                          className="w-full bg-transparent outline-none"
                         />
                       </div>
+
+                      {showDestinationDropdown && (
+                        <div className="absolute top-full mt-2 left-0 w-full bg-white shadow-2xl rounded-2xl max-h-[350px] overflow-y-auto z-[9999]">
+
+                          {loading ? (
+                            <div className="p-4 text-center">
+                              Searching...
+                            </div>
+                          ) : destinationAirports.length > 0 ? (
+
+                            destinationAirports.map((item, index) => (
+
+                              <div
+                                key={index}
+                                onClick={() => {
+
+                                  setDestinationQuery(
+                                    `${item.iata_code}`
+                                  )
+
+                                  setShowDestinationDropdown(false)
+
+                                }}
+                                className="p-4 border-b hover:bg-gray-100 cursor-pointer"
+                              >
+
+                                <div className="flex items-center gap-3">
+
+                                  <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center font-bold">
+                                    {item.iata_code}
+                                  </div>
+
+                                  <div>
+                                    <p className="font-semibold">
+                                      {item.city_name}
+                                    </p>
+
+                                    <p className="text-xs text-gray-500">
+                                      {item.name}
+                                    </p>
+                                  </div>
+
+                                </div>
+
+                              </div>
+
+                            ))
+
+                          ) : (
+
+                            <div className="p-4 text-center text-gray-500">
+                              No Airports Found
+                            </div>
+
+                          )}
+
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
-                    
+
                     <div className="md:col-span-6 grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">Departure</label>
@@ -176,7 +359,7 @@ export default function FlightPage() {
                             className="w-full bg-transparent outline-none text-sm disabled:text-black cursor-pointer"
                           />
                           {roundedEnable ? (
-                            <X size={16} className="text-red-400 cursor-pointer" onClick={() => {setRoundedEnable(false); setReturnDate("");}} />
+                            <X size={16} className="text-red-400 cursor-pointer" onClick={() => { setRoundedEnable(false); setReturnDate(""); }} />
                           ) : (
                             <Calendar size={18} className="text-[#101c20] cursor-pointer" onClick={() => setRoundedEnable(true)} />
                           )}
@@ -200,7 +383,7 @@ export default function FlightPage() {
                       </div>
 
                       {open && (
-                        <motion.div 
+                        <motion.div
                           initial={{ opacity: 0, scale: 0.95 }}
                           animate={{ opacity: 1, scale: 1 }}
                           className="absolute z-[999] mt-3 w-72 left-0 md:right-0 md:left-auto bg-white border rounded-2xl shadow-2xl p-5 space-y-5"
@@ -265,10 +448,10 @@ export default function FlightPage() {
       <HowItWorks />
       <FlightDestination />
       <OurServices />
-     
+
       <ExploreNearby />
       <Testimonials />
-       <FAQPage />
+      <FAQPage />
     </div>
   );
 };

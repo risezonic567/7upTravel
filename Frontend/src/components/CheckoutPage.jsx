@@ -99,16 +99,12 @@ const handlePayment = async () => {
 
     const bookingData = await bookingRes.json();
 
-    console.log("BOOKING DATA:", bookingData);
+    // console.log("BOOKING DATA:", bookingData);
 
     if (!bookingData?.booking?._id) {
       alert("Booking Failed");
       return;
     }
-
-    // =========================
-    // STEP 2: CREATE PAYMENT SESSION
-    // =========================
 
     const paymentRes = await fetch(
       "https://www.7upflight-ticket.com/api/payment/initiate",
@@ -127,10 +123,10 @@ const handlePayment = async () => {
 
     const paymentData = await paymentRes.json();
 
-    console.log("PAYMENT DATA:", paymentData);
+    // console.log("PAYMENT DATA:", paymentData);
 
     if (!paymentData?.cashier_token) {
-      console.log(paymentData);
+      // console.log(paymentData);
 
       alert(
         paymentData.message || "Cashier Token Missing"
@@ -138,10 +134,6 @@ const handlePayment = async () => {
 
       return;
     }
-
-    // =========================
-    // STEP 3: REMOVE OLD WIDGET
-    // =========================
 
     const oldScript = document.getElementById(
       "bridgerpay-widget"
@@ -151,7 +143,7 @@ const handlePayment = async () => {
       oldScript.remove();
     }
 
-    // REMOVE OLD CONTAINER HTML
+   
 
     const oldContainer = document.getElementById(
       "bridgerpay-container"
@@ -161,9 +153,6 @@ const handlePayment = async () => {
       oldContainer.innerHTML = "";
     }
 
-    // =========================
-    // STEP 4: CREATE SCRIPT
-    // =========================
 
     const script = document.createElement("script");
 
@@ -186,9 +175,6 @@ const handlePayment = async () => {
       paymentData.cashier_token
     );
 
-    // =========================
-    // STEP 5: APPEND TO CONTAINER
-    // =========================
     setShowPayment(true)
 
     setTimeout(() => {
@@ -229,10 +215,8 @@ const handlePayment = async () => {
         <h1 className="text-3xl font-bold mb-8">Review & Pay</h1>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Left Column: Forms */}
           <div className="lg:col-span-2 space-y-6">
             
-            {/* Flight Summary Card */}
             <div className="bg-white rounded-xl shadow border overflow-hidden">
               <div className="bg-blue-600 px-6 py-3 flex items-center gap-2 text-white">
                 <Plane size={20} /> Flight Information
@@ -254,7 +238,6 @@ const handlePayment = async () => {
               </div>
             </div>
 
-            {/* Traveller Details */}
             <div className="bg-white rounded-xl shadow border p-6">
               <div className="flex items-center gap-2 mb-4 font-bold border-b pb-3">
                 <User size={20} className="text-blue-600" />
@@ -313,7 +296,6 @@ const handlePayment = async () => {
                 </div>
               ))}
 
-              {/* Contact Info */}
               <div className="mt-4 pt-4 border-t">
                 <h3 className="font-bold mb-3">Contact Details</h3>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -335,7 +317,6 @@ const handlePayment = async () => {
               </div>
             </div>
 
-            {/* Payment Button Card */}
             <div className="bg-white rounded-xl shadow border p-6">
               <div className="flex items-center gap-2 mb-6 font-bold border-b pb-3">
                 <CreditCard size={20} className="text-blue-600" /> Secure Payment
@@ -353,7 +334,6 @@ const handlePayment = async () => {
             </div>
           </div>
 
-          {/* Right Column: Price Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl shadow border p-6 sticky top-24">
               <h2 className="text-lg font-bold mb-4 border-b pb-3">Price Summary</h2>
