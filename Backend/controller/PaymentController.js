@@ -329,27 +329,21 @@ export const initiatePayment = async (req, res) => {
 
     // CASHIER TOKEN CHECK
 
-    if (!data.cashier_token) {
-      return res.status(500).json({
-        message: "Token failed",
+   const cashierToken = data?.result?.cashier_token;
 
-        status: response.status,
+if (!cashierToken) {
+  return res.status(500).json({
+    message: "Token failed",
+    status: response.status,
+    raw: text,
+    parsed: data,
+  });
+}
 
-        raw: text,
-
-        parsed: data,
-      });
-    }
-
-    // SUCCESS
-
-    return res.json({
-      cashier_token: data.cashier_token,
-
-      cashier_key:
-        process.env.BRIDGERPAY_CASHIER_KEY,
-    });
-
+return res.json({
+  cashier_token: cashierToken,
+  cashier_key: process.env.BRIDGERPAY_CASHIER_KEY,
+});
   } catch (error) {
     console.log("FULL PAYMENT ERROR:", error);
 
