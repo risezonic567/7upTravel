@@ -294,13 +294,19 @@ export const initiatePayment = async (req, res) => {
 
           phone: booking.contact?.phone,
 
-          country: "US",
+          country: "AU",
 
-          city: "New York",
+          state: "NSW",
+
+          city: "Sydney",
 
           address: "Street 1",
 
           zip_code: "10001",
+
+          payment_method: "credit_card",
+
+          mid_type: "moto"
         }),
       }
     );
