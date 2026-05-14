@@ -27,12 +27,61 @@ export const flightBooking = async (req, res) => {
       });
     }
 
-    for (let p of passengers) {
-      if (!p.name || !p.age || !p.gender) {
+    for (let i = 0; i < passengers.length; i++) {
+      const passenger = passengers[i]
+
+
+      if (!passenger.name?.trim()) {
         return res.status(400).json({
-          result: "Fail",
-          message: "Invalid passenger data",
+          field: `passengers.${i}.name`,
+          message: `Passenger ${i + 1} name is required`,
         });
+
+        if (passenger.name.trim().length < 2) {
+          return res.status(400).json({
+            field: `passengers.${i}.name`,
+            message: `Passenger ${i + 1} name is too short`,
+          });
+        }
+
+        const nameRegex = /^[A-Za-z\s]+$/;
+
+        if (!nameRegex.test(passenger.name)) {
+          return res.status(400).json({
+            field: `passengers.${i}.name`,
+            message: `Passenger ${i + 1} name is invalid`,
+          });
+        }
+
+        if (!passenger.age) {
+          return res.status(400).json({
+            field: `passengers.${i}.age`,
+            message: `Passenger ${i + 1} age is required`,
+          });
+        }
+
+        if (isNaN(passenger.age)) {
+          return res.status(400).json({
+            field: `passengers.${i}.age`,
+            message: `Passenger ${i + 1} age must be number`,
+          });
+        }
+
+        if (passenger.age < 0 || passenger.age > 120) {
+          return res.status(400).json({
+            field: `passengers.${i}.age`,
+            message: `Passenger ${i + 1} age is invalid`,
+          });
+        }
+
+        const validGender = ["Male", "Female", "Other"];
+
+        if (!validGender.includes(passenger.gender)) {
+          return res.status(400).json({
+            field: `passengers.${i}.gender`,
+            message: `Passenger ${i + 1} gender is invalid`,
+          });
+        }
       }
     }
 
@@ -43,10 +92,10 @@ export const flightBooking = async (req, res) => {
       });
     }
 
-    if(!contact?.phone){
-      return res.send(400).json({
-        result:"Fail",
-        message:"Phone Number Is Mendatory"
+    if (!contact?.phone) {
+      return res.status(400).json({
+        result: "Fail",
+        message: "Phone Number Is Mendatory"
       })
     }
 

@@ -19,6 +19,76 @@ export default function CheckoutPage() {
     phone: ""
   });
 
+  const validateForm = () => {
+
+  // Passenger Validation
+  for (let i = 0; i < passengers.length; i++) {
+
+    const p = passengers[i];
+
+    if (!p.firstName.trim()) {
+      setError(`Passenger ${i + 1}: First Name is required`);
+      return false;
+    }
+
+    if (!p.lastName.trim()) {
+      setError(`Passenger ${i + 1}: Last Name is required`);
+      return false;
+    }
+
+    if (!p.gender) {
+      setError(`Passenger ${i + 1}: Gender is required`);
+      return false;
+    }
+
+    if (!p.dob) {
+      setError(`Passenger ${i + 1}: Age is required`);
+      return false;
+    }
+
+    if (isNaN(p.dob)) {
+      setError(`Passenger ${i + 1}: Age must be number`);
+      return false;
+    }
+
+    // if (!p.passport.trim()) {
+    //   setError(`Passenger ${i + 1}: Passport Number is required`);
+    //   return false;
+    // }
+
+    // if (!p.nationality.trim()) {
+    //   setError(`Passenger ${i + 1}: Nationality is required`);
+    //   return false;
+    // }
+  }
+
+  // Contact Validation
+  if (!contactus.email.trim()) {
+    setError("Email is required");
+    return false;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(contactus.email)) {
+    setError("Invalid Email");
+    return false;
+  }
+
+  if (!contactus.phone.trim()) {
+    setError("Phone Number is required");
+    return false;
+  }
+
+  if (contactus.phone.length < 10) {
+    setError("Invalid Phone Number");
+    return false;
+  }
+
+  setError("");
+  return true;
+};
+
   const [passengers, setPassengers] = useState(() => {
     const list = [];
     const counts = {
@@ -26,6 +96,7 @@ export default function CheckoutPage() {
       child: searchPassengers.children || 0,
       infant: searchPassengers.infants || 0
     };
+    
 
     Object.keys(counts).forEach(type => {
       for (let i = 0; i < counts[type]; i++) {
@@ -51,6 +122,7 @@ export default function CheckoutPage() {
   };
 
 const handlePayment = async () => {
+   if (!validateForm()) return;
   try {
     setLoading(true);
 
@@ -185,7 +257,7 @@ const handlePayment = async () => {
   if (container) {
     container.appendChild(script);
 
-    console.log("BRIDGERPAY WIDGET LOADED");
+    // console.log("BRIDGERPAY WIDGET LOADED");
   } else {
     console.log("Container Not Found");
   }
@@ -314,6 +386,11 @@ const handlePayment = async () => {
                   />
                 </div>
               </div>
+               {error && (
+              <div className="mt-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl text-center font-medium animate-bounce">
+                {error}
+              </div>
+            )}
             </div>
 
             <div className="bg-white rounded-xl shadow border p-6">
@@ -376,6 +453,7 @@ const handlePayment = async () => {
     </div>
   </div>
 )}
+
       </div>
     </div>
   );
