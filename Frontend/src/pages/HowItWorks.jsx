@@ -1,95 +1,104 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { ShieldCheck, Zap, Globe, Headset } from 'lucide-react';
 
-const HowItWorks = () => {
-  const steps = [
+const Features = () => {
+  const features = [
     {
-      id: 1,
-      title: "Search Choice",
-      description: "Total 630+ destinations that we work with",
-      icon: "/step-3.png", 
-      color: "bg-purple-100"
+      title: "Best Price Guarantee",
+      desc: "We ensure the best rates available in the market.",
+      icon: <Zap className="w-8 h-8 text-amber-500" />,
+      color: "from-amber-500/10 to-orange-500/10"
     },
     {
-      id: 2,
-      title: "Select Destination",
-      description: "Select your dream location and make it a reality.",
-      icon: "/step-2.png",
-      color: "bg-indigo-100"
+      title: "Secure Payments",
+      desc: "Your transactions are 100% safe and encrypted.",
+      icon: <ShieldCheck className="w-8 h-8 text-blue-500" />,
+      color: "from-blue-500/10 to-cyan-500/10"
     },
     {
-      id: 3,
-      title: "Easy to Book",
-      description: "With an easy and fast ticket purchase process",
-      icon: "/step-1.png",
-      color: "bg-yellow-100"
+      title: "Global Reach",
+      desc: "Get access to 630+ worldwide destinations.",
+      icon: <Globe className="w-8 h-8 text-emerald-500" />,
+      color: "from-emerald-500/10 to-teal-500/10"
+    },
+    {
+      title: "24/7 Support",
+      desc: "Our team is always ready to assist you anytime.",
+      icon: <Headset className="w-8 h-8 text-rose-500" />,
+      color: "from-rose-500/10 to-pink-500/10"
     }
   ];
 
   return (
-    <div className=" bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto ">
-        <div className="flex flex-col md:flex-row items-start justify-between relative">
-          
-          <div className="flex flex-col items-center text-center z-10 w-full md:w-1/3">
-            <div className="w-40 h-40 rounded-full  flex items-center justify-center mb-6 relative">
-              <img src={steps[0].icon} alt="Search" className="w-24 h-24 object-contain" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{steps[0].title}</h3>
-            <p className="text-gray-500 text-sm max-w-[200px] font-semibold leading-relaxed">
-              {steps[0].description}
-            </p>
-          </div>
+    <section className="py-24 bg-[#FCFCFD]/40">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Section Heading */}
+        <div className="text-center mb-20 relative">
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-extrabold text-gray-950 mb-4 tracking-tighter"
+          >
+            Why Book With <span className="text-blue-600">7UP TRAVEL?</span>
+          </motion.h2>
 
-          <div className="hidden md:block absolute top-20 left-[22%] w-[20%]">
-            <svg viewBox="0 0 100 50" fill="none" className="w-full">
-              <path 
-                d="M0 30 Q50 0 100 30" 
-                stroke="#cbd5e1" 
-                strokeWidth="2" 
-                strokeDasharray="6 6" 
-                fill="none"
-              />
-              <path d="M95 25 L102 31 L95 37" stroke="#cbd5e1" strokeWidth="2" fill="none" />
-            </svg>
-          </div>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, delay: 0.1 }}
+            className="text-gray-600 font-medium max-w-xl mx-auto leading-relaxed"
+          >
+            Your ultimate gateway to world-class travel experiences, exceptional value, and dedicated support.
+          </motion.p>
+        </div>
 
-          <div className="flex flex-col items-center text-center z-10 w-full md:w-1/3 mt-16 md:mt-24">
-            <div className="w-40 h-40 rounded-full  flex items-center justify-center mb-6">
-              <img src={steps[1].icon} alt="Destination" className="w-24 h-24 object-contain" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{steps[1].title}</h3>
-            <p className="text-gray-500 font-semibold text-sm max-w-[200px] leading-relaxed">
-              {steps[1].description}
-            </p>
-          </div>
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ 
+                delay: index * 0.1, 
+                duration: 0.5, 
+                ease: "easeOut" 
+              }}
+              whileHover={{ 
+                y: -12, 
+                scale: 1.02, 
+                transition: { duration: 0.2, ease: "easeInOut" }
+              }}
+              className="p-10 rounded-[2rem] bg-white border border-gray-100 flex flex-col items-center text-center group transition-shadow duration-300 shadow-lg shadow-gray-200/40 hover:shadow-2xl hover:shadow-gray-300/60"
+            >
+              <div className={`relative w-20 h-15 rounded-3xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-8`}>
+                <motion.div 
+                  className="absolute inset-0 flex items-center justify-center"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  {feature.icon}
+                </motion.div>
 
-          <div className="hidden md:block absolute top-20 right-[22%] w-[20%]">
-            <svg viewBox="0 0 100 50" fill="none" className="w-full">
-              <path 
-                d="M0 30 Q50 0 100 30" 
-                stroke="#cbd5e1" 
-                strokeWidth="2" 
-                strokeDasharray="6 6" 
-                fill="none"
-              />
-              <path d="M95 25 L102 31 L95 37" stroke="#cbd5e1" strokeWidth="2" fill="none" />
-            </svg>
-          </div>
+                <div className="absolute inset-0 rounded-3xl group-hover:bg-current group-hover:opacity-10 group-hover:blur-sm transition-opacity opacity-0"></div>
+              </div>
 
-          <div className="flex flex-col items-center text-center z-10 w-full md:w-1/3 mt-16 md:mt-0">
-            <div className="w-40 h-40 rounded-full  flex items-center justify-center mb-6">
-              <img src={steps[2].icon} alt="Book" className="w-24 h-24 object-contain" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">{steps[2].title}</h3>
-            <p className="text-gray-500 text-sm font-semibold max-w-[200px] leading-relaxed">
-              {steps[2].description}
-            </p>
-          </div>
+              <h3 className="text-2xl font-extrabold text-gray-950 mb-4 leading-tight group-hover:text-blue-700 transition-colors">
+                {feature.title}
+              </h3>
 
+              <p className="text-gray-600 text-base leading-relaxed font-semibold">
+                {feature.desc}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default HowItWorks;
+export default Features;

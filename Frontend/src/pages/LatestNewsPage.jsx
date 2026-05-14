@@ -6,25 +6,25 @@ export default function LatestNews() {
     {
       id: 1,
       title: "10 Ways on How to Improve your Hotel Stay",
-      image: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&q=80",
+      image: "/images/hotelcruise/10 Ways on How to Improve your Hotel Stay.jpg.jpeg",
       size: "medium", 
     },
     {
       id: 2,
       title: "Dive into our newest water-park adventure",
-      image: "https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&q=80",
+      image: "/images/hotelcruise/Dive into our newest water-park adventure.jpg.jpeg",
       size: "small",
     },
     {
       id: 3,
       title: "How Hotel Technology Can Help Small Businesses",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80",
+      image: "/images/hotelcruise/How Hotel Technology Can Help Small Businesses.jpg.jpeg",
       size: "small",
     },
    {
   id: 4,
   title: "Hotel Service - Become a Guide for Your Guests",
-  image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80",
+  image: "/images/hotelcruise/Hotel Service - Become a Guide for Your Guests.jpg.jpeg",
   size: "small",
 }
   ];
@@ -68,7 +68,7 @@ export default function LatestNews() {
             transition={{ duration: 0.4 }}
             src={newsItems[0].image} 
             alt={newsItems[0].title}
-            className="w-full h-[500px] object-cover"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-8 flex flex-col justify-end">
             <h3 className="text-3xl font-bold text-white leading-tight group-hover:text-blue-300 transition-colors">

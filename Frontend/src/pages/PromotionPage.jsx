@@ -11,31 +11,26 @@ const promos = [
   {
     title: "Book & Enjoy",
     desc: "20% off on the best available room rate.",
-    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
+    img: "/images/hotelcruise/book & enjoy image.jpg.jpeg",
     path:"/travel-deals"
   },
  {
   title: "Hot Summer Nights",
   desc: "Up to 2 nights free!",
-  img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80",
+  img: "/images/hotelcruise/Hot summer night.jpg.jpeg",
   path:"/travel-deals"
 },
-  {
-    title: "Daily 10 Lucky Winners",
-    desc: "Valid till: 15 Nov",
-    img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd",
-    path:"/travel-deals"
-  },
+ 
   {
     title: "Weekend Deals",
     desc: "Flat 30% off on weekends",
-    img: "https://images.unsplash.com/photo-1496417263034-38ec4f0b665a",
+    img: "/images/hotelcruise/weakend deals.jpg.jpeg",
     path:"/travel-deals"
   },
   {
     title: "Mega Offer",
     desc: "50% discount today only",
-    img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+    img: "/images/hotelcruise/Mega offers.jpg.jpeg",
     path:"/travel-deals"
   }
 ];
@@ -68,7 +63,7 @@ const promos = [
                 <img
                   src={promo.img}
                   alt={promo.title}
-                  className="w-full h-24 object-cover rounded-2xl"
+                  className="w-[120px] h-[100px] object-cover rounded-2xl"
                 />
               </div>
 

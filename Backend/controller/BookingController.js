@@ -36,12 +36,21 @@ export const flightBooking = async (req, res) => {
       }
     }
 
-    if (!contact?.email || !contact?.phone) {
+    if (!contact?.email) {
       return res.status(400).json({
         result: "Fail",
-        message: "Contact details required",
+        message: "Email is Required",
       });
     }
+
+    if(!contact?.phone){
+      return res.send(400).json({
+        result:"Fail",
+        message:"Phone Number Is Mendatory"
+      })
+    }
+
+
 
     if (
       !flightData.airline ||

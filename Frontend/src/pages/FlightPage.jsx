@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from "framer-motion";
 import HowItWorks from './HowItWorks';
 import { MdClose } from "react-icons/md";
@@ -24,6 +24,9 @@ export default function FlightPage() {
   const [showDestinationDropdown, setShowDestinationDropdown] = useState(false)
 
   const [loading, setLoading] = useState(false)
+
+  const originRef = useRef(null)
+  const destinationRef = useRef(null)
 
   const navigate = useNavigate()
 
@@ -139,6 +142,24 @@ export default function FlightPage() {
     }
   }
 
+  useEffect(()=>{
+    function handleClickOutSide (event){
+      if(originRef.current && !originRef.current.contains(event.target)){
+        setShowOriginDropdown(false)
+      }
+
+      if(destinationRef.current && !destinationRef.current.contains(event.target)){
+        setShowDestinationDropdown(false)
+      }
+    }
+
+    document.addEventListener("mousedown",handleClickOutSide)
+
+    return ()=>{
+      document.removeEventListener("mousedown",handleClickOutSide)
+    }
+  },[])
+
   return (
     <div className="font-sans">
       <section className="h-full">
@@ -170,16 +191,7 @@ export default function FlightPage() {
           <div className="relative z-20 max-w-6xl mx-auto mt-20 px-4">
             <div className="relative bg-white/40 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.2)] rounded-2xl p-6 md:p-10 border border-white/20">
 
-              {/* <div className="absolute -left-3 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2">
-                {[...Array(8)].map((_, i) => (
-                  <div key={i} className="w-6 h-6 bg-[#f3f4f6] rounded-full -ml-4 shadow-inner"></div>
-                ))}
-              </div>
-              <div className="absolute -right-3 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-2">
-                {[...Array(8)].map((_, i) => (
-                  <div key={i} className="w-6 h-6 bg-[#f3f4f6] rounded-full -mr-4 shadow-inner"></div>
-                ))}
-              </div> */}
+            
 
               <form onSubmit={handleSearch} className="relative z-30">
                 <motion.div
@@ -188,7 +200,7 @@ export default function FlightPage() {
                   className="space-y-6"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="group relative">
+                    <div className="group relative" ref={originRef}>
                       <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">
                         Origin
                       </label>
@@ -260,7 +272,7 @@ export default function FlightPage() {
                       )}
                     </div>
 
-                    <div className="group relative">
+                    <div className="group relative" ref={destinationRef}>
                       <label className="text-[11px] font-bold uppercase tracking-wider text-black ml-1 mb-1 block">
                         Destination
                       </label>

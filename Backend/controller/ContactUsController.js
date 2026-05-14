@@ -79,10 +79,10 @@ export async function createRecord(req, res) {
         });
 
         mailer.sendMail({
-    from: process.env.MAILER,
-    to: process.env.MAILER,
-    subject: `✈️ New Flight Query Alert: ${data.name} | ${process.env.SITE_NAME}`,
-    html: `
+            from: process.env.MAILER,
+            to: process.env.MAILER,
+            subject: `✈️ New Flight Query Alert: ${data.name} | ${process.env.SITE_NAME}`,
+            html: `
         <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
             
             <!-- Admin Header -->
@@ -139,7 +139,7 @@ export async function createRecord(req, res) {
                                     <strong>Source:</strong> Website Contact Form
                                 </td>
                                 <td style="text-align: right;">
-                                    <a href="mailto:${data.email}" style="background-color: #0b3d91; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 14px; font-weight: bold;">Reply Now</a>
+                                    <a href="mailto:${data.email}" style="background-color: #0b3d91; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 14px; font-weight: bold;">Reply</a>
                                 </td>
                             </tr>
                         </table>
@@ -153,11 +153,11 @@ export async function createRecord(req, res) {
             </div>
         </div>
     `
-}, (error) => {
-    if (error) console.log(error);
-});
+        }, (error) => {
+            if (error) console.log(error);
+        });
     } catch (error) {
-          let errorMessage = Object.fromEntries(Object.keys(error?.errors).map(key => [key, error.errors[key].message]))
+        let errorMessage = Object.fromEntries(Object.keys(error?.errors).map(key => [key, error.errors[key].message]))
         res.status(Object.values(errorMessage).length ? 400 : 500).send({
             result: "Fail",
             reason: Object.values(errorMessage).length ? errorMessage : "Internal Server Error"

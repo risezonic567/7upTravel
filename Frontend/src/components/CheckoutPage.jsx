@@ -8,6 +8,8 @@ export default function CheckoutPage() {
   const storedFlight = localStorage.getItem("selectedFlight");
   const [showPayment, setShowPayment] =useState(false);
 
+  const [error,setError] = useState("")
+
   const [flight, setFlight] = useState(
     location.state?.flight || (storedFlight ? JSON.parse(storedFlight) : null)
   );
@@ -17,7 +19,6 @@ export default function CheckoutPage() {
     phone: ""
   });
 
-  // Passengers State Initialization
   const [passengers, setPassengers] = useState(() => {
     const list = [];
     const counts = {
@@ -45,11 +46,10 @@ export default function CheckoutPage() {
 
   const handleChange = (index, field, value) => {
     const updated = [...passengers];
-    updated[index][field] = value;
-    setPassengers(updated);
+    updated[index][field] = value
+    setPassengers(updated)
   };
 
-  // Payment Integration Logic
 const handlePayment = async () => {
   try {
     setLoading(true);
@@ -143,8 +143,7 @@ const handlePayment = async () => {
       oldScript.remove();
     }
 
-   
-
+  
     const oldContainer = document.getElementById(
       "bridgerpay-container"
     );

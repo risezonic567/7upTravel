@@ -96,7 +96,9 @@ export default function Navbar() {
         <div className={`bg-white w-[80%] max-w-sm h-full p-5 transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"}`}>
 
           <div className="flex justify-between items-center mb-6">
+            <Link to="/">
             <img src="/logo/7up.png" className="h-8" />
+            </Link>
             <button onClick={() => setOpen(false)}>
               <X size={26} />
             </button>

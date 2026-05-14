@@ -67,41 +67,6 @@ export default function HotelPage(){
           </div>
         </div>
       </section>
-
-      {/* <section className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div className="flex items-center p-2 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
-          <div className="w-32 h-24 rounded-2xl overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1506929113670-b429f1f05244?auto=format&fit=crop&q=80&w=300" className="w-full h-full object-cover" alt="Maldives" />
-          </div>
-          <div className="ml-4 pr-4">
-            <h4 className="font-bold text-slate-800">Book & Enjoy</h4>
-            <p className="text-xs text-slate-500">20% off on the best available room rate.</p>
-          </div>
-        </div>
-
-        <div className="flex items-center p-2 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
-          <div className="w-32 h-24 bg-blue-50 rounded-2xl flex items-center justify-center p-2">
-             <div className="bg-blue-600 text-white p-4 rounded-full font-black text-center text-[10px] leading-tight">PREMIUM<br/>BOOKING</div>
-          </div>
-          <div className="ml-4 pr-4">
-            <h4 className="font-bold text-slate-800">Hot Summer Nights</h4>
-            <p className="text-xs text-slate-500">Up to 2 nights free!</p>
-          </div>
-        </div>
-
-        <div className="flex items-center p-2 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-md transition-all">
-          <div className="w-32 h-24 bg-green-50 rounded-2xl flex flex-col items-center justify-center p-2 overflow-hidden relative">
-             <span className="font-bold text-green-700 text-center text-xs leading-none">DAILY<br/>JACKPOT</span>
-             <div className="absolute -bottom-2 -right-2 opacity-20 text-4xl text-green-600">🎉</div>
-          </div>
-          <div className="ml-4 pr-4">
-            <h4 className="font-bold text-slate-800">Daily 10 Lucky Winners</h4>
-            <p className="text-xs text-slate-500">Valid till: 15 Nov</p>
-          </div>
-        </div>
-
-      </section> */}
     </div>
 
         <PromoSection/>

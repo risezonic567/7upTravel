@@ -3,6 +3,10 @@ import FlightSearchSection from '../FlightSearchSection'
 import HowItWorks from '../../pages/HowItWorks'
 import { useNavigate } from 'react-router-dom'
 import LatestNews from '../../pages/LatestNewsPage'
+import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
+
+
 
 export default function NewYork() {
     const navigate = useNavigate()
@@ -12,24 +16,34 @@ export default function NewYork() {
             <HowItWorks />
 
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-                <div className="mt-14 md:mt-20 bg-slate-50 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+              
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-10 relative overflow-hidden rounded-[2rem] bg-gradient-to-r from-slate-900 to-slate-800 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-10 shadow-2xl"
+                >
 
-                    <div className="max-w-xl text-center md:text-left">
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-slate-900">
-                            It's time to discover ✈️
+                    <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full"></div>
+
+                    <div className="relative z-10 max-w-2xl text-center md:text-left">
+                        <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                            Your Next Adventure Awaits 🌍
                         </h2>
-                        <p className="mt-3 md:mt-4 text-slate-500 text-base sm:text-lg leading-relaxed">
-                            From insider guidance to seamless booking, we'll be with you every step of the way.
+
+                        <p className="mt-5 text-slate-300 text-lg leading-relaxed">
+                            Book flights, discover dream destinations, and create unforgettable memories with premium travel experiences.
                         </p>
                     </div>
 
-                    <button 
-                        onClick={() => navigate("/flight")} 
-                        className="bg-black cursor-pointer text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl active:scale-95 w-full md:w-auto">
+                    <button
+                        onClick={() => navigate("/flight")}
+                        className="relative z-10 cursor-pointer bg-white text-black px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 hover:bg-slate-100 transition-all duration-300 shadow-xl flex items-center gap-3"
+                    >
                         Book a Flight
+                        <ArrowRight size={20} />
                     </button>
-                </div>
-
+                </motion.div>
                 <div>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🏙️ Explore New York City with 7upTravel</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>

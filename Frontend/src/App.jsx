@@ -35,7 +35,6 @@ import NotFound from './components/NotFound'
 import FlightLoader from './components/FlightLoader'
 import ScrollTop from './components/ScrollTop'
 import ScrollButton from './components/ScrollButton'
-// import CarModal from './components/CarModal'
 import Signup from './pages/User/Signup'
 import Login from './pages/User/Login'
 import Profile from './pages/User/Profile'
@@ -113,11 +112,9 @@ export default function App() {
         <Route path='/refund-policy' element={<RefundPolicy/>}/>
 
 
-        {/* <Route path='/modal' element={<CarModal/>}/> */}
 
         <Route path="/flight-list" element={<FlightSearchPage/>}/>
 
-        {/* <Route path="/list" element={<FlightList/>}/> */}
 
 
         <Route path='/contact-us' element={<ContactPage/>}/>

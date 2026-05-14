@@ -2,6 +2,9 @@ import React from 'react'
 import HowItWorks from './HowItWorks'
 import { Link, useNavigate } from 'react-router-dom'
 import LatestNews from './LatestNewsPage'
+import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
+
 
 export default function CruisePage() {
     const navigate = useNavigate()
@@ -12,9 +15,9 @@ export default function CruisePage() {
         <div className="relative max-w-7xl mx-auto rounded-[30px] overflow-hidden">
           
           <img
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+            src="/images/hotelcruise/Explore Luxury Cruise Trips.jpg.jpeg"
             alt="cruise"
-            className="w-full h-[350px] md:h-[450px] object-cover"
+            className="w-[1300px] border h-[350px] md:h-[450px] object-cover"
           />
 
           <div className="absolute inset-0 bg-black/40"></div>
@@ -125,23 +128,34 @@ export default function CruisePage() {
                     Book smart, travel happy — only with <Link className='text-blue-500'>7UPTRAVEL LLC.</Link>
                 </p>
 
-            <div className="mt-20 bg-slate-50 rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
-        
-        <div className="max-w-xl text-center md:text-left">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900">
-            It's time to discover ✈️
-          </h2>
-          <p className="mt-4 text-slate-500 text-lg leading-relaxed">
-            From insider guidance to seamless booking, we'll be with you every step of the way.
-          </p>
-        </div>
+           
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-10 mt-10 relative overflow-hidden rounded-[2rem] bg-gradient-to-r from-slate-900 to-slate-800 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-10 shadow-2xl"
+                >
 
-        <button onClick={()=>navigate("/flight")} className="bg-black cursor-pointer text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl active:scale-95 w-full md:w-auto">
-          Book a Flight
-        </button>
+                    <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full"></div>
 
-      </div>
+                    <div className="relative z-10 max-w-2xl text-center md:text-left">
+                        <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                            Your Next Adventure Awaits 🌍
+                        </h2>
 
+                        <p className="mt-5 text-slate-300 text-lg leading-relaxed">
+                            Book flights, discover dream destinations, and create unforgettable memories with premium travel experiences.
+                        </p>
+                    </div>
+
+                    <button
+                        onClick={() => navigate("/flight")}
+                        className="relative z-10 cursor-pointer bg-white text-black px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 hover:bg-slate-100 transition-all duration-300 shadow-xl flex items-center gap-3"
+                    >
+                        Book a Flight
+                        <ArrowRight size={20} />
+                    </button>
+                </motion.div>
         </div>
       </section>
       <LatestNews/>
