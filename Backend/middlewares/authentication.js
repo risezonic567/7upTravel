@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export function authUser(req, res, next) {
+  console.log("AUTH MIDDLEWARE HIT");
+
   try {
     const authHeader = req.headers.authorization
 
@@ -16,11 +18,16 @@ export function authUser(req, res, next) {
 
     const token = authHeader.split(" ")[1]
 
+    
+
     const decode = jwt.verify(token, process.env.JWT_SECRET_KEY)
 
     req.user = decode.data;
 
-    if (req.user.role === "user") {
+    // console.log(req.user)
+
+
+    if (req.user.role?.toLowerCase() === "user") {
       next();
     } else {
       return res.status(403).send({

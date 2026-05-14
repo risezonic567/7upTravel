@@ -17,7 +17,10 @@ export const flightBooking = async (req, res) => {
   try {
     const { offerId, passengers, contact, flightData, guestId } = req.body;
 
-    const userId = req.user?._id || guestId || null;
+    const userId = req.user?._id 
+
+    // console.log("USER ID:", userId);
+
 
 
     if (!offerId || !passengers?.length || !flightData) {
@@ -27,63 +30,70 @@ export const flightBooking = async (req, res) => {
       });
     }
 
-    for (let i = 0; i < passengers.length; i++) {
-      const passenger = passengers[i]
+   for (let i = 0; i < passengers.length; i++) {
 
+  const passenger = passengers[i];
 
-      if (!passenger.name?.trim()) {
-        return res.status(400).json({
-          field: `passengers.${i}.name`,
-          message: `Passenger ${i + 1} name is required`,
-        });
+  // NAME REQUIRED
+  if (!passenger.name?.trim()) {
+    return res.status(400).json({
+      field: `passengers.${i}.name`,
+      message: `Passenger ${i + 1} name is required`,
+    });
+  }
 
-        if (passenger.name.trim().length < 2) {
-          return res.status(400).json({
-            field: `passengers.${i}.name`,
-            message: `Passenger ${i + 1} name is too short`,
-          });
-        }
+  // NAME LENGTH
+  if (passenger.name.trim().length < 2) {
+    return res.status(400).json({
+      field: `passengers.${i}.name`,
+      message: `Passenger ${i + 1} name is too short`,
+    });
+  }
 
-        const nameRegex = /^[A-Za-z\s]+$/;
+  // NAME VALIDATION
+  const nameRegex = /^[A-Za-z\s]+$/;
 
-        if (!nameRegex.test(passenger.name)) {
-          return res.status(400).json({
-            field: `passengers.${i}.name`,
-            message: `Passenger ${i + 1} name is invalid`,
-          });
-        }
+  if (!nameRegex.test(passenger.name)) {
+    return res.status(400).json({
+      field: `passengers.${i}.name`,
+      message: `Passenger ${i + 1} name is invalid`,
+    });
+  }
 
-        if (!passenger.age) {
-          return res.status(400).json({
-            field: `passengers.${i}.age`,
-            message: `Passenger ${i + 1} age is required`,
-          });
-        }
+  // AGE REQUIRED
+  if (!passenger.age) {
+    return res.status(400).json({
+      field: `passengers.${i}.age`,
+      message: `Passenger ${i + 1} age is required`,
+    });
+  }
 
-        if (isNaN(passenger.age)) {
-          return res.status(400).json({
-            field: `passengers.${i}.age`,
-            message: `Passenger ${i + 1} age must be number`,
-          });
-        }
+  // AGE NUMBER
+  if (isNaN(passenger.age)) {
+    return res.status(400).json({
+      field: `passengers.${i}.age`,
+      message: `Passenger ${i + 1} age must be number`,
+    });
+  }
 
-        if (passenger.age < 0 || passenger.age > 120) {
-          return res.status(400).json({
-            field: `passengers.${i}.age`,
-            message: `Passenger ${i + 1} age is invalid`,
-          });
-        }
+  // AGE LIMIT
+  if (passenger.age < 0 || passenger.age > 120) {
+    return res.status(400).json({
+      field: `passengers.${i}.age`,
+      message: `Passenger ${i + 1} age is invalid`,
+    });
+  }
 
-        const validGender = ["Male", "Female", "Other"];
+  // GENDER VALIDATION
+  const validGender = ["male", "female", "other"];
 
-        if (!validGender.includes(passenger.gender)) {
-          return res.status(400).json({
-            field: `passengers.${i}.gender`,
-            message: `Passenger ${i + 1} gender is invalid`,
-          });
-        }
-      }
-    }
+  if (!validGender.includes(passenger.gender?.toLowerCase())) {
+    return res.status(400).json({
+      field: `passengers.${i}.gender`,
+      message: `Passenger ${i + 1} gender is invalid`,
+    });
+  }
+}
 
     if (!contact?.email) {
       return res.status(400).json({

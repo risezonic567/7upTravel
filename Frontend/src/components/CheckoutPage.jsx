@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Plane, User, CreditCard, ShieldCheck } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function CheckoutPage() {
   const location = useLocation();
   const searchPassengers = location.state?.passengers || { adults: 1, children: 0, infants: 0 };
   const storedFlight = localStorage.getItem("selectedFlight");
   const [showPayment, setShowPayment] =useState(false);
+
+  const navigate = useNavigate()
 
   const [error,setError] = useState("")
 
@@ -18,6 +20,18 @@ export default function CheckoutPage() {
     email: "",
     phone: ""
   });
+
+const token = localStorage.getItem("token")
+
+
+  useEffect(()=>{
+    if(!token){
+      alert("Please Login Your Account")
+
+      navigate("/login")
+    }
+
+  },[])
 
   const validateForm = () => {
 
@@ -123,6 +137,8 @@ export default function CheckoutPage() {
 
 const handlePayment = async () => {
    if (!validateForm()) return;
+
+   
   try {
     setLoading(true);
 
@@ -137,6 +153,7 @@ const handlePayment = async () => {
 
         headers: {
           "Content-Type": "application/json",
+          Authorization:`Bearer ${token}`
         },
 
         body: JSON.stringify({
@@ -185,6 +202,7 @@ const handlePayment = async () => {
 
         headers: {
           "Content-Type": "application/json",
+          Authorization:`Bearer ${token}`
         },
 
         body: JSON.stringify({

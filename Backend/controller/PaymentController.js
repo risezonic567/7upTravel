@@ -58,7 +58,12 @@ export const initiatePayment = async (req, res) => {
   try {
     const { bookingId } = req.body;
 
-    const booking = await Booking.findById(bookingId);
+    // const booking = await Booking.findById(bookingId);
+
+    const booking = await Booking.findOne({
+  _id: bookingId,
+  user: req.user._id
+});
 
     if (!booking) {
       return res.status(404).json({
@@ -209,15 +214,18 @@ export const paymentSuccess = async (req, res) => {
       });
     }
 
-    const updatedBooking = await Booking.findByIdAndUpdate(
-      bookingId,
-      {
-        paymentStatus: "SUCCESS",
-        status: "CONFIRMED",
-        transactionId: "TXN_" + Date.now()
-      },
-      { new: true }
-    );
+   const updatedBooking = await Booking.findOneAndUpdate(
+  {
+    _id: bookingId,
+    user: req.user._id
+  },
+  {
+    paymentStatus: "SUCCESS",
+    status: "CONFIRMED",
+    transactionId: "TXN_" + Date.now()
+  },
+  { new: true }
+);
 
     res.status(200).json({
       success: true,
