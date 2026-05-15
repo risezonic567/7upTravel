@@ -1,110 +1,120 @@
-import { icons } from 'lucide-react';
-import React from 'react';
+import { icons } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
 
 export default function OurServices() {
 
- let services = [
-  {
-    title: "Flight Booking – Cheap Domestic & International Flights",
-    description: "Book domestic and international flights with ease at competitive prices. Enjoy flexible options, instant confirmations, and a seamless booking experience designed for convenient and stress-free travel planning.",
-    icon: "Plane",
-    color: "text-sky-500",
-    bg: "bg-sky-500/10",
-    border: "from-sky-500 to-blue-600"
-  },
-  {
-    title: "Hotel Reservation – Affordable Hotels Worldwide",
-    description: "Find and book top-rated hotels across the globe with the best deals. From budget stays to luxury accommodations, enjoy comfort, flexibility, and a smooth reservation experience for every trip.",
-    icon: "Hotel",
-    color: "text-rose-500",
-    bg: "bg-rose-500/10",
-    border: "from-rose-500 to-pink-600"
-  },
- 
-  {
-    title: "Cruise Booking – Luxury Cruise Travel Experience",
-    description: "Discover premium cruise journeys with world-class amenities, dining, and entertainment. Enjoy unforgettable experiences across stunning destinations with complete comfort and service.",
-    icon: "Ship",
-    color: "text-cyan-500",
-    bg: "bg-cyan-500/10",
-    border: "from-cyan-500 to-blue-600"
-  },
-  {
-    title: "Tour Guide – Local Travel Guides & Experiences",
-    description: "Enhance your journey with experienced local tour guides offering cultural insights and personalized experiences. Make your trip more engaging, informative, and memorable.",
-    icon: "Map",
-    color: "text-green-500",
-    bg: "bg-green-500/10",
-    border: "from-green-500 to-emerald-600"
-  },
-  
-  {
-    title: "Car Rentals – Affordable & Flexible Car Hire",
-    description: "Rent reliable and affordable cars at your destination with flexible options. Enjoy comfortable and convenient travel while exploring cities at your own pace.",
-    icon: "Car",
-    color: "text-yellow-500",
-    bg: "bg-yellow-500/10",
-    border: "from-yellow-500 to-orange-500"
-  },
-  {
-    title: "24/7 Support – Travel Assistance Anytime",
-    description: "Our dedicated support team is available 24/7 to assist with bookings, changes, and travel queries—ensuring a smooth and worry-free experience anytime, anywhere.",
-    icon: "Headphones",
-    color: "text-red-500",
-    bg: "bg-red-500/10",
-    border: "from-red-500 to-pink-600"
-  }
-];
+  const services = [
+    {
+      title: "Cheap Domestic & International Flight Bookings",
+      description:
+        "Get all your flight booking done easily through us. You have a variety of options to choose from including easy and quick confirmation.",
+      icon: "Plane",
+      color: "text-sky-500",
+      bg: "bg-sky-100",
+    },
+    {
+      title: "Hotel Bookings – Affordable Accommodations Globally",
+      description:
+        "Search and reserve the best rated and most economical hotels around the world. Have access to great offers on hotel reservations from affordable hotels to luxury hotels and everything in between.",
+      icon: "Hotel",
+      color: "text-rose-500",
+      bg: "bg-rose-100",
+    },
+    {
+      title: "Cruise Bookings – Luxury Cruise Tours",
+      description:
+        "Book yourself into luxurious cruise tours with state-of-the-art amenities and services for the ultimate relaxation experience. Discover new places and make memories on a cruise of your life!",
+      icon: "Ship",
+      color: "text-cyan-500",
+      bg: "bg-cyan-100",
+    },
+    {
+      title: "Tour Guides – Expert Local Tour Guides",
+      description:
+        "Get local expertise on your next travel destination by booking expert local tour guides who will provide you with unique travel experiences and information.",
+      icon: "Map",
+      color: "text-green-500",
+      bg: "bg-green-100",
+    },
+    {
+      title: "Car Rentals – Dependable and Affordable Car Rentals",
+      description:
+        "Book a car for yourself while you are on a vacation to explore cities at your own pace. Enjoy a hassle-free travel experience.",
+      icon: "Car",
+      color: "text-yellow-500",
+      bg: "bg-yellow-100",
+    },
+    {
+      title: "24/7 Support – 24/7 Travel Help",
+      description:
+        "Have access to our round-the-clock customer care help center where you can easily contact us for any questions or concerns about your travels.",
+      icon: "Headphones",
+      color: "text-red-500",
+      bg: "bg-red-100",
+    },
+  ];
 
   return (
-    <section className='max-w-7xl mx-auto px-4 py-16'>
+    <section className="max-w-7xl mx-auto px-4 py-20">
 
-      <h2 className='text-center text-3xl md:text-4xl font-bold mb-12 text-blue-700'>
-         Our Services
-      </h2>
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="text-center mb-14"
+      >
+        <p className="text-blue-600 font-medium tracking-wide uppercase mb-2">
+          Our Travel Services
+        </p>
 
-  
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+          Travel Services Designed For You
+        </h2>
+      </motion.div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
 
         {services.map((item, id) => {
-          let Icon = icons[item.icon];
+
+          const Icon = icons[item.icon];
 
           return (
-            <div
+            <motion.div
               key={id}
-              className="group relative p-[1px] rounded-2xl bg-gradient-to-br hover:scale-105 transition duration-300"
-              style={{
-                backgroundImage: `linear-gradient(to right, var(--tw-gradient-stops))`,
+
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+
+              transition={{
+                duration: 0.6,
+                delay: id * 0.15,
               }}
+
+              viewport={{ once: true }}
+
+              className="group bg-white border border-gray-200 rounded-2xl p-7 hover:shadow-2xl hover:border-blue-500 transition-all duration-300"
             >
 
-           
-              <div className="bg-white rounded-2xl p-6 h-full text-center shadow-md hover:shadow-xl transition duration-300">
-
-              
-                <div className={`mx-auto flex items-center justify-center w-16 h-16 rounded-full ${item.bg} mb-4 group-hover:scale-110 transition`}>
-                  <Icon className={`${item.color}`} size={26} />
-                </div>
-
-              
-                <h3 className='text-lg font-semibold mb-2 text-gray-800'>
-                  {item.title}
-                </h3>
-
-                <p className='text-sm text-gray-500 leading-relaxed'>
-                  {item.description}
-                </p>
-
-              
-                <div className={`mt-4 h-[3px] w-0 group-hover:w-full bg-gradient-to-r ${item.border} transition-all duration-500 rounded-full`}></div>
-
+              <div
+                className={`w-14 h-14 rounded-xl flex items-center justify-center ${item.bg} mb-5 group-hover:scale-110 transition`}
+              >
+                <Icon className={item.color} size={28} />
               </div>
-            </div>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                {item.title}
+              </h3>
+
+              <p className="text-gray-500 text-sm font-semibold leading-relaxed">
+                {item.description}
+              </p>
+
+            </motion.div>
           );
         })}
-
       </div>
-
     </section>
   );
 }

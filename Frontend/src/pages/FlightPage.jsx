@@ -172,7 +172,7 @@ export default function FlightPage() {
               playsInline
               muted
               src="/video/Flight Page.mp4"
-              className="w-full h-full object-cover"
+              className="absolute w-full h-full top-0 left-0 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30"></div>
           </div>
@@ -188,7 +188,7 @@ export default function FlightPage() {
             <p className="text-white/95 mt-4 text-lg hidden md:block">Exclusive fares you won't find anywhere else.</p>
           </div>
 
-          <div className="relative z-20 max-w-6xl mx-auto mt-20 px-4">
+          <div className="relative z-20 max-w-6xl mx-auto mt-10 px-4">
             <div className="relative bg-white/40 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.2)] rounded-2xl p-6 md:p-10 border border-white/20">
 
             

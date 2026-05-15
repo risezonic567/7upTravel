@@ -1,92 +1,228 @@
 export let faqdata = {
 
   "booking_services": [
-    { "question": "How do I book flights and hotels online?", "answer": "You can easily search, compare, and book flights or hotels through our platform by entering your destination, dates, and preferences." },
-    { "question": "Can I book international travel from one platform?", "answer": " Yes, you can book international flights, hotels, and complete travel packages in one place." },
-    { "question": "Do I need an account to make a booking?", "answer": " No, but creating an account helps you manage bookings and receive updates easily." },
-    { "question": "How will I receive my booking confirmation?", "answer": " You will get instant confirmation via email and SMS after successful booking." },
-    { "question": "Can I book last-minute travel deals?", "answer": " Yes, we offer last-minute flight and hotel deals based on availability." },
-    { "question": "Is it safe to book travel online?", "answer": " Yes, our platform uses secure payment gateways to ensure safe transactions." }
+    { "question": "How to book flights and hotels on the web?", 
+     
+      "answer": " Book your flights or hotels quickly and conveniently on our website." },
+
+    { "question": "Is there a place to book international travel?", 
+     
+      "answer": " Yes, you can book international flights, hotels, and full travel packages all in one place." },
+
+    { "question": "Do I have to have an account to book?",
+      
+      "answer": " You will receive immediate booking confirmation via email and text." },
+
+    { "question": "How will I receive booking confirmation?", 
+     
+      "answer": " You will receive immediate booking confirmation through email and SMS." },
+
+    { "question": "Is it possible to book last minute deals?", 
+     
+      "answer": " Yes, we have last-minute deals. Depending on availability, they may or may not be available." },
+
+    { "question": "Is it safe to book travel online?", 
+     
+      "answer": "Yes, we use the most advanced and latest payment gateways to keep you safe." }
   ],
 
   "payment_pricing": [
-    { "question": "What payment methods are accepted?", "answer": "We accept credit cards, debit cards, net banking, and popular digital wallets." },
-    { "question": "Is my payment information secure?", "answer": "Yes, all transactions are encrypted and protected with advanced security systems." },
-    { "question": "Can I pay in installments for travel bookings?", "answer": " Some bookings may offer EMI options depending on your bank." },
-    { "question": "What should I do if payment fails?", "answer": "If payment fails, try again or use a different method. Amount (if deducted) is usually refunded automatically." },
-    { "question": "Are there any hidden charges?", "answer": " No, all charges are clearly displayed before final payment." },
-    { "question": " Will I receive a payment receipt?", "answer": "Yes, a detailed invoice will be sent to your registered email." }
+    { "question": "What modes of payment do you accept?", 
+     
+      "answer": "We accept payments made using credit card, debit card, net banking, and wallet." },
+
+    { "question": "Is my payment information safe?", 
+     
+      "answer": "All the information provided by you is protected with the latest encryption software." },
+
+    { "question": "Is it possible to book in installments?", 
+     
+      "answer": "Depending on your bank, it might be possible to book travel using EMI facility." },
+
+    { "question": "Why am I facing payment failure?", 
+     
+      "answer": "The amount that was deducted from your account would be auto-refunded, if payment is not successful." },
+
+    { "question": "Are there any hidden costs?", 
+     
+      "answer": "All costs involved in the transaction are mentioned beforehand and there are no hidden charges." },
+
+    { "question": "Will I be able to receive the payment receipt?", 
+     
+      "answer": "Yes, a detailed receipt of payment will be mailed to you." }
   ],
 
   "cancellation_refund": [
-    { "question": "How can I cancel my booking?", "answer": " You can cancel your booking through your account or by contacting support." },
-    { "question": "What is the cancellation policy?", "answer": "Cancellation policies vary depending on airlines, hotels, or service providers." },
-    { "question": "Will I get a refund after cancellation?", "answer": "Refund eligibility depends on fare rules and cancellation timing." },
-    { "question": "How long does it take to get a refund?", "answer": "Refunds usually take 5–10 business days." },
-    { "question": "Are cancellation charges applicable?", "answer": "Yes, charges may apply based on booking type and provider policies." },
-    { "question": "Can I cancel part of my booking?", "answer": " Yes, partial cancellations may be possible depending on the service." }
+    { "question": "How do I cancel my booking?",
+      
+      "answer": "Cancel booking easily through our website or contact support." },
+
+    { "question": "What is the cancellation policy?",
+      
+      "answer": "The policy for cancellation is different for each type of travel service." },
+
+    { "question": "Do I get a refund after cancellation?",
+      
+      "answer": "Whether you’re due a refund depends on the fare rules and when you cancelled. " },
+
+    { "question": "When will I receive the refund?", 
+     
+      "answer": "Refunds are credited within 5-10 working days of your cancellation." },
+
+    { "question": "Is there any charge involved in cancelling the booking?", 
+     
+      "answer": "There might be, depending on the type of service and provider." },
+
+    { "question": "Is it possible to partially cancel the booking?",
+      
+      "answer": "Depending on the type of booking made, it is possible." }
   ],
 
   "changes_rescheduling": [
-    { "question": "Can I modify my flight or hotel booking?", "answer": "Yes, modifications are allowed depending on fare rules and availability" },
-    { "question": "How do I change my travel dates?", "answer": "You can request changes through your account or support team." },
-    { "question": "Are there charges for booking changes?", "answer": "Yes, airlines and hotels may charge modification fees." },
-    { "question": " Can I change passenger details after booking?", "answer": " Minor corrections may be allowed, but full name changes are often restricted." },
-    { "question": "Can I upgrade my booking?", "answer": " Yes, upgrades depend on availability and additional charges." },
-    { "question": "How late can I make changes?", "answer": "Changes are allowed until a specific time before departure or check-in." }
+    { "question": "Can I make changes to my flights or hotel booking?",
+      
+      "answer": "Yes, depending on your booking and availability." },
+
+    { "question": "How do I change the travel dates?",
+      
+      "answer": "You can make requests regarding changes of travel dates through us." },
+
+    { "question": "Is there any charge involved for changing booking?",
+      
+      "answer": "Yes, depending on the type of booking." },
+
+    { "question": "Can I make changes to passenger details after booking?",
+      
+      "answer": "Only small changes like typos can be changed, however, names cannot be changed." },
+
+
+    { "question": "Can I upgrade my booking?", 
+     
+      "answer": " Depending on the availability and the additional cost." },
+
+    { "question": "After what period of time I can make changes?",
+      
+      "answer": "Until a certain period before departure/check-in." }
   ],
 
   "flight_services": [
-    { "question": "How can I find cheap flight tickets?", "answer": "Book early, compare prices, and check flexible dates for better deals" },
-    { "question": "Do flight prices change frequently?", "answer": " Yes, prices fluctuate based on demand, availability, and timing." },
-    { "question": "Can I book one-way and round-trip flights?", "answer": " Yes, both options are available." },
-    { "question": "What documents are required for flights?", "answer": " Valid ID for domestic travel and passport/visa for international travel." },
-    { "question": "Can I select seats during booking?", "answer": " Yes, seat selection is available for many airlines." },
-    { "question": "What is web check-in?", "answer": " It allows you to check in online before reaching the airport." }
+    { "question": "How do I get cheap flights?",
+      
+      "answer": "By comparing rates and making early booking and keeping travel date flexible." },
+
+    { "question": "Do rates of flights vary?",
+       "answer": "Yes, the price depends upon availability and timing." },
+
+    { "question": "Can I make one-way and round trip bookings?",
+       "answer": " Yes, we can book both of them for you." },
+
+    { "question": "What are the necessary documents for flying?",
+       "answer": "You will need the following documents to travel by air: Valid ID for domestic travel Passport/visa for foreign travel." },
+
+    { "question": "Can I choose my preferred seat?",
+       "answer": "Many airlines allow you to choose your seats." },
+
+    { "question": "What is web check-in?",
+       "answer": "It is used for online check-in before flying." }
   ],
 
   "hotel_services": [
-    { "question": " How do I find the best hotel deals?", "answer": " Compare prices, read reviews, and book in advance." },
-    { "question": " Can I cancel hotel bookings for free?", "answer": " Some hotels offer free cancellation based on policies." },
-    { "question": "What is check-in and check-out time?", "answer": "Typically check-in is after 2 PM and check-out before 12 PM." },
-    { "question": "Are taxes included in hotel prices?", "answer": " Most prices include taxes, but always check before booking." },
-    { "question": "Can I request early check-in?", "answer": " Yes, but it depends on availability." },
-    { "question": "Are meals included in hotel bookings?", "answer": " Depends on the plan you choose (room only, breakfast, etc.)." }
+    { "question": "How do I get the best deal?",
+       "answer": "Make comparisons and book in advance to find best prices." },
+
+    { "question": "Is it possible to cancel hotel bookings without paying a penalty?",
+       "answer": "Yes, certain hotels offer such facility." },
+
+    { "question": "What is check-in and check-out time?",
+       "answer": "Check-in time is after 2 PM and check-out time is before 12 PM." },
+
+    { "question": "Are taxes added to the rate charged?",
+       "answer": "Most prices usually include the tax, but do check while booking." },
+
+    { "question": "Is it possible to request early check-in?",
+       "answer": "This is subject to availability and it varies from hotel to hotel." },
+
+    { "question": "Are meals included in hotel bookings?",
+       "answer": "No, depending on your choice, the meal could be added." }
   ],
 
   "car_rental": [
-    { "question": "How can I rent a car online?", "answer": "Search your location, choose a vehicle, and book instantly." },
-    { "question": "What documents are required for car rental?", "answer": " A valid driving license and ID proof are required." },
-    { "question": "Is fuel included in rental cost?", "answer": " Depends on the rental policy (fuel included or excluded)." },
-    { "question": "Can I book a car for outstation trips?", "answer": "Yes, both local and outstation rentals are available." },
-    { "question": "Are there any security deposits?", "answer": "Some rentals may require a refundable deposit." },
-    { "question": "Can I cancel a car booking?", "answer": "Yes, cancellation depends on provider policies." }
+    { "question": "How can I book a car online?",
+       "answer": "Find a car of your requirement and book immediately." },
+
+    { "question": "What documents are necessary for car rental?",
+       "answer": "Driving license and a valid identity proof." },
+
+    { "question": "Are the prices inclusive of fuel?",
+       "answer": "Not necessarily, as per your requirements, this could vary." },
+
+    { "question": "Can I make outstation trips?",
+       "answer": "Yes, you can either rent cars locally or for outstation travel." },
+
+    { "question": "Would there be any security deposit required for car rental?",
+       "answer": "This could be required by some providers." },
+
+    { "question": "Is it possible to cancel car rentals?",
+       "answer": "Yes, it depends on the policy followed by each provider." }
   ],
 
   "cruise_services": [
-    { "question": "What is included in a cruise package?", "answer": "Accommodation, meals, entertainment, and onboard activities." },
-    { "question": "Do I need a passport for cruises?", "answer": " Yes, for international cruises." },
-    { "question": "Are cruises family-friendly?", "answer": " Yes, most cruises offer activities for all age groups." },
-    { "question": "Can I choose my cabin?", "answer": " Yes, cabin selection is available at booking." },
-    { "question": " Are meals included in cruise bookings?", "answer": "Most cruise packages include meals." },
-    { "question": " Can I cancel cruise bookings?", "answer": " Yes, based on cruise line policies." }
+    { "question": "What is included in cruise booking?",
+       "answer": "Everything required including accommodation, meals, entertainment, etc." },
+
+    { "question": "Do I need a passport for cruise trips?",
+       "answer": "Yes, in case of an international cruise." },
+
+    { "question": "Are cruises family friendly?",
+       "answer": "Yes, cruises are generally meant for family fun." },
+
+    { "question": "Is cabin choice available at booking stage?",
+       "answer": "Yes, the cabin can be chosen according to your choice and budget." },
+
+    { "question": "Is meal cost included in booking prices?",
+       "answer": "Usually, cruise prices include meals." },
+
+    { "question": "Is it possible to cancel cruise booking?",
+       "answer": "Yes, however, it depends on cruise lines policy." }
   ],
 
   "delays_cancellations": [
-    { "question": "What happens if my flight is delayed?", "answer": "Airlines may provide updates, compensation, or alternatives." },
-    { "question": "Will I get a refund for delays?", "answer": " Depends on airline policies and delay duration." },
-    { "question": "How will I be informed about delays?", "answer": " Via SMS, email, or airline notifications." },
-    { "question": "Can I reschedule due to delays?", "answer": "Yes, airlines may offer rescheduling options." },
-    { "question": "What if I miss a connecting flight?", "answer": " Airlines may assist with rebooking." },
-    { "question": "Are hotels provided during long delays?", "answer": " In some cases, airlines provide accommodation." }
+    { "question": "What Happens When an Airline is Delayed?",
+       "answer": " They will notify you of any delays by email/SMS." },
+
+    { "question": "Would I get a refund in case of delays?",
+       "answer": "In case of delays, refund depends on the airline policy." },
+
+    { "question": "What steps do airlines take in case of delays?",
+       "answer": " They update you on delays through emails/SMS." },
+
+    { "question": "Any chance to reschedule?",
+       "answer": "This may be offered in certain circumstances." },
+
+    { "question": "What to do in case of missed connecting flights?",
+       "answer": "Rescheduling might be considered." },
+
+    { "question": "Would hotels be offered in case of long delay periods?",
+       "answer": "In certain cases airlines provide accommodations in case of delays." }
   ],
 
   "support_security": [
-    { "question": "How can I contact customer support?", "answer": "You can reach us via phone, email, or live chat." },
-    { "question": " Can I get help with urgent bookings?", "answer": " Yes, we provide priority support for urgent cases." },
-    { "question": "Is support available 24/7?", "answer": " Yes, our support team is available round the clock." },
-    { "question": " Do you offer multilingual support?", "answer": "Yes, support is available in multiple languages." },
-    { "question": "How quickly will I get a response?", "answer": "Most queries are resolveds within a few hours." },
-    { "question": "Can I track my supports request?", "answer": "Yes, you will receive updates on your requests status." }
+    { "question": "How can I contact customer support?",
+       "answer": "You can reach us via phone, email, or live chat." },
+
+    { "question": " Can I get help with urgent bookings?",
+       "answer": " Yes, we provide priority support for urgent cases." },
+
+    { "question": "Is support available 24/7?",
+       "answer": " Yes, our support team is available round the clock." },
+
+    { "question": " Do you offer multilingual support?",
+       "answer": "Yes, support is available in multiple languages." },
+
+    { "question": "How quickly will I get a response?",
+       "answer": "Most queries are resolveds within a few hours." },
+
+    { "question": "Can I track my supports request?",
+       "answer": "Yes, you will receive updates on your requests status." }
   ]
 };

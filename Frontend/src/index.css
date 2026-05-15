@@ -1,4 +1,8 @@
 @import "tailwindcss";
+
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

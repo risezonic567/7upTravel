@@ -10,31 +10,30 @@ import { clientReviews } from '../data/testimonials'
 
 export default function Testimonials() {
 
-  let [tabs, setTabs] = useState([
+  const [tabs] = useState([
     { title: "Flights", val: "flights" },
     { title: "Hotels", val: "hotels" },
     { title: "Cruise", val: "cruise" },
-
     { title: "Cars", val: "cars" }
   ])
 
-  let [selected, setSelected] = useState("flights")
-  let filterdData = clientReviews[selected] || []
+  const [selected, setSelected] = useState("flights")
+
+  const filteredData = clientReviews[selected] || []
 
   return (
-    <section className='relative py-16 overflow-hidden bg-gray-700'>
-
+    <section className='relative py-16 bg-gray-700'>
 
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_30%,#ff00cc20,transparent_40%),radial-gradient(circle_at_80%_70%,#00ffe520,transparent_40%)]"></div>
 
-      <div className='flex justify-center flex-wrap gap-3 mb-10'>
+      <div className='flex justify-center flex-wrap gap-3 mb-10 px-4'>
         {tabs.map((item, id) => (
           <button
             key={id}
             onClick={() => setSelected(item.val)}
             className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300
               ${item.val === selected
-                ? "bg-gradient-to-r from-pink-500 to-orange-400 text-white shadow-lg scale-105"
+                ? "bg-blue-500 text-white shadow-lg scale-105"
                 : "bg-white/10 text-gray-300 hover:bg-white/20"
               }`}
           >
@@ -43,7 +42,7 @@ export default function Testimonials() {
         ))}
       </div>
 
-      <div className='text-center mb-10'>
+      <div className='text-center mb-10 px-4'>
         <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
           Why Customers Love 7upTravel
         </h2>
@@ -56,8 +55,13 @@ export default function Testimonials() {
             { num: "50+", label: "Awards" }
           ].map((item, i) => (
             <div key={i} className="text-white">
-              <h3 className="text-2xl font-bold text-yellow-400">{item.num}</h3>
-              <p className="text-xs text-gray-300">{item.label}</p>
+              <h3 className="text-2xl font-bold text-yellow-400">
+                {item.num}
+              </h3>
+
+              <p className="text-xs text-gray-300">
+                {item.label}
+              </p>
             </div>
           ))}
         </div>
@@ -69,49 +73,71 @@ export default function Testimonials() {
           slidesPerView={3}
           spaceBetween={30}
           grabCursor={true}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
-          breakpoints={{
-            0: { slidesPerView: 1, spaceBetween: 12 },
-            640: { slidesPerView: 2, spaceBetween: 16 },
-            1024: { slidesPerView: 3, spaceBetween: 24 },
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
           }}
-          modules={[Autoplay, Pagination]}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination, Autoplay]}
+          className='!pb-14'
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 12,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 16,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+            },
+          }}
         >
 
-          {filterdData.map((item, id) => (
-            <SwiperSlide key={id}>
+          {filteredData.map((item, id) => (
+            <SwiperSlide key={id} className='h-auto'>
 
-              <div className="group relative p-[1px] rounded-2xl bg-gray-200 hover:scale-105 transition duration-500">
+              <div className="group relative p-[1px] rounded-2xl bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-500 h-full">
 
-         
-                <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 h-full text-black shadow-xl relative overflow-hidden">
+                <div className="bg-white rounded-2xl p-6 h-full shadow-xl relative overflow-hidden transition-all duration-500 group-hover:-translate-y-2">
 
-                
-                  <Quote size={28} className="text-yellow-400 mb-3 scale-x-[-1]" />
+                  {/* Quote Icon */}
+                  <Quote
+                    size={28}
+                    className="text-yellow-500 mb-3 scale-x-[-1]"
+                  />
 
-               
-                  <p className='text-sm text-black leading-relaxed line-clamp-5'>
+                  {/* Message */}
+                  <p className='text-sm text-gray-700 leading-relaxed min-h-[120px]'>
                     {item.message}
                   </p>
 
+                  {/* User */}
                   <div className='flex items-center gap-3 mt-6'>
-                    <img
-                      src={item.image}
-                      className='w-12 h-12 rounded-full object-cover border-2 border-yellow-400'
-                      alt=""
-                    />
 
+                  
                     <div>
-                      <h3 className='font-semibold text-sm'>{item.name}</h3>
-                      <p className='text-xs text-gray-800'>{item.date}</p>
+                      <h3 className='font-semibold text-sm text-black'>
+                        {item.name}
+                      </h3>
+
+                      <p className='text-xs text-gray-500'>
+                        {item.date}
+                      </p>
                     </div>
+
                   </div>
 
-                 
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-yellow-400/10 via-pink-500/10 to-purple-500/10"></div>
+                  {/* Hover Glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-yellow-400/10 via-pink-500/10 to-purple-500/10 pointer-events-none"></div>
 
                 </div>
+
               </div>
 
             </SwiperSlide>

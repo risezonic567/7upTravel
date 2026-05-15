@@ -5,26 +5,26 @@ import { ShieldCheck, Zap, Globe, Headset } from 'lucide-react';
 const Features = () => {
   const features = [
     {
-      title: "Best Price Guarantee",
-      desc: "We ensure the best rates available in the market.",
+      title: "Guaranteed Best Price",
+      desc: "Our prices guarantee the best deals in the industry and give our clients the assurance that their travels will not be too costly.",
       icon: <Zap className="w-8 h-8 text-amber-500" />,
       color: "from-amber-500/10 to-orange-500/10"
     },
     {
-      title: "Secure Payments",
-      desc: "Your transactions are 100% safe and encrypted.",
+      title: "Safe Transaction",
+      desc: "Our transaction process is guaranteed safe with all security measures put in place to keep your information completely secure.",
       icon: <ShieldCheck className="w-8 h-8 text-blue-500" />,
       color: "from-blue-500/10 to-cyan-500/10"
     },
     {
-      title: "Global Reach",
-      desc: "Get access to 630+ worldwide destinations.",
+      title: "Worldwide Destination",
+      desc: "Access over 630 worldwide destinations through our various travel services including booking services.",
       icon: <Globe className="w-8 h-8 text-emerald-500" />,
       color: "from-emerald-500/10 to-teal-500/10"
     },
     {
       title: "24/7 Support",
-      desc: "Our team is always ready to assist you anytime.",
+      desc: "We offer round the clock customer service support to serve your needs at any point of the day or night.",
       icon: <Headset className="w-8 h-8 text-rose-500" />,
       color: "from-rose-500/10 to-pink-500/10"
     }

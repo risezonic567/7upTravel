@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { FreeMode, Navigation } from "swiper/modules";
+import { FreeMode, Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -29,40 +29,41 @@ export default function ExploreNearby() {
       img: "/images/Miami.jpg.jpeg",
       path: "/miami",
     },
-    // {
-    //   id: 4,
-    //   name: "San Jose",
-    //   img: "/images/Explore Nearby San Jose.jpg.jpeg",
-    //   path: "/sanjosh",
-    // },
-    // {
-    //   id: 5,
-    //   name: "New York",
-    //   img: "/images/Explore Nearby New York.jpg.jpeg",
-    //   path: "/new-york",
-    // },
-    // {
-    //   id: 6,
-    //   name: "Las Vegas",
-    //   img: "/images/Explore Nearby Las Vegas.jpg.jpeg",
-    //   path: "/las-vegas",
-    // },
+     {
+      id: 4,
+      name: "Switzerland",
+      img: "/images/Switzerland.jpg.jpeg",
+      path: "/switzerland",
+    },
+     {
+      id: 5,
+      name: "Thailand",
+      img: "/images/Thailand.jpg.jpeg",
+      path: "/thailand",
+    },
   ];
 
   return (
     <section className="py-16 px-4 bg-gray-50/50">
       <div className="max-w-7xl mx-auto w-full overflow-hidden">
-        
+
         <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-10">
           Explore Nearby
         </h2>
 
         <Swiper
-          modules={[FreeMode, Navigation]}
+          modules={[FreeMode, Navigation, Autoplay]}
           freeMode={true}
           navigation={true}
+          grabCursor={true}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
           spaceBetween={24}
           slidesPerView={1.2}
+          className="!overflow-visible"
           breakpoints={{
             640: {
               slidesPerView: 2,
@@ -76,10 +77,10 @@ export default function ExploreNearby() {
           }}
         >
           {places.map((item) => (
-            <SwiperSlide key={item.id}>
-              <Link to={item.path} className="group">
-                <div className="flex flex-col">
-                  
+            <SwiperSlide key={item.id} className="h-auto">
+              <Link to={item.path} className="group block h-full">
+                <div className="flex flex-col h-full">
+
                   <div className="relative aspect-square w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
                     <img
                       src={item.img}
@@ -95,6 +96,7 @@ export default function ExploreNearby() {
                       <p className="text-xl font-bold text-gray-800 group-hover:text-[#3aa0c9] transition-colors">
                         {item.name}
                       </p>
+
                       <p className="text-sm text-gray-500 font-medium">
                         Explore Deals
                       </p>

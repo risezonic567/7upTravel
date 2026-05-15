@@ -27,7 +27,7 @@ export default function Faq() {
   );
 
   return (
-    <div className="min-h-screen bg-[#fafaf9] text-slate-900 font-sans selection:bg-amber-100">
+    <div className="min-h-screen bg-[#fafaf9] text-slate-900 font-sans selection:bg-blue-200">
       
       <section className="relative overflow-hidden bg-white border-b border-slate-100">
         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
@@ -41,7 +41,8 @@ export default function Faq() {
             How can we <span className="text-blue-600">help you Today?</span>
           </h1>
           <p className="max-w-2xl mx-auto text-slate-500 text-lg leading-relaxed">
-           Find quick answers and reliable support for your travel plans. Browse our help center, explore common topics, or connect with our team for assistance with flight bookings, hotel reservations, cancellations, refunds, and more.
+          Whether it's your family vacations or business travels, last-minute travels or weekend breaks, luxury cruises or just a break from routine, 7UP TRAVEL provides you with all of it in one stop. An affordable, reliable and secure booking system backed with world-class support makes all of your travels easy and joyful.
+
           </p>
 
           <div className="max-w-2xl mx-auto mt-10 relative">
@@ -107,7 +108,7 @@ export default function Faq() {
                       {item.question}
                     </h3>
                     <div className={`flex-shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
-                      isOpen ? "bg-blue-600 text-white rotate-45" : "bg-slate-100 text-slate-400 group-hover:bg-amber-100 group-hover:text-blue-600"
+                      isOpen ? "bg-blue-600 text-white rotate-45" : "bg-slate-100 text-slate-400 group-hover:bg-blue-100 group-hover:text-blue-600"
                     }`}>
                       <FaPlus className="text-xs" />
                     </div>
@@ -119,7 +120,7 @@ export default function Faq() {
                     }`}
                   >
                     <div className="px-6 pb-8 text-slate-600 leading-relaxed text-base">
-                      <div className="pt-2 border-t border-amber-100/50">
+                      <div className="pt-2 border-t border-blue-400/50">
                         {item.answer}
                       </div>
                     </div>
