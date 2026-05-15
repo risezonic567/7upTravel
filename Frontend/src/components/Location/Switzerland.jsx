@@ -47,7 +47,7 @@ export default function Switzerland() {
                     </button>
                 </motion.div>
 
-                <div>
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🏔️ Featured Hotels in Switzerland</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                    Switzerland is where alpine beauty meets luxury hospitality. From snow-capped peaks to serene lakes and vibrant cities, Switzerland offers unforgettable stays in every season. Whether you're skiing in Zermatt, exploring Zurich, or cruising Lake Geneva, 7upTravel.com helps you book hotels, flights, and even car rentals for a seamless Swiss escape.

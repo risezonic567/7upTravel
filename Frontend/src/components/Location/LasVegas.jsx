@@ -45,7 +45,7 @@ export default function LasVegas() {
                     </button>
                 </motion.div>
 
-                <div>
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🎰 Discover Las Vegas with 7upTravel</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                         Experience the thrill of Las Vegas — the Entertainment Capital of the World! Whether you're visiting for dazzling shows, high-stakes casinos, or legendary nightlife, 7upTravel makes it easy to get there and explore with top-rated flight deals and convenient car rental options.

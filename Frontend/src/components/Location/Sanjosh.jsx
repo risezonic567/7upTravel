@@ -46,7 +46,7 @@ export default function Sanjosh() {
                     </button>
                 </motion.div>
 
-                <div>
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🌆 Travel to San Jose with 7upTravel</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                       Explore San Jose, the innovative heart of Silicon Valley. Whether you're heading here for tech conferences, business meetings, or a relaxing California escape, 7upTravel helps you get there with affordable flights and flexible car rental options to match your itinerary.

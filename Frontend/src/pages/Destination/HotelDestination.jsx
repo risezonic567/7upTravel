@@ -69,10 +69,10 @@ export default function HotelDestination() {
           </p>
         </div>
 
-        <button className="mt-6 md:mt-0 bg-[#265a6f] hover:bg-[#1d4757] transition-all text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-semibold shadow-lg">
+        {/* <button className="mt-6 md:mt-0 bg-[#265a6f] hover:bg-[#1d4757] transition-all text-white px-6 py-3 rounded-2xl flex items-center gap-2 font-semibold shadow-lg">
           View All
           <ArrowRight size={18} />
-        </button>
+        </button> */}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
@@ -120,16 +120,16 @@ export default function HotelDestination() {
                     <div className="flex justify-between items-end mt-3">
 
                       <div>
-                        <p className="text-xs uppercase tracking-widest text-white/70">
+                        {/* <p className="text-xs uppercase tracking-widest text-white/70">
                           Starting From
-                        </p>
+                        </p> */}
 
                         <h4 className="text-3xl font-black">
                           ${hotel.price}
                         </h4>
                       </div>
 
-                      <button className="bg-white text-slate-900 px-4 py-2 rounded-xl text-sm font-bold hover:bg-slate-100 transition-all">
+                      <button className="bg-white text-slate-900 px-4 py-2 rounded-xl text-sm font-bold hover:bg-blue-100 cursor-pointer transition-all">
                         Book Now
                       </button>
 

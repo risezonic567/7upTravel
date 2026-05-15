@@ -45,7 +45,7 @@ export default function LosAngeles() {
                     </button>
                 </motion.div>
 
-                <div>
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🏨 Featured Hotels in Los Angeles</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                        Discover our handpicked selection of top-rated hotels in Los Angeles — perfect for every kind of traveler, whether you're here for business, leisure, or a bit of both. These properties offer excellent amenities, convenient locations, and unbeatable comfort.

@@ -46,7 +46,7 @@ export default function Maldives() {
                     </button>
                 </motion.div>
 
-                <div>
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🏝️ Featured Hotels in the Maldives</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                     The Maldives is a dream destination known for its turquoise waters, overwater bungalows, and breathtaking marine life. Whether you're planning a honeymoon, a family retreat, or a solo getaway, 7upTravel.com offers everything you need — luxury resorts, flight deals, and car transfers — for a seamless and unforgettable trip.

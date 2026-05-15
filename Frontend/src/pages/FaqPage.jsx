@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { faqdata } from '../data/faq';
-import { FaPlus } from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from "react";
+import { faqdata } from "../data/faq";
+import { FaPlus } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function Faq() {
-  let tabs = [
+
+  const tabs = [
     { label: "Booking", key: "booking_services" },
     { label: "Payment", key: "payment_pricing" },
     { label: "Cancellation", key: "cancellation_refund" },
@@ -14,59 +15,76 @@ export default function Faq() {
     { label: "Car Rental", key: "car_rental" },
     { label: "Cruises", key: "cruise_services" },
     { label: "Delays", key: "delays_cancellations" },
-    // { label: "Support", key: "support_security" }
   ];
 
-  let [tab, setTab] = useState("booking_services");
-  let [open, setOpen] = useState(false);
-  let [search, setSearch] = useState("");
-  
-  let Selectedfaqdata = faqdata[tab] || [];
-  let filterdata = Selectedfaqdata.filter((item) => 
+  const [tab, setTab] = useState("booking_services");
+  const [open, setOpen] = useState(null);
+  const [search, setSearch] = useState("");
+
+  const Selectedfaqdata = faqdata[tab] || [];
+
+  const filterdata = Selectedfaqdata.filter((item) =>
     item.question.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div className="min-h-screen bg-[#fafaf9] text-slate-900 font-sans selection:bg-blue-200">
-      
-      <section className="relative overflow-hidden bg-white border-b border-slate-100">
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20"></div>
-        
-        <header className="relative max-w-5xl mx-auto text-center py-20 px-6">
-          <h2 className='text-xl sm:text-2xl md:text-4xl text-blue-700 text-center font-semibold py-5'>24/7 Customer Support for Your Travel Needs</h2>
-          {/* <span className="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-widest uppercase bg-amber-50 text-amber-700 rounded-full border border-amber-100">
-            Customer Support
-          </span> */}
-          <h1 className="text-5xl md:text-4xl font-extrabold mb-6 tracking-tight text-slate-900">
-            How can we <span className="text-blue-600">help you Today?</span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-slate-500 text-lg leading-relaxed">
-          Whether it's your family vacations or business travels, last-minute travels or weekend breaks, luxury cruises or just a break from routine, 7UP TRAVEL provides you with all of it in one stop. An affordable, reliable and secure booking system backed with world-class support makes all of your travels easy and joyful.
+    <div className="bg-[#f8fafc] min-h-screen">
 
+      {/* HERO */}
+      <section className="relative overflow-hidden py-24">
+
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="relative max-w-5xl mx-auto px-6 text-center"
+        >
+
+          <p className="uppercase tracking-[4px] text-blue-600 text-md  font-medium mb-4">
+            Support Center
           </p>
 
-          <div className="max-w-2xl mx-auto mt-10 relative">
-            <input 
-              type="text" 
-              placeholder="Search for questions (e.g. 'refund policy')..." 
-              onChange={(e) => setSearch(e.target.value)} 
-              className="w-full bg-white shadow-2xl shadow-slate-200/50 outline-none border border-slate-200 focus:border-blue-400 p-5 pl-8 rounded-2xl transition-all duration-300 text-slate-700 placeholder:text-slate-400" 
+          <h1 className="text-4xl md:text-6xl font-bold text-black leading-tight">
+            How Can We Help <br /> <span className="text-blue-400">You Today?</span>
+          </h1>
+
+          <p className="max-w-2xl mx-auto text-black-100 mt-6 leading-relaxed text-lg">
+            Find quick answers for bookings, cancellations, payments,
+            refunds, hotels, flights, and more with our premium support.
+          </p>
+
+          {/* Search */}
+          <div className="max-w-2xl mx-auto mt-10">
+            <input
+              type="text"
+              placeholder="Search your question..."
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-white/95 backdrop-blur-md border border-white/30 rounded-2xl p-5 px-6 outline-none text-slate-700 shadow-2xl focus:ring-4 focus:ring-blue-200 transition"
             />
           </div>
-        </header>
+        </motion.div>
       </section>
 
-      {/* Tabs Section */}
-      <section className="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
-        <div className="flex flex-wrap justify-center gap-3 bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-slate-100">
+      {/* Tabs */}
+      <section className="max-w-7xl mx-auto px-4 -mt-10 relative z-10">
+
+        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-4 flex flex-wrap justify-center gap-3">
+
           {tabs.map((item, id) => (
-            <button 
-              key={id} 
-              onClick={() => { setTab(item.key); setOpen(null); }} 
-              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 transform active:scale-95 ${
-                item.key === tab 
-                ? "bg-slate-900 text-white shadow-lg shadow-slate-300 scale-105" 
-                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+
+            <button
+              key={id}
+              onClick={() => {
+                setTab(item.key);
+                setOpen(null);
+              }}
+              className={`px-5 py-3 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                item.key === tab
+                  ? "bg-blue-600 text-white shadow-lg"
+                  : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600"
               }`}
             >
               {item.label}
@@ -75,69 +93,109 @@ export default function Faq() {
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto px-6 py-20">
-        <div className="mb-12 flex items-center justify-between border-b border-slate-200 pb-6">
-            <h2 className="text-2xl font-bold text-slate-800">
-                {tabs.find(t => t.key === tab)?.label} FAQs
+      {/* FAQ SECTION */}
+      <section className="max-w-4xl mx-auto px-4 py-20">
+
+        {/* Top */}
+        <div className="flex items-center justify-between mb-10">
+
+          <div>
+            <h2 className="text-3xl font-bold text-slate-800">
+              {tabs.find((t) => t.key === tab)?.label} FAQs
             </h2>
-            <span className="text-sm text-slate-400 font-medium">
-                {filterdata.length} Results
-            </span>
+
+            <p className="text-slate-500 mt-2">
+              Frequently asked questions and answers.
+            </p>
+          </div>
+
+          <div className="bg-blue-50 text-blue-600 px-4 py-2 rounded-xl font-semibold">
+            {filterdata.length} Questions
+          </div>
         </div>
 
+        {/* Empty */}
         {filterdata.length === 0 ? (
-          <div className="text-center py-20 bg-slate-50 rounded-3xl border border-dashed border-slate-300">
-            <p className="text-slate-500 font-medium">No matches found for "{search}"</p>
+
+          <div className="text-center py-20 bg-white rounded-3xl shadow-md border border-dashed border-slate-300">
+            <p className="text-slate-500 text-lg">
+              No results found for "{search}"
+            </p>
           </div>
+
         ) : (
-          <div className="space-y-4">
+
+          <div className="space-y-5">
+
             {filterdata.map((item, id) => {
+
               const isOpen = open === id;
+
               return (
-                <div 
-                  key={id} 
-                  className={`group transition-all duration-500 rounded-2xl border ${
-                    isOpen ? "border-blue-300 bg-blue-50/30" : "border-slate-200 bg-white hover:border-blue-400"
+                <motion.div
+                  key={id}
+
+                  initial={{ opacity: 0, y: 70 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: id * 0.1,
+                  }}
+
+                  viewport={{ once: true }}
+
+                  className={`bg-white rounded-2xl border overflow-hidden transition-all duration-300 ${
+                    isOpen
+                      ? "border-blue-300 shadow-xl"
+                      : "border-slate-200 hover:border-blue-200 hover:shadow-lg"
                   }`}
                 >
-                  <button 
-                    className="flex items-center justify-between p-6 w-full text-left focus:outline-none" 
+
+                  {/* Question */}
+                  <button
+                    className="w-full flex items-center justify-between p-6 text-left"
                     onClick={() => setOpen(isOpen ? null : id)}
                   >
-                    <h3 className={`font-semibold text-lg transition-colors ${isOpen ? "text-blue-600" : "text-slate-700"}`}>
+
+                    <h3
+                      className={`font-semibold text-lg transition ${
+                        isOpen
+                          ? "text-blue-600"
+                          : "text-slate-800"
+                      }`}
+                    >
                       {item.question}
                     </h3>
-                    <div className={`flex-shrink-0 ml-4 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
-                      isOpen ? "bg-blue-600 text-white rotate-45" : "bg-slate-100 text-slate-400 group-hover:bg-blue-100 group-hover:text-blue-600"
-                    }`}>
-                      <FaPlus className="text-xs" />
+
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
+                        isOpen
+                          ? "bg-blue-600 text-white rotate-45"
+                          : "bg-slate-100 text-slate-500"
+                      }`}
+                    >
+                      <FaPlus size={12} />
                     </div>
                   </button>
-                  
-                  <div 
-                    className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                      isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+
+                  {/* Answer */}
+                  <div
+                    className={`transition-all duration-500 overflow-hidden ${
+                      isOpen
+                        ? "max-h-[400px] opacity-100"
+                        : "max-h-0 opacity-0"
                     }`}
                   >
-                    <div className="px-6 pb-8 text-slate-600 leading-relaxed text-base">
-                      <div className="pt-2 border-t border-blue-400/50">
-                        {item.answer}
-                      </div>
+                    <div className="px-6 pb-7 text-slate-600 leading-relaxed border-t border-slate-100 pt-5">
+                      {item.answer}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         )}
       </section>
-
-      {/* <div className="max-w-lg mx-auto text-center pb-20">
-          <p className="text-slate-400 text-sm mb-4">Still need help?</p>
-          <NavLink to="/contact-us" className="px-8 py-3 bg-slate-900 text-white rounded-full font-semibold hover:bg-blue-600 transition-colors shadow-lg">
-              Contact Concierge Support
-          </NavLink>
-      </div> */}
     </div>
   );
 }

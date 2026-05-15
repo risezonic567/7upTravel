@@ -4,6 +4,8 @@ import { BiHeadphone } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import HotelAboutPage from './HotelAboutPage'
 import HotelDestination from './Destination/HotelDestination'
+import Testimonials from '../components/Testimonials'
+import Faq from './FaqPage'
 
 export default function HotelPage(){
     return (
@@ -72,6 +74,9 @@ export default function HotelPage(){
         <PromoSection/>
         <HotelAboutPage/>
         <HotelDestination/>
+        <Faq/>
+        <Testimonials/>
+        
         </>
     )
 }

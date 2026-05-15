@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import WhyChooseUs from "./WhyChooseUs";
 import CarlistPage from "./CarListPage";
 import FAQPage from "./FaqPage";
+import Testimonials from "../components/Testimonials";
 
 export default function CabBookingSection() {
   const [showForm, setShowForm] = useState(false);
@@ -147,7 +148,9 @@ export default function CabBookingSection() {
     <WhyChooseUs/>
     <div id="sticky-trigger"></div>
     <CarlistPage/>
+
     <FAQPage/>
+    <Testimonials/>
    </>
   );
 }

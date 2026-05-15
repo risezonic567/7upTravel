@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import LatestNews from './LatestNewsPage'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import Testimonials from '../components/Testimonials'
 
 
 export default function CruisePage() {
@@ -158,6 +159,7 @@ export default function CruisePage() {
                 </motion.div>
         </div>
       </section>
+      <Testimonials/>
       <LatestNews/>
     </>
   )

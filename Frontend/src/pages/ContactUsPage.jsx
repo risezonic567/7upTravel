@@ -56,8 +56,8 @@ export default function ContactPage() {
   return (
     <div className="bg-white min-h-screen font-sans text-gray-800">
 
-      <motion.section
-        className="max-w-7xl mx-auto px-6 py-20 mt-20 text-center"
+       <motion.section
+        className="max-w-7xl mx-auto px-6 py-10 mt-20 text-center"
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -73,13 +73,240 @@ export default function ContactPage() {
         </motion.h1>
 
         <motion.p
-          className="max-w-4xl font-semibold mx-auto text-gray-500 mb-12"
+          className="max-w-4xl font-semibold mx-auto text-gray-500"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Let’s connect and get to know each other better! At 7UPTRAVEL LLC, we’re more than just bookings—we’re your travel companion. Share your dreams, and we’ll help turn them into journeys. Whether it’s flights, hotels, or car rentals, we’re here to make every step smooth, exciting, and unforgettable.
+          Let’s connect and get to know each other better! At <span className="text-blue-600"> 7UPTRAVEL LLC</span>, we’re more than just bookings—we’re your travel companion. Share your dreams, and we’ll help turn them into journeys. Whether it’s flights, hotels, or car rentals, we’re here to make every step smooth, exciting, and unforgettable.
         </motion.p>
+      </motion.section>
+
+     
+
+      <motion.section
+        className="max-w-7xl mx-auto px-6 "
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <div className="flex flex-col md:flex-row items-center gap-12 bg-gray-50/50 rounded-[40px] p-8 md:p-16">
+
+          {/* Image */}
+          <motion.div
+            className=" md:w-1/2 flex justify-center"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <img
+              src="/images/Contact Us Banner.jpg.jpeg"
+              alt="Travel Illustration"
+              className="h-full w-full"
+            />
+          </motion.div>
+
+          <motion.div
+            className="w-full md:w-1/2 bg-white p-8 md:p-12 rounded-3xl shadow-xl relative overflow-hidden"
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-8">Send us message</h2>
+
+         <motion.form
+  className="space-y-4"
+  onSubmit={handleSubmit}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  variants={{
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  }}
+>
+
+  {/* Name + Email */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      className="space-y-2"
+    >
+      <label className="text-sm font-semibold text-slate-700">
+        Full Name
+      </label>
+
+      <input
+        type="text"
+        name="name"
+        value={message.name}
+        onChange={handleChnage}
+        placeholder="Enter your full name"
+        className="w-full h-12 px-5 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all"
+      />
+    </motion.div>
+
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      className="space-y-1"
+    >
+      <label className="text-sm font-semibold text-slate-700">
+        Email Address
+      </label>
+
+      <input
+        type="email"
+        name="email"
+        value={message.email}
+        onChange={handleChnage}
+        placeholder="Enter your email"
+        className="w-full h-12 px-5 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all"
+      />
+    </motion.div>
+
+  </div>
+
+  {/* Phone */}
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 30 },
+      visible: { opacity: 1, y: 0 },
+    }}
+    className="space-y-1"
+  >
+    <label className="text-sm font-semibold text-slate-700">
+      Mobile Number
+    </label>
+
+    <input
+      type="text"
+      name="phone"
+      value={message.phone}
+      onChange={handleChnage}
+      placeholder="+1 234 567 890"
+      className="w-full h-12 px-5 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all"
+    />
+  </motion.div>
+
+  {/* Subject */}
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 30 },
+      visible: { opacity: 1, y: 0 },
+    }}
+    className="space-y-1"
+  >
+    <label className="text-sm font-semibold text-slate-700">
+      Subject
+    </label>
+
+    <input
+      type="text"
+      name="subject"
+      value={message.subject}
+      onChange={handleChnage}
+      placeholder="How can we help you?"
+      className="w-full h-12 px-5 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all"
+    />
+  </motion.div>
+
+  {/* Message */}
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 30 },
+      visible: { opacity: 1, y: 0 },
+    }}
+    className="space-y-1"
+  >
+    <label className="text-sm font-semibold text-slate-700">
+      Your Message
+    </label>
+
+    <textarea
+      rows="3"
+      name="message"
+      value={message.message}
+      onChange={handleChnage}
+      placeholder="Write your message here..."
+      className="w-full p-5 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all resize-none"
+    />
+  </motion.div>
+
+  {/* Checkboxes */}
+  <motion.div
+    className="space-y-1 pt-2"
+    variants={{
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 },
+    }}
+  >
+
+    <label className="flex items-start gap-3 cursor-pointer">
+      <input
+        type="checkbox"
+        className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+      />
+
+      <span className="text-sm text-slate-500 leading-relaxed">
+        I agree to the Terms & Conditions and Privacy Policy.
+      </span>
+    </label>
+
+    <label className="flex items-start gap-3 cursor-pointer">
+      <input
+        type="checkbox"
+        className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+      />
+
+      <span className="text-sm text-slate-500 leading-relaxed">
+        I agree to receive booking updates and travel notifications.
+      </span>
+    </label>
+
+  </motion.div>
+
+  {/* Button */}
+  <motion.button
+    className="w-full h-14 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-lg shadow-lg shadow-blue-200 hover:shadow-blue-300 transition-all"
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+    type="submit"
+  >
+    Send Message
+  </motion.button>
+
+</motion.form>
+            <div className="absolute bottom-4 right-4 grid grid-cols-5 gap-2 opacity-20">
+              {[...Array(15)].map((_, i) => (
+                <div key={i} className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+              ))}
+            </div>
+          </motion.div>
+
+        </div>
+      </motion.section>
+
+       <motion.section
+        className="max-w-7xl mx-auto px-6 py-20 mt-10 text-center"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -138,148 +365,6 @@ export default function ContactPage() {
               Come see us in person—where every visit is an opportunity to connect, assist, and inspire your journey.
             </p>
             <p>200 Spectrum Center Dr Irvine, CA 92618, USA</p>
-          </motion.div>
-
-        </div>
-      </motion.section>
-
-      <motion.section
-        className="max-w-7xl mx-auto px-6 py-16"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="flex flex-col md:flex-row items-center gap-12 bg-gray-50/50 rounded-[40px] p-8 md:p-16">
-
-          {/* Image */}
-          <motion.div
-            className=" md:w-1/2 flex justify-center"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <img
-              src="/images/Contact Us Banner.jpg.jpeg"
-              alt="Travel Illustration"
-              className="h-full w-full"
-            />
-          </motion.div>
-
-          <motion.div
-            className="w-full md:w-1/2 bg-white p-8 md:p-12 rounded-3xl shadow-xl relative overflow-hidden"
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl font-bold mb-8">Send us message</h2>
-
-            <motion.form
-              className="space-y-6"
-              onSubmit={handleSubmit}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.15
-                  }
-                }
-              }}
-            >
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: { opacity: 1, y: 0 }
-                  }}
-                >
-                  <label className="block text-xs font-bold text-gray-400 uppercase mb-2">Your name *</label>
-                  <input type="text" name="name" onChange={handleChnage} className="w-full border border-gray-200 rounded-lg p-3 outline-none focus:border-blue-400 transition-colors" />
-                </motion.div>
-
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: { opacity: 1, y: 0 }
-                  }}
-                >
-                  <label className="block text-xs font-bold text-gray-400 uppercase mb-2">Email address *</label>
-                  <input type="email" name="email" onChange={handleChnage} className="w-full border border-gray-200 rounded-lg p-3 outline-none focus:border-blue-400 transition-colors" />
-                </motion.div>
-              </div>
-
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 }
-                }}
-              >
-                <label className="block text-xs font-bold text-gray-400 uppercase mb-2">Mobile number *</label>
-                <input type="text" name="phone" onChange={handleChnage} className="w-full border border-gray-200 rounded-lg p-3 outline-none focus:border-blue-400 transition-colors" />
-              </motion.div>
-
-               <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 }
-                }}
-              >
-                <label className="block text-xs font-bold text-gray-400 uppercase mb-2">Subject*</label>
-                <input type="text" name="subject" onChange={handleChnage} className="w-full border border-gray-200 rounded-lg p-3 outline-none focus:border-blue-400 transition-colors" />
-              </motion.div>
-
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 }
-                }}
-              >
-                <label className="block text-xs font-bold text-gray-400 uppercase mb-2">Message *</label>
-                <textarea rows="4" name="message" onChange={handleChnage} className="w-full border border-gray-200 rounded-lg p-3 outline-none focus:border-blue-400 transition-colors resize-none"></textarea>
-              </motion.div>
-
-              <motion.div
-                className="space-y-4"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1 }
-                }}
-              >
-                <label className="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
-                  <span className="text-xs text-gray-500 leading-tight">By submitting this form, you agree to our Terms & Conditions and Privacy Policy.</span>
-                </label>
-
-                <label className="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
-                  <span className="text-xs text-gray-500 leading-tight">
-                    By clicking submit, I authorize 7uptravel LLC to send me booking updates.
-                  </span>
-                </label>
-              </motion.div>
-
-              <motion.button
-                className="bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-all flex items-center gap-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                type="submit"
-              >
-                Send Message
-              </motion.button>
-
-            </motion.form>
-
-            <div className="absolute bottom-4 right-4 grid grid-cols-5 gap-2 opacity-20">
-              {[...Array(15)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
-              ))}
-            </div>
           </motion.div>
 
         </div>

@@ -35,66 +35,66 @@ export let clientReviews = {
 
   hotels: [
     {
-      name: "Rahul Mehta",
-      date: "March, 2026",
-      //image: "https://randomuser.me/api/portraits/men/55.jpg",
-      message: "“The hotel booking experience was seamless. The property was exactly as described, clean, and in a great location. No surprises at check-in.”"
-    },
-    {
       name: "Sneha Reddy",
       date: "February, 2026",
-      //image: "https://randomuser.me/api/portraits/women/65.jpg",
-      message: " “I loved the variety of hotel options available. From budget to luxury, everything was easy to browse and book.”"
+      //image: "https://randomuser.me/api/portraits/men/55.jpg",
+      message: "“I liked the wide range of choices of hotels.I found a great website to rent cars easily and book my hotel from budget to luxury hotels.”"
     },
     {
       name: "Karan Malhotra",
       date: "January, 2026",
+      //image: "https://randomuser.me/api/portraits/women/65.jpg",
+      message: " “I booked a family stay through 7UpTravel, and it was an amazing experience. “The hotel was as described, the price was fair, and the customer service was very helpful with the booking.”"
+    },
+    {
+      name: "Rahul Mehta",
+      date: "March, 2026",
       //image: "https://randomuser.me/api/portraits/men/72.jpg",
-      message: " “Booked a family stay through Global Travel Holdings LLC, and it was perfect. The pricing and service both exceeded expectations.”"
+      message: " “The process of booking was smooth from beginning to end. The property was clean and comfortable and well located for my trip. Check-in was fast and easy.”"
     },
 
   ],
 
   cruise: [
     {
-      name: "Siddharth Jain",
+      name: "Megha Arora",
       date: "March, 2026",
       //image: "https://randomuser.me/api/portraits/men/23.jpg",
-      message: "“Our cruise booking experience was fantastic. Everything was well-organized, and the package details were clearly explained before booking.”"
-    },
-    {
-      name: "Megha Arora",
-      date: "February, 2026",
-      //image: "https://randomuser.me/api/portraits/women/27.jpg",
-      message: " “I always wanted to try a cruise, and this platform made it simple. The support team guided me through the entire process.”"
+      message: "“I have always wanted to go on a cruise vacation, and 7UpTravel made it all simple and easy.The support team was super supportive from booking to departure.”"
     },
     {
       name: "Arjun Patel",
       date: "January, 2026",
+      //image: "https://randomuser.me/api/portraits/women/27.jpg",
+      message: " “I found some great deals on cruises, and the prices are really good. Easy and professional booking. Secure as well. Yes, I would book my next cruise here again.”"
+    },
+    {
+      name: "Siddharth Jain ",
+      date: "January, 2026",
       //image: "https://randomuser.me/api/portraits/men/36.jpg",
-      message: " “Great cruise deals and smooth booking experience. It felt secure and professional from start to finish.”"
+      message: " “Everything went very smoothly with minimal issues. The information provided for the package was very clearly laid out and was able to easily contact customer service for help”"
     },
 
   ],
 
   cars: [
     {
-      name: "Vikas Gupta",
-      date: "March, 2026",
+      name: "Ankita Singh ",
+      date: "February, 2026",
       //image: "https://randomuser.me/api/portraits/men/29.jpg",
-      message: " “Car rental booking was quick and easy. The vehicle was in excellent condition, and the pickup process was smooth.”"
+      message: " “I was very pleased with the rental car I received from 7Up Travel. I had previously rented many cars from various companies and always had a fairly good experience, I was very pleased on how simple it was to find a very good price on a comfortable vehicle to drive around the city.”"
     },
     {
-      name: "Ankita Singh",
+      name: "Manish Yadav ",
       date: "February, 2026",
       //image: "https://randomuser.me/api/portraits/women/39.jpg",
-      message: " “I used their car rental service during my vacation, and it made traveling around the city very convenient.”"
+      message: " “In my experience, there was no other car rental company that could offer such an excellent car rental service as I do. The vehicles I received were all exceptionally clean, and I found nothing wrong with the vehicle condition or with the prices that the rental car company offered. The process of booking and picking up the vehicle was exceptionally simple and easy to complete.”"
     },
     {
-      name: "Manish Yadav",
+      name: "Vikas Gupta ",
       date: "January, 2026",
       //image: "https://randomuser.me/api/portraits/men/60.jpg",
-      message: "“Affordable pricing and reliable service. The entire experience was hassle-free and well-managed.”"
+      message: "“The web site of 7Up Travel was easy to navigate, and allowed me to rent a vehicle quickly and simply. I have rented vehicles from 7Up Travel many times in my life, and I have always received very clean, well maintained vehicles from 7Up Travel.”"
     },
 
   ],

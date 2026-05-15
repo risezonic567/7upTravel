@@ -43,8 +43,9 @@ export default function California() {
                         <ArrowRight size={20} />
                     </button>
                 </motion.div>
-                <div>
-                    <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🌴 Featured Hotels in California</h2>
+                
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
+                    <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🌴Featured Hotels in California</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                         From the golden beaches of Southern California to the towering redwoods of the north, California offers something for every type of traveler. Whether you're chasing sunshine in Los Angeles, soaking up culture in San Francisco, or relaxing in a vineyard in Napa Valley — we’ve selected the best hotels to make your California dream a reality.
                     </p>
@@ -87,7 +88,7 @@ export default function California() {
                         <li><b>Hyatt Regency – Huntington Beach:</b> Family-favorite beach resort with waterslides, campfires, and surf school.</li>
                     </ul>
 
-                    <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>💼 For Business Travelers</h2>
+                    <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>💼For Business Travelers</h2>
                     <ul className='text-gray-500 list-disc pl-5 sm:pl-10'>
                         <li><b>L.A. Grand Hotel Downtown: </b> Centralized for business in DTLA with easy freeway access and modern conference facilities.</li>
                         <li><b>JW Marriott – San Francisco Union Square:</b> Sleek and professional with event space, fast Wi-Fi, and fine dining options.</li>
@@ -97,9 +98,9 @@ export default function California() {
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🧳 Why Book with 7UPTRAVEL LLC?</h2>
                     <ul className='text-gray-500 list-disc pl-5 sm:pl-10'>
                         <li>✅ Best Rate Guarantee – We’ll match any lower rate you find.</li>
-                        <li>🚗 Huge Selection – From budget to boutique to 5-star luxury.</li>
-                        <li>💳 Easy, Secure Booking – Encrypted checkout and instant confirmations.</li>
-                        <li>🌟 Verified Reviews – Real guests. Real stays. Real feedback.</li>
+                        <li>🚗Huge Selection – From budget to boutique to 5-star luxury.</li>
+                        <li>💳Easy, Secure Booking – Encrypted checkout and instant confirmations.</li>
+                        <li>🌟Verified Reviews – Real guests. Real stays. Real feedback.</li>
                         <li>💬 24/7 Support – Talk to a travel expert any time of day.</li>
                     </ul>
 
@@ -111,7 +112,7 @@ export default function California() {
                         <li>For Yosemite and Big Sur, opt for weekday stays to avoid crowds and surge pricing.</li>
                     </ul>
 
-                    <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🚀 Ready to Explore California?</h2>
+                    <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🚀Ready to Explore California?</h2>
                     <p className='text-gray-500 text-sm sm:text-base leading-relaxed'>
                         Whether you're dreaming of the Pacific Coast Highway, the thrills of Hollywood, or the serenity of Sequoia forests, California has it all — and <b>7UPTRAVEL LLC</b> is your ticket to explore it affordably and in style.
                     </p>

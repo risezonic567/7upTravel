@@ -44,7 +44,7 @@ export default function NewYork() {
                         <ArrowRight size={20} />
                     </button>
                 </motion.div>
-                <div>
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🏙️ Explore New York City with 7upTravel</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                         New York City — “The City That Never Sleeps” — is calling! Whether you're headed there for business, Broadway, shopping, or sightseeing, 7upTravel has you covered with seamless flight bookings and flexible car rental options so you can experience the city your way.

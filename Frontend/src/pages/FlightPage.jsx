@@ -163,7 +163,7 @@ export default function FlightPage() {
   return (
     <div className="font-sans">
       <section className="h-full">
-        <div className="w-full rounded-[40px] md:rounded-[60px] pt-24 pb-44 relative overflow-visible shadow-2xl">
+        <div className="w-full md:h-[100vh] h-[100vh] rounded-[40px] md:rounded-[60px] pt-24 pb-44 relative overflow-visible shadow-2xl">
 
           <div className="absolute inset-0 z-0">
             <video
@@ -174,7 +174,7 @@ export default function FlightPage() {
               src="/video/Flight Page.mp4"
               className="absolute w-full h-full top-0 left-0 object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/40"></div>
           </div>
 
           <div className="relative z-10 text-center mt-24 ">

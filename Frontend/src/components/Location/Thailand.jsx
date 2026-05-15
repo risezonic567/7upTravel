@@ -44,7 +44,7 @@ export default function Thailand() {
                         <ArrowRight size={20} />
                     </button>
                 </motion.div>
-                <div>
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🌴 Featured Destinations with 7up Travel</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                       Explore our curated selection of top destinations worldwide. Whether you're planning a beach getaway, cultural adventure, or city escape, find the perfect accommodations to make your trip memorable.

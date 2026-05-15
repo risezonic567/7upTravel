@@ -1,9 +1,15 @@
 import React from "react";
 import { Utensils, Timer, ShieldCheck, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+
+
 
 export default function AboutSection() {
   return (
-    <div className="min-h-screen bg-white">
+    <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }} className="min-h-screen bg-white">
       <main className="max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row gap-16 items-stretch">
 
         <div className="w-full lg:w-5/12 relative flex">
@@ -23,7 +29,7 @@ export default function AboutSection() {
           </div>
 
           <div className="absolute bottom-8 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-50 flex items-center space-x-4">
-            
+
             <div className="flex -space-x-3">
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
@@ -45,7 +51,8 @@ export default function AboutSection() {
 
         </div>
 
-        <div className="w-full lg:w-7/12 flex flex-col justify-between">
+        <div
+          className="w-full lg:w-7/12 flex flex-col justify-between">
 
           <div>
             <h1 className="text-4xl font-extrabold text-slate-900 leading-tight">
@@ -95,7 +102,7 @@ export default function AboutSection() {
               </div>
               <h3 className="text-xl font-bold">24 Hours Alert</h3>
               <p className="text-gray-500 text-sm font-semibold leading-relaxed">
-              We offer continuous monitoring and support to ensure your peace of mind — anytime, day or night.
+                We offer continuous monitoring and support to ensure your peace of mind — anytime, day or night.
               </p>
             </div>
 
@@ -103,6 +110,6 @@ export default function AboutSection() {
         </div>
 
       </main>
-    </div>
+    </motion.div>
   );
 }

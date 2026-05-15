@@ -22,7 +22,7 @@ export default function Testimonials() {
   const filteredData = clientReviews[selected] || []
 
   return (
-    <section className='relative py-16 bg-gray-700'>
+    <section className='relative py-16 bg-gray-100'>
 
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_30%,#ff00cc20,transparent_40%),radial-gradient(circle_at_80%_70%,#00ffe520,transparent_40%)]"></div>
 
@@ -34,7 +34,7 @@ export default function Testimonials() {
             className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300
               ${item.val === selected
                 ? "bg-blue-500 text-white shadow-lg scale-105"
-                : "bg-white/10 text-gray-300 hover:bg-white/20"
+                : "bg-black/20 text-gray-800 hover:bg-white/20"
               }`}
           >
             {item.title}
@@ -43,7 +43,7 @@ export default function Testimonials() {
       </div>
 
       <div className='text-center mb-10 px-4'>
-        <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
+        <h2 className='text-3xl md:text-4xl font-bold text-black/70 mb-4'>
           Why Customers Love 7upTravel
         </h2>
 
@@ -55,11 +55,11 @@ export default function Testimonials() {
             { num: "50+", label: "Awards" }
           ].map((item, i) => (
             <div key={i} className="text-white">
-              <h3 className="text-2xl font-bold text-yellow-400">
+              <h3 className="text-2xl font-bold text-blue-400">
                 {item.num}
               </h3>
 
-              <p className="text-xs text-gray-300">
+              <p className="text-sm  text-gray-800">
                 {item.label}
               </p>
             </div>
@@ -102,15 +102,11 @@ export default function Testimonials() {
           {filteredData.map((item, id) => (
             <SwiperSlide key={id} className='h-auto'>
 
-              <div className="group relative p-[1px] rounded-2xl bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-500 h-full">
+              <div className="group relative p-[1px] rounded-2xl bg-gradient-to-br from-yellow-100 via-blue-200 to-purple-300 h-full">
 
                 <div className="bg-white rounded-2xl p-6 h-full shadow-xl relative overflow-hidden transition-all duration-500 group-hover:-translate-y-2">
 
-                  {/* Quote Icon */}
-                  <Quote
-                    size={28}
-                    className="text-yellow-500 mb-3 scale-x-[-1]"
-                  />
+                
 
                   {/* Message */}
                   <p className='text-sm text-gray-700 leading-relaxed min-h-[120px]'>

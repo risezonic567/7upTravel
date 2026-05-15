@@ -45,7 +45,7 @@ export default function Hongkong() {
                     </button>
                 </motion.div>
 
-                <div>
+                <div className='max-w-5xl py-10 rounded-3xl bg-gray-100 p-5 mx-auto'>
                     <h2 className='text-lg sm:text-xl font-bold mt-5 mb-5'>🌆 Featured Hotels in Hong Kong</h2>
                     <p className='text-gray-500 mb-5 text-sm sm:text-base leading-relaxed'>
                      Hong Kong is a dazzling fusion of East and West — where skyscrapers meet serene temples, and street food shares the spotlight with Michelin-starred cuisine. Whether you're here for business, shopping, or sightseeing, 7upTravel.com helps you book the perfect hotel, flight, and car rental for a seamless stay.
