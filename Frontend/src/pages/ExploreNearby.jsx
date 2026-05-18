@@ -63,7 +63,7 @@ export default function ExploreNearby() {
           }}
           spaceBetween={24}
           slidesPerView={1.2}
-          className="!overflow-visible"
+          // className="!overflow-visible"
           breakpoints={{
             640: {
               slidesPerView: 2,

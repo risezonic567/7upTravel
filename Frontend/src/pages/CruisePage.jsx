@@ -5,58 +5,110 @@ import LatestNews from './LatestNewsPage'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Testimonials from '../components/Testimonials'
+import Faq from './FaqPage'
 
 
 export default function CruisePage() {
     const navigate = useNavigate()
   return (
     <>
-      <section className="mt-20 px-4">
-        
-        <div className="relative max-w-7xl mx-auto rounded-[30px] overflow-hidden">
-          
-          <img
-            src="/images/hotelcruise/Explore Luxury Cruise Trips.jpg.jpeg"
-            alt="cruise"
-            className="w-[1300px] border h-[350px] md:h-[450px] object-cover"
-          />
+    <motion.section
+  initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{
+    duration: 0.9,
+    ease: "easeOut"
+  }}
+  className="mt-20 px-4"
+>
+  <motion.div
+    animate={{
+      y: [0, -10, 0]
+    }}
+    transition={{
+      duration: 5,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+    whileHover={{
+      scale: 1.01
+    }}
+    className="relative max-w-7xl mx-auto rounded-[35px] overflow-hidden shadow-[0_25px_80px_rgba(0,0,0,0.18)]"
+  >
 
-          <div className="absolute inset-0 bg-black/40"></div>
+    <img
+      src="/images/hotelcruise/Explore Luxury Cruise Trips.jpg.jpeg"
+      alt="cruise"
+      className="w-full h-[350px] md:h-[500px] object-cover"
+    />
 
-          <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-between px-6 md:px-12">
+    <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20"></div>
 
-            <div className="text-white max-w-xl text-center md:text-left">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight">
-                Explore Luxury Cruise Trips
-              </h1>
+    <div className="absolute top-0 right-0 w-72 h-72 bg-cyan-400/20 blur-3xl rounded-full"></div>
 
-              <p className="mt-3 md:mt-4 text-sm sm:text-base md:text-lg text-gray-200">
-                Discover the world with premium cruise experiences. Enjoy
-                comfort, adventure and unforgettable memories.
-              </p>
+    <div className="absolute inset-0 flex flex-col md:flex-row items-center justify-between px-6 md:px-14 py-10">
 
-              <button className="mt-4 md:mt-6 px-5 py-2 md:px-6 md:py-3 bg-yellow-400 text-black font-semibold rounded-xl hover:scale-105 transition">
-                Book Now
-              </button>
-            </div>
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+        className="text-white max-w-2xl text-center md:text-left"
+      >
 
-            <div className="mt-6 md:mt-0">
-              <img
-                src="https://images.unsplash.com/photo-1548574505-5e239809ee19"
-                alt="cruise ship"
-                className="w-[140px] h-[140px] sm:w-[180px] sm:h-[180px] md:w-[260px] md:h-[260px] object-cover rounded-full border-4 border-white shadow-xl"
-              />
-            </div>
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight">
+       Life Is Adventure
+          <span className="block text-cyan-300">
+         Make The Best Of It
+          </span>
+        </h1>
 
-          </div>
+        <p className="mt-5 text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed max-w-xl">
+      Planning a trip? We will organize the perfect getaway—selecting the best destination within your budget!
+        </p>
+
+        <div className="flex flex-wrap gap-4 mt-8 justify-center md:justify-start">
+          <Link to="tel:+1-888-315-3380">
+          <motion.button
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0px 15px 30px rgba(250,204,21,0.35)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="px-7 py-3 bg-yellow-400 text-black font-bold rounded-2xl shadow-xl"
+          >
+            Book Now
+          </motion.button>
+          </Link>
         </div>
+      </motion.div>
 
-      </section>
+      <motion.div
+        animate={{
+          y: [0, -12, 0],
+          rotate: [-4, 4, -4]
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        whileHover={{
+          scale: 1.08,
+          rotate: 0
+        }}
+        className="mt-10 md:mt-0"
+      >
+      </motion.div>
+    </div>
+  </motion.div>
+</motion.section>
 
       <HowItWorks />
 
       <section>
-        <div className='pt-5 px-5 max-w-7xl mx-auto'>
+      <div className='max-w-5xl mx-auto bg-gray-100 rounded-4xl'>
+          <div className='pt-5 px-5 max-w-7xl mx-auto'>
             <h2 className='text-xl font-bold mb-4'>Cruise Booking by Our Support Team</h2>
             <p className='font-semibold text-gray-500'>
             Booking a cruise can be an exciting but sometimes overwhelming experience. With so many destinations, ships, and cabin options available, it’s easy to feel unsure about where to start. That’s why our dedicated support team is here to assist you every step of the way, making your cruise booking seamless and stress-free.
@@ -64,7 +116,7 @@ export default function CruisePage() {
 
             <h2 className='text-xl font-bold mb-4 mt-5'>Why Choose Our Support Team for Your Cruise Booking?</h2>
             <p className='font-semibold text-gray-500'>
-                Our support team consists of knowledgeable travel experts who specialize in cruises. They understand the nuances of various cruise lines, itineraries, and onboard experiences, ensuring you get the best possible options tailored to your preferences and budget.
+               Our support team consists of knowledgeable travel experts who specialize in cruises. They understand the nuances of various cruise lines, itineraries, and onboard experiences, ensuring you get the best possible options tailored to your preferences and budget.
             </p>
 
             <ul className='list-disc text-gray-500 pl-10 mt-5 mb-5'>
@@ -158,8 +210,10 @@ export default function CruisePage() {
                     </button>
                 </motion.div>
         </div>
+      </div>
       </section>
       <Testimonials/>
+      <Faq/>
       <LatestNews/>
     </>
   )

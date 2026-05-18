@@ -78,9 +78,9 @@ const CarlistPage = () => {
     <div className="min-h-screen mt-5 bg-gray-50">
 
       <div className="bg-white p-6 text-center">
-        <h1 className="text-3xl font-bold">
+        <h2 className="text-3xl font-bold">
           Our Awesome Vehicles
-        </h1>
+        </h2>
       </div>
 
       <div className={`z-50 transition-all duration-300 ${isSticky

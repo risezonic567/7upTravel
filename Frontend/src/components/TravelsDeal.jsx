@@ -1,17 +1,20 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LatestNews from '../pages/LatestNewsPage'
+import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
+
 
 export default function TravelsDeal() {
     const navigate =useNavigate()
   return (
     <>
-       <section className="mt-20 px-4">
+       <section className="mt-24 px-4">
         
         <div className="relative max-w-7xl mx-auto rounded-[30px] overflow-hidden">
           
           <img
-            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+            src="/images/hotelcruise/Explore Luxury Cruise Trips.jpg.jpeg"
             alt="cruise"
             className="w-full h-[350px] md:h-[450px] object-cover"
           />
@@ -34,13 +37,13 @@ export default function TravelsDeal() {
               </button> */}
             </div>
 
-            <div className="mt-6 md:mt-0">
+            {/* <div className="mt-6 md:mt-0">
               <img
                 src="https://images.unsplash.com/photo-1548574505-5e239809ee19"
                 alt="cruise ship"
-                className="w-[140px] h-[140px] sm:w-[180px] sm:h-[180px] md:w-[260px] md:h-[260px] object-cover rounded-full border-4 border-white shadow-xl"
+                className="w-[140px] h-[120px]  object-cover rounded-full border-4 border-white shadow-xl"
               />
-            </div>
+            </div> */}
 
           </div>
         </div>
@@ -49,7 +52,8 @@ export default function TravelsDeal() {
     {/* content section start */}
 
     <section>
-        <div className='pt-5 px-5 max-w-7xl mx-auto mt-20'>
+      <div className='max-w-7xl mx-auto bg-gray-50'>
+          <div className='pt-5 px-5 max-w-7xl mx-auto mt-20'>
             <h2 className='text-xl font-bold mb-4'>Travel Deals & Limited-Time Offers</h2>
             <p className='font-semibold text-gray-500'>
            Take your travel experience to the next level with our handpicked promotions! Whether you’re planning a solo adventure, a family holiday, or a romantic getaway, our exclusive offers help you save more while enjoying top-tier comfort. Check out the hottest deals available right now:
@@ -147,7 +151,7 @@ export default function TravelsDeal() {
            <p className='text-gray-500 mt-5 mb-5'>Take advantage of these limited-time deals and start planning your next adventure today. Great savings, incredible experiences, and trusted service — only at <b>7UPTRAVEL LLC.</b></p>
            
            
-            <div className="mt-20 bg-slate-50 rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* <div className="mt-20 bg-slate-50 rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
         
         <div className="max-w-xl text-center md:text-left">
           <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900">
@@ -162,9 +166,38 @@ export default function TravelsDeal() {
           Book a Flight
         </button>
 
-      </div>
+      </div> */}
+
+        <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mt-14 relative overflow-hidden rounded-[2rem] bg-gradient-to-r from-slate-900 to-slate-800 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-10 shadow-2xl"
+                >
+
+                    <div className="absolute -top-20 -right-20 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full"></div>
+
+                    <div className="relative z-10 max-w-2xl text-center md:text-left">
+                        <h2 className="text-4xl md:text-4xl font-extrabold text-white leading-tight">
+                            Your Next Adventure Awaits 🌍
+                        </h2>
+
+                        <p className="mt-5 text-slate-300 text-lg leading-relaxed">
+                            Book flights, discover dream destinations, and create unforgettable memories with premium travel experiences.
+                        </p>
+                    </div>
+
+                    <button
+                        onClick={() => navigate("/flight")}
+                        className="relative z-10 cursor-pointer bg-white text-black px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 hover:bg-slate-100 transition-all duration-300 shadow-xl flex items-center gap-3"
+                    >
+                        Book a Flight
+                        <ArrowRight size={20} />
+                    </button>
+                </motion.div>
 
         </div>
+      </div>
       </section>
     <LatestNews/>
 

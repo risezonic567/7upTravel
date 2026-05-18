@@ -30,7 +30,6 @@ export default function Faq() {
   return (
     <div className="bg-[#f8fafc] min-h-screen">
 
-      {/* HERO */}
       <section className="relative overflow-hidden py-24">
 
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:20px_20px]"></div>
@@ -47,16 +46,15 @@ export default function Faq() {
             Support Center
           </p>
 
-          <h1 className="text-4xl md:text-6xl font-bold text-black leading-tight">
+          <h2 className="text-4xl md:text-6xl font-bold text-black leading-tight">
             How Can We Help <br /> <span className="text-blue-400">You Today?</span>
-          </h1>
+          </h2>
 
           <p className="max-w-2xl mx-auto text-black-100 mt-6 leading-relaxed text-lg">
             Find quick answers for bookings, cancellations, payments,
             refunds, hotels, flights, and more with our premium support.
           </p>
 
-          {/* Search */}
           <div className="max-w-2xl mx-auto mt-10">
             <input
               type="text"
@@ -68,7 +66,6 @@ export default function Faq() {
         </motion.div>
       </section>
 
-      {/* Tabs */}
       <section className="max-w-7xl mx-auto px-4 -mt-10 relative z-10">
 
         <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-4 flex flex-wrap justify-center gap-3">
@@ -93,10 +90,8 @@ export default function Faq() {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
       <section className="max-w-4xl mx-auto px-4 py-20">
 
-        {/* Top */}
         <div className="flex items-center justify-between mb-10">
 
           <div>
@@ -114,7 +109,6 @@ export default function Faq() {
           </div>
         </div>
 
-        {/* Empty */}
         {filterdata.length === 0 ? (
 
           <div className="text-center py-20 bg-white rounded-3xl shadow-md border border-dashed border-slate-300">
@@ -151,7 +145,6 @@ export default function Faq() {
                   }`}
                 >
 
-                  {/* Question */}
                   <button
                     className="w-full flex items-center justify-between p-6 text-left"
                     onClick={() => setOpen(isOpen ? null : id)}
@@ -178,7 +171,6 @@ export default function Faq() {
                     </div>
                   </button>
 
-                  {/* Answer */}
                   <div
                     className={`transition-all duration-500 overflow-hidden ${
                       isOpen
